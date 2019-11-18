@@ -7,13 +7,13 @@
 <![endif]-->    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Mi Tiendita - Producto</title>
+    <title>Mi Tiendita - Carrito</title>
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:100,300,400,500,700,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="styles/main.css">
     <link rel="stylesheet" type="text/css" href="styles/iconos.css">
 </head>
-<body class="product_page">
+<body class="carrito">
   <div id="searchContainer" class="search-container">
     <form action="">
       <button type="submit"><div class="icon icon-magnifier-tool"></div></button>
@@ -53,25 +53,72 @@
       </div>
     </nav>
 
-<section>
-  <div class="grid-container">
-    <div class="foto">
-      <img src="assets/images/muebles/salas/00.jpg"/>
-    </div>
-    <div class="caracteristicas">
-      <h1 class="producto__titulo">Sala esquinera izquierda Machaca - Gris claro</h1>
-      <p class="producto__precio">$14,760</p>
-      <h1 class="caracteristicas__titulo">Características</h1>
-      <p class="caracteristicas__resumen">Sala esquinera fabricada con madera de pino 3/4, enresortado en forma de zigzag calibre 9, cuenta con hule espuma de 17 kg estándar con delcron laminado en descasabrazos y respaldo, hule espuma de 24 kg. estándar con delcron láminado en asientos. Ensamblado a base de grapa cementada y PBA.</p> 
-      <div class="addcart"><button>Agregar al carrito</button></div>
-    </div>
-    <div class="descripcion">
-      <h1 class="descripcion__titulo">Descripción</h1>
-      <div class="descripcion__resumen">
-        <p>Esta pieza es la representación perfecta de estilo y comodidad. La elegancia y buen gusto se reflejan en cada rincón de tu hogar, una representación idónea de ello es este formidable sala. Gracias a su suave textura se convierte en el integrante perfecto para complementar tu decoración. Déjate consentir por su comodidad y dale una nueva cara a tu espacio..</p> 
-      </div>
-    </div>
-  </div>
+<section class="section-cart">
+    
+    <div class="grid-container">
+        <div>
+            <h1>CARRITO DE COMPRAS</h1>
+                    <div class="cartlist">
+              <div class="cartlist_foto">
+                <img src="assets/images/muebles/salas/00.jpg">
+              </div>
+              <div class="cartlist_desc">
+                <h2 class="producto__titulo">Sala esquinera izquierda Machaca - Gris claro</h2>
+                <p class="caracteristicas__resumen">Sala esquinera fabricada con madera de pino 3/4, enresortado en forma de zigzag calibre 9, cuenta con hule espuma de 17 kg estándar con delcron laminado en descasabrazos y respaldo, hule espuma de 24 kg. estándar con delcron láminado en asientos. Ensamblado a base de grapa cementada y PBA.</p>
+                <p class="producto__precio">$14,760</p>
+              </div>
+              <div class="quantity">
+                <div class="name"><p>Cantidad:</p></div>
+                <div class="number">
+                  <div class="minus"><span>-</span></div>
+                  <div class="cantidad"><span>2</span></div>
+                  <div class="plus"><span>+</span></div>
+                </div>
+                <div class="delete"><span>X</span></div>
+              </div>
+            </div>
+            
+            
+                        <div class="cartlist">
+              <div class="cartlist_foto">
+                <img src="assets/images/muebles/salas/00.jpg">
+              </div>
+              <div class="cartlist_desc">
+                <h2 class="producto__titulo">Sala esquinera izquierda Machaca - Gris claro</h2>
+                <p class="caracteristicas__resumen">Sala esquinera fabricada con madera de pino 3/4, enresortado en forma de zigzag calibre 9, cuenta con hule espuma de 17 kg estándar con delcron laminado en descasabrazos y respaldo, hule espuma de 24 kg. estándar con delcron láminado en asientos. Ensamblado a base de grapa cementada y PBA.</p>
+                <p class="producto__precio">$14,760</p>
+              </div>
+              <div class="quantity">
+                <div class="name"><p>Cantidad:</p></div>
+                <div class="number">
+                  <div class="minus"><span>-</span></div>
+                  <div class="cantidad"><span>20</span></div>
+                  <div class="plus"><span>+</span></div>
+                </div>
+                <div class="delete"><span>X</span></div>
+              </div>
+            </div>
+            
+            
+        
+        </div>
+    
+        
+        <div class="order">
+              <h1>Resumen del pedido</h1>
+              <div class="detail-order">
+                  <div>Subtotal:</div>
+                  <div>$29,520</div>
+                  <div>Envio:</div>
+                  <div>$100</div>
+                  <div>Total:</div>
+                  <div>$29,620</div>
+              </div>
+              <div class="process-order">
+                <button>Procesar Compra</button>
+              </div>
+            </div>
+          </div>
 </section>
 
 
