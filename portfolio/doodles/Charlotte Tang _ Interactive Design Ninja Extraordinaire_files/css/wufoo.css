@@ -1,0 +1,206 @@
+/* - - - - - - - - - - - - - - - - - - - - -
+
+ Title : Charlotte Tang
+ Author : Charlotte Tang
+ URL : http://charlottetang.com
+
+ Last Updated : Feb 2, 2012
+
+- - - - - - - - - - - - - - - - - - - - - */
+
+form.wufoo {
+	background: transparent;
+	font: 14px/20px helvetica, arial, sans-serif;
+}
+
+.wufoo #header {
+	display: none;
+}
+
+/* Save for Success
+.wufoo li#errorLi {
+	border-radius: 5px;
+	background: #C7F9DC!important;
+	border: 1px solid #536C5D!important;
+}
+
+	.wufoo li#errorLi h3 {
+		border: none!important;
+		color: #799c87!important;
+		font-size: 14px;
+		margin: 0;
+	}
+
+	.wufoo li#errorLi #errorMsg {
+		color: #799c87!important;
+		font-size: 12px;
+	}
+
+		.wufoo li#errorLi #errorMsg b {
+			background: none!important;
+			color: #799c87!important;
+			font-weight: normal;
+			padding: 0;
+		}
+*/
+
+.confirm h2 {
+	color: #c7f9dc;
+	font: 16px/20px helvetica, arial, sans-serif;
+	margin: 0;
+	padding: 0 0 20px!important;
+	text-align: left;
+}
+
+.confirm a.power {
+	float: left;
+}
+
+.wufoo li#errorLi {
+	border-radius: 5px;
+	background: #FFDFDF!important;
+	border: 0px solid #536C5D!important;
+}
+
+	.wufoo li#errorLi h3 {
+		border: none!important;
+		color: #b2504f!important;
+		font-size: 14px;
+		margin: 0;
+	}
+
+	.wufoo li#errorLi #errorMsg {
+		color: #b2504f!important;
+		font-size: 12px;
+	}
+
+		.wufoo li#errorLi #errorMsg b {
+			background: none!important;
+			color: #b2504f!important;
+			font-weight: normal;
+			padding: 0;
+		}
+
+.wufoo label.desc, .wufoo legend.desc,
+.wufoo li.error label.desc, .wufoo li.error legend.desc {
+	font: 12px/18px helvetica, arial, sans-serif;
+	color: #fff!important;
+	font: 14px/20px helvetica, arial, sans-serif;
+}
+
+.wufoo li.error .error {
+	color: #b2504f!important;
+}
+
+.wufoo label.desc span.req {
+	display: none!important;
+}
+
+.wufoo input.text, .wufoo textarea.textarea {
+	background: #fffee9;
+	border: 0;
+	border-radius: 5px;
+	font: 14px/20px helvetica, arial, sans-serif;
+	line-height: 20px;
+	height: 20px;
+	padding: 7px 10px;
+	width: 320px;
+}
+			
+	.wufoo textarea.textarea {
+		height: 80px;
+		max-width: none;
+		min-width: 0;
+	}
+
+	.wufoo li.error {
+		background: none!important;
+		margin-bottom:15px!important;
+	}
+
+	.wufoo li.error input.text, .wufoo li.error textarea.textarea {
+		/*background: #FFDFDF;*/
+	}
+
+.wufoo input.text:focus, .wufoo textarea.textarea:focus {
+	background: #fff;
+	outline: none;
+}
+
+.wufoo li {
+	margin-bottom: 15px;
+	position: relative;
+	padding: 0;
+}
+
+.wufoo li.buttons {
+	padding: 0;
+}
+/*
+.wufoo li.buttons div {
+	background: #443a3e;
+	border-radius: 18px;
+	display: inline-block;
+	padding: 3px;
+	transition: all 0.2s ease-in;  
+		-webkit-transition: all 0.1s ease-in;  
+		-moz-transition: all 0.1s ease-in;  
+		-o-transition: all 0.1s ease-in; 
+}
+	.wufoo li.buttons div:hover {
+		background: #7ca08b;
+	}
+
+*/
+
+.wufoo li.buttons input[type=submit] {
+	background: #D9593D;
+	/*border: 4px solid #443a3e;*/
+	/*border: 1px solid #272123;*/
+	border: 0;
+	border-radius: 5px;
+	color: #fff;
+	font: 12px/12px helvetica, arial, sans-serif;
+	font-weight: bold;
+	letter-spacing: -0.04em;
+	text-transform: uppercase;
+	padding: 7px 10px;
+	transition: all 0.2s ease-in;  
+		-webkit-transition: all 0.1s ease-in;  
+		-moz-transition: all 0.1s ease-in;  
+		-o-transition: all 0.1s ease-in; 
+}
+
+	.wufoo li.buttons input[type=submit]:hover {
+		background: #c7f9dc;
+		/*border: 4px solid #536c5d;*/
+		color: #799c87;
+	}
+
+.wufoo .buttons a {
+	display: none!important;
+}
+
+/* 960px or smaller */
+/* e.g. iPad Portrait */
+/* Portfolio with 2 column layout */
+@media only screen and (max-width: 960px) {
+			
+		.wufoo input.text, .wufoo textarea.textarea {
+			padding: 7px 2%;
+			width: 60%;
+		}
+
+}
+
+/* 630px or smaller */
+/* e.g. iPhone Landscape */
+/* Portfolio with 1 column layout */
+@media only screen and (max-width: 630px) {
+			
+		.wufoo input.text, .wufoo textarea.textarea {
+			padding: 7px 4%;
+			width: 92%;
+		}
+
+}

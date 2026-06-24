@@ -1,0 +1,20 @@
+.tp-caption { z-index: 1; }
+.tp-caption.modern_big_bluebg { border: none; color: #fff; font-family: "Open Sans", sans-serif; font-size: 33pt; font-weight: lighter !important; letter-spacing: 0; margin: 0px; padding: 3px 10px; position: absolute; text-shadow: none; z-index: 6; }
+.tp-caption.modern_big_bluebg .big { font-size: 38pt; }
+.tp-caption a { color: #ff7302; text-shadow: none; -webkit-transition: color 0.2s ease-out; -moz-transition: color 0.2s ease-out; -o-transition: color 0.2s ease-out; -ms-transition: color 0.2s ease-out; }
+.tp-caption a:hover { color: #ffa902; }}
+.tp-caption.largewhitebg { position: absolute; color: #000; text-shadow: none; font-weight: 300; font-size: 50px; line-height: 70px; font-family: "Open Sans"; background-color: #fff; padding: 0px 20px; -webkit-border-radius: 0px; -moz-border-radius: 0px; border-radius: 0px; }
+.tp-caption { transform: none !important; }}
+.fullscreen-container { width: 100%; position: relative; padding: 0; }
+.tparrows { -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"; -moz-opacity: 1; -khtml-opacity: 1; opacity: 1; -webkit-transition: opacity 0.2s ease-out; -moz-transition: opacity 0.2s ease-out; -o-transition: opacity 0.2s ease-out; -ms-transition: opacity 0.2s ease-out; -webkit-transform: translateZ(5px); }
+.tp-leftarrow.default { z-index: 100; cursor: pointer; position: relative; background: url(../assets/large_left.png) no-Repeat 0 0; width: 40px; height: 40px; }
+.tp-rightarrow.default { z-index: 100; cursor: pointer; position: relative; background: url(../assets/large_right.png) no-Repeat 0 0; width: 40px; height: 40px; }
+.tp-leftarrow:hover,
+.tp-rightarrow:hover { background-position: bottom left; }
+.tp-simpleresponsive a { text-decoration: none; }
+.tp-simpleresponsive ul { list-style: none; padding: 0; margin: 0; }
+.tp-simpleresponsive > ul > li { list-stye: none; position: absolute; visibility: hidden; }
+.tp-loader { background: url(../assets/loader.gif) no-repeat 10px 10px; background-color: #fff; margin: -22px -22px; top: 50%; left: 50%; z-index: 10000; position: absolute; width: 44px; height: 44px; border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px; }
+.find-out-more {background:rgba(255,255,255,0.3);color:#fff !important;display:inline-block;font-size:21pt;height:55px;line-height:55px;margin:50px 0 0 0;text-align:center;transition:all linear 0.3s !important;width:265px;}
+.find-out-more:hover {background:rgba(14,181,209,0.3);color:#fff !important;}
+.circle-down-arrow { display: block; margin: 15px 0 0 115px; }

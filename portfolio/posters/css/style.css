@@ -1,0 +1,236 @@
+@charset "UTF-8";
+/* CSS Document */
+/*Some CSS*/
+* {margin: 0; padding: 0;}
+.magnify {width: 320px; margin:50px auto 50px 0; position: relative;}
+.magnify2 {width: 320px; margin:50px auto 50px 0; position: relative;}
+.magnify3 {width: 320px; margin:50px auto 50px 0; position: relative;}
+.magnify4 {width: 320px; margin:50px auto 50px 0; position: relative;}
+.magnify5 {width: 320px; margin:50px auto 50px 0; position: relative;}
+.magnify6 {width: 320px; margin:50px auto 50px 0; position: relative;}
+.magnify7 {width: 320px; margin:50px auto 50px 0; position: relative;}
+.magnify8 {width: 320px; margin:50px auto 50px 0; position: relative;}
+.magnify9 {width: 320px; margin:50px auto 50px 0; position: relative;}
+.magnify10 {width: 320px; margin:50px auto 50px 0; position: relative;}
+.magnify11 {width: 320px; margin:50px auto 50px 0; position: relative;}
+.magnify12 {width: 320px; margin:50px auto 50px 0; position: relative;}
+
+
+/*Lets create the magnifying glass*/
+.large {
+	width: 175px; height: 175px;
+	position: absolute;
+	border-radius: 100%;
+	
+	/*Multiple box shadows to achieve the glass effect*/
+	box-shadow: 0 0 0 7px rgba(255, 255, 255, 0.85), 
+	0 0 7px 7px rgba(0, 0, 0, 0.25), 
+	inset 0 0 40px 2px rgba(0, 0, 0, 0.25);
+	
+	/*Lets load up the large image first*/
+	background: url('../imgs/iphone01.jpg') no-repeat;
+	
+	/*hide the glass by default*/
+	display: none;
+}
+
+/*Lets create the magnifying glass*/
+.large2 {
+	width: 175px; height: 175px;
+	position: absolute;
+	border-radius: 100%;
+	
+	/*Multiple box shadows to achieve the glass effect*/
+	box-shadow: 0 0 0 7px rgba(255, 255, 255, 0.85), 
+	0 0 7px 7px rgba(0, 0, 0, 0.25), 
+	inset 0 0 40px 2px rgba(0, 0, 0, 0.25);
+	
+	/*Lets load up the large image first*/
+	background: url('../imgs/iphone02.jpg') no-repeat;
+	
+	/*hide the glass by default*/
+	display: none;
+}
+
+/*Lets create the magnifying glass*/
+.large3 {
+	width: 175px; height: 175px;
+	position: absolute;
+	border-radius: 100%;
+	
+	/*Multiple box shadows to achieve the glass effect*/
+	box-shadow: 0 0 0 7px rgba(255, 255, 255, 0.85), 
+	0 0 7px 7px rgba(0, 0, 0, 0.25), 
+	inset 0 0 40px 2px rgba(0, 0, 0, 0.25);
+	
+	/*Lets load up the large image first*/
+	background: url('../imgs/iphone03.jpg') no-repeat;
+	
+	/*hide the glass by default*/
+	display: none;
+}
+
+/*Lets create the magnifying glass*/
+.large4 {
+	width: 175px; height: 175px;
+	position: absolute;
+	border-radius: 100%;
+	
+	/*Multiple box shadows to achieve the glass effect*/
+	box-shadow: 0 0 0 7px rgba(255, 255, 255, 0.85), 
+	0 0 7px 7px rgba(0, 0, 0, 0.25), 
+	inset 0 0 40px 2px rgba(0, 0, 0, 0.25);
+	
+	/*Lets load up the large image first*/
+	background: url('../imgs/iphone04.jpg') no-repeat;
+	
+	/*hide the glass by default*/
+	display: none;
+}
+
+/*Lets create the magnifying glass*/
+.large5 {
+	width: 175px; height: 175px;
+	position: absolute;
+	border-radius: 100%;
+	
+	/*Multiple box shadows to achieve the glass effect*/
+	box-shadow: 0 0 0 7px rgba(255, 255, 255, 0.85), 
+	0 0 7px 7px rgba(0, 0, 0, 0.25), 
+	inset 0 0 40px 2px rgba(0, 0, 0, 0.25);
+	
+	/*Lets load up the large image first*/
+	background: url('../imgs/iphone05.jpg') no-repeat;
+	
+	/*hide the glass by default*/
+	display: none;
+}
+
+/*Lets create the magnifying glass*/
+.large6 {
+	width: 175px; height: 175px;
+	position: absolute;
+	border-radius: 100%;
+	
+	/*Multiple box shadows to achieve the glass effect*/
+	box-shadow: 0 0 0 7px rgba(255, 255, 255, 0.85), 
+	0 0 7px 7px rgba(0, 0, 0, 0.25), 
+	inset 0 0 40px 2px rgba(0, 0, 0, 0.25);
+	
+	/*Lets load up the large image first*/
+	background: url('../imgs/iphone06.jpg') no-repeat;
+	
+	/*hide the glass by default*/
+	display: none;
+}
+
+/*Lets create the magnifying glass*/
+.large7 {
+	width: 175px; height: 175px;
+	position: absolute;
+	border-radius: 100%;
+	
+	/*Multiple box shadows to achieve the glass effect*/
+	box-shadow: 0 0 0 7px rgba(255, 255, 255, 0.85), 
+	0 0 7px 7px rgba(0, 0, 0, 0.25), 
+	inset 0 0 40px 2px rgba(0, 0, 0, 0.25);
+	
+	/*Lets load up the large image first*/
+	background: url('../imgs/iphone07.jpg') no-repeat;
+	
+	/*hide the glass by default*/
+	display: none;
+}
+
+/*Lets create the magnifying glass*/
+.large8 {
+	width: 175px; height: 175px;
+	position: absolute;
+	border-radius: 100%;
+	
+	/*Multiple box shadows to achieve the glass effect*/
+	box-shadow: 0 0 0 7px rgba(255, 255, 255, 0.85), 
+	0 0 7px 7px rgba(0, 0, 0, 0.25), 
+	inset 0 0 40px 2px rgba(0, 0, 0, 0.25);
+	
+	/*Lets load up the large image first*/
+	background: url('../imgs/iphone08.jpg') no-repeat;
+	
+	/*hide the glass by default*/
+	display: none;
+}
+
+/*Lets create the magnifying glass*/
+.large9 {
+	width: 175px; height: 175px;
+	position: absolute;
+	border-radius: 100%;
+	
+	/*Multiple box shadows to achieve the glass effect*/
+	box-shadow: 0 0 0 7px rgba(255, 255, 255, 0.85), 
+	0 0 7px 7px rgba(0, 0, 0, 0.25), 
+	inset 0 0 40px 2px rgba(0, 0, 0, 0.25);
+	
+	/*Lets load up the large image first*/
+	background: url('../imgs/iphone09.jpg') no-repeat;
+	
+	/*hide the glass by default*/
+	display: none;
+}
+
+/*Lets create the magnifying glass*/
+.large10 {
+	width: 175px; height: 175px;
+	position: absolute;
+	border-radius: 100%;
+	
+	/*Multiple box shadows to achieve the glass effect*/
+	box-shadow: 0 0 0 7px rgba(255, 255, 255, 0.85), 
+	0 0 7px 7px rgba(0, 0, 0, 0.25), 
+	inset 0 0 40px 2px rgba(0, 0, 0, 0.25);
+	
+	/*Lets load up the large image first*/
+	background: url('../imgs/iphone10.jpg') no-repeat;
+	
+	/*hide the glass by default*/
+	display: none;
+}
+
+/*Lets create the magnifying glass*/
+.large11 {
+	width: 175px; height: 175px;
+	position: absolute;
+	border-radius: 100%;
+	
+	/*Multiple box shadows to achieve the glass effect*/
+	box-shadow: 0 0 0 7px rgba(255, 255, 255, 0.85), 
+	0 0 7px 7px rgba(0, 0, 0, 0.25), 
+	inset 0 0 40px 2px rgba(0, 0, 0, 0.25);
+	
+	/*Lets load up the large image first*/
+	background: url('../imgs/iphone11.jpg') no-repeat;
+	
+	/*hide the glass by default*/
+	display: none;
+}
+
+/*Lets create the magnifying glass*/
+.large12 {
+	width: 175px; height: 175px;
+	position: absolute;
+	border-radius: 100%;
+	
+	/*Multiple box shadows to achieve the glass effect*/
+	box-shadow: 0 0 0 7px rgba(255, 255, 255, 0.85), 
+	0 0 7px 7px rgba(0, 0, 0, 0.25), 
+	inset 0 0 40px 2px rgba(0, 0, 0, 0.25);
+	
+	/*Lets load up the large image first*/
+	background: url('../imgs/iphone12.jpg') no-repeat;
+	
+	/*hide the glass by default*/
+	display: none;
+}
+
+/*To solve overlap bug at the edges during magnification*/
+.small { display: block; }
