@@ -503,7 +503,7 @@ $(document).ready(function () {
     InitLeadership();
     InitProjects();
     InitServices();
-    InitMaps();
+    //InitMaps();
     InitContactForm();
     //InitToolTips();
 });

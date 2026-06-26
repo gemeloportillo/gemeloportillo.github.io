@@ -28,6 +28,12 @@
         .ng-hide-remove {
             display: block !important;
         }
+        
+        /* Ajuste de altura necesario para el contenedor Leaflet */
+        #map-canvas {
+            height: 400px;
+            width: 100%;
+        }
     </style>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
@@ -42,137 +48,141 @@
     <meta name="title" content="Miguel Portillo, arte y ciencia">
     <meta property="og:image" content="http://arteyciencia.mx/images/arteyciencia.png">
     <meta property="og:title" content="Miguel Angel Portillo Bobadilla - Web Designer UI/UX">
-    <title>Miguel Portillo</title>
-    <link rel="shortcut icon" href="../imgs/favicon.ico">
-    <script type="text/javascript" src="../index_files/jquery-1.js"></script>
-    <script type="text/javascript" src="../index_files/bootstrap.js"></script>
-    <script type="text/javascript" src="../index_files/app.js"></script>
+    <title>Miguel Portillo - Contact</title>
+    <link rel="shortcut icon" href="/imgs/favicon.ico">
+    <script type="text/javascript" src="/index_files/jquery-1.js"></script>
+    <script type="text/javascript" src="/index_files/bootstrap.js"></script>
+    <script type="text/javascript" src="/index_files/app.js"></script>
+    
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <link href="../index_files/css.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="../index_files/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="../index_files/settings.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="../index_files/font-awesome.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="../index_files/styles.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="../index_files/firebugResetStyles.css" media="screen">
+    
+    <link href="/index_files/css.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="/index_files/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/index_files/settings.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/index_files/font-awesome.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/index_files/styles.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/index_files/firebugResetStyles.css" media="screen">
 </head>
 
 <body id="index" class="">
-    <!-- Menu begins here -->
     <div id="global-nav-container"></div>
-    <!-- Menu ends here -->
-    <!-- Contact begins -->
-<div class="contact-container" id="contact">
-    <div id="map-canvas"></div>
-    
-    <div class="locations">
-        <div class="container">
-            <h2 data-i18n="cnt_hq_title">The Headquarter</h2>
-            <div class="locations-container">
-                <div class="location active" onclick="ShowLocation('narvarte', this)">
-                    <h5><b data-i18n="cnt_hq_sub">Headquarter</b><br /><span data-i18n="cnt_hq_city">Mexico City, MX</span></h5>
+    <div class="contact-container" id="contact">
+        <div id="map-canvas"></div>
+        
+        <div class="locations">
+            <div class="container">
+                <h2 data-i18n="cnt_hq_title">The Headquarter</h2>
+                <div class="locations-container">
+                    <div class="location active" onclick="ShowLocation('narvarte', this)">
+                        <h5><b data-i18n="cnt_hq_sub">Headquarter</b><br /><span data-i18n="cnt_hq_city">Mexico City, MX</span></h5>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="container">
-        <h1 class="white" data-i18n="cnt_main_title">get in <span class="text-blue">touch</span></h1>
-        <h4 class="text-gray" data-i18n="cnt_subtitle">send me an email, or give me a call</h4>
+        <div class="container">
+            <h1 class="white" data-i18n="cnt_main_title">get in <span class="text-blue">touch</span></h1>
+            <h4 class="text-gray" data-i18n="cnt_subtitle">send me an email, or give me a call</h4>
 
-        <form id="form_contact" name="form_contact" method="post">
-            <ul>
-                <li><label data-i18n="cnt_lbl_company">Company</label></li>
-                <li><input id="ct_company_name" name="ct_company_name" type="text" placeholder="your company name"
-                        data-i18n-placeholder="cnt_ph_company" data-title="This information is required" data-i18n-title="cnt_val_required" /></li>
-                
-                <li><label data-i18n="cnt_lbl_name">Name</label></li>
-                <li><input id="ct_name" name="ct_name" type="text" placeholder="your full name"
-                        data-i18n-placeholder="cnt_ph_name" data-title="This information is required" data-i18n-title="cnt_val_required" /></li>
-                
-                <li><label data-i18n="cnt_lbl_email">Email</label></li>
-                <li><input id="ct_email" name="ct_email" type="text" placeholder="your email"
-                        data-i18n-placeholder="cnt_ph_email" data-title="A valid e-mail address is required" data-i18n-title="cnt_val_email"
-                        data-regexp="^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$" />
-                </li>
-                
-                <li><label data-i18n="cnt_lbl_subject">Subject</label></li>
-                <li><input id="ct_subject" name="ct_subject" type="text" placeholder="subject"
-                        data-i18n-placeholder="cnt_ph_subject" data-title="This information is required" data-i18n-title="cnt_val_required" /></li>
-                
-                <li><label data-i18n="cnt_lbl_message">Message</label></li>
-                <li><textarea id="ct_message" name="ct_message" placeholder="message"
-                        data-i18n-placeholder="cnt_ph_message" data-title="This information is required" data-i18n-title="cnt_val_required"></textarea></li>
-                
-                <li>
-                    <div class="captcha">
-                        <script type="text/javascript" src="https://www.google.com/recaptcha/api/challenge?k=6Lfn9AYAAAAAAAcnTYx3zk0W9L4-X3hWrhObbo6v"></script>
-                        <noscript>
-                            <iframe src="https://www.google.com/recaptcha/api/noscript?k=6Lfn9AYAAAAAAAcnTYx3zk0W9L4-X3hWrhObbo6v" height="300" width="500" frameborder="0"></iframe><br />
-                            <textarea name="recaptcha_challenge_field" rows="3" cols="40"></textarea>
-                            <input type="hidden" name="recaptcha_response_field" value="manual_challenge" />
-                        </noscript>
-                        <h3 class="captcha-error"><b><span class="text-blue" data-i18n="cnt_captcha_error">The captcha is incorrect</span></b></h3>
-                    </div>
-                </li>
-                
-                <li class="clear-fix">
-                    <div class="f-left">
-                        <input id="chbx-copy" name="chbx-copy" type="checkbox" value="copia" />
-                        <label for="chbx-copy" data-i18n="cnt_lbl_copy">Send me a copy</label>
-                    </div>
-                    <input class="btn-blue1 f-right send" onclick="SendContactForm();" type="button" value="Send" data-i18n-value="cnt_btn_send" />
-                </li>
-            </ul>
+            <form id="form_contact" name="form_contact" method="post">
+                <ul>
+                    <li><label data-i18n="cnt_lbl_company">Company</label></li>
+                    <li><input id="ct_company_name" name="ct_company_name" type="text" placeholder="your company name"
+                            data-i18n-placeholder="cnt_ph_company" data-title="This information is required" data-i18n-title="cnt_val_required" /></li>
+                    
+                    <li><label data-i18n="cnt_lbl_name">Name</label></li>
+                    <li><input id="ct_name" name="ct_name" type="text" placeholder="your full name"
+                            data-i18n-placeholder="cnt_ph_name" data-title="This information is required" data-i18n-title="cnt_val_required" /></li>
+                    
+                    <li><label data-i18n="cnt_lbl_email">Email</label></li>
+                    <li><input id="ct_email" name="ct_email" type="text" placeholder="your email"
+                            data-i18n-placeholder="cnt_ph_email" data-title="A valid e-mail address is required" data-i18n-title="cnt_val_email"
+                            data-regexp="^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$" />
+                    </li>
+                    
+                    <li><label data-i18n="cnt_lbl_subject">Subject</label></li>
+                    <li><input id="ct_subject" name="ct_subject" type="text" placeholder="subject"
+                            data-i18n-placeholder="cnt_ph_subject" data-title="This information is required" data-i18n-title="cnt_val_required" /></li>
+                    
+                    <li><label data-i18n="cnt_lbl_message">Message</label></li>
+                    <li><textarea id="ct_message" name="ct_message" placeholder="message"
+                            data-i18n-placeholder="cnt_ph_message" data-title="This information is required" data-i18n-title="cnt_val_required"></textarea></li>
+                    
 
-            <div id="message-sent-confirmation">
-                <table class="thanks">
-                    <tr>
-                        <td>
-                            <h1 class="text-blue" data-i18n="cnt_msg_thanks">Thanks!</h1>
-                            <h3 data-i18n="cnt_msg_success">your message has been sent successfully</h3><br /><br />
-                            <input class="btn-blue1" type="button" onclick="$('#form_contact > *').css('top', '');" value="close" data-i18n-value="cnt_btn_close" />
-                        </td>
-                    </tr>
-                </table>
-            </div>
+                    
+                    <li class="clear-fix">
+                        <div class="f-left">
+                            <input id="chbx-copy" name="chbx-copy" type="checkbox" value="copia" />
+                            <label for="chbx-copy" data-i18n="cnt_lbl_copy">Send me a copy</label>
+                        </div>
+                        <input class="btn-blue1 f-right send" onclick="SendContactForm();" type="button" value="Send" data-i18n-value="cnt_btn_send" />
+                    </li>
+                </ul>
 
-            <div id="message-error">
-                <div class="error-wrapper">
-                    <table class="error">
+                <div id="message-sent-confirmation">
+                    <table class="thanks">
                         <tr>
                             <td>
-                                <img alt="OOPS" class="oops" src="images/icons/oops.png" />
-                                <h5 data-i18n="cnt_msg_error_desc">your message went to another dimension.<br />Please contact one of our rocket scientists</h5>
-                                <img alt="Rocket" src="images/icons/rocket.png" class="f-right" />
-                                <input class="btn-gray" type="button" onclick="$('#form_contact > *').css('top', '');" value="close" data-i18n-value="cnt_btn_close" />
+                                <h1 class="text-blue" data-i18n="cnt_msg_thanks">Thanks!</h1>
+                                <h3 data-i18n="cnt_msg_success">your message has been sent successfully</h3><br /><br />
+                                <input class="btn-blue1" type="button" onclick="$('#form_contact > *').css('top', '');" value="close" data-i18n-value="cnt_btn_close" />
                             </td>
                         </tr>
                     </table>
                 </div>
-            </div>
-            <input type="hidden" name="submit_contact" />
-        </form>
-        <div class="phones-and-media">
-            <ul class="phones clear-fix">
-                <li>
-                    <h6><span data-i18n="cnt_address_state">Mexico City</span>, <span class="text-blue" data-i18n="cnt_address_country">México</span></h6>
-                    <div>Diagonal de San Antonio</div>
-                    <div data-i18n="cnt_address_hood">Col. Narvarte, C.P. 03023</div>
-                    <div data-i18n="cnt_address_city">Benito Juárez, CDMX.</div>
-                    <div>+52 (55) 2328-8158</div>
-                </li>
-            </ul>
-        </div>
-        </div>
-</div>
-    <!-- Contact ends -->
-    <div id="global-footer-container"></div>
-    <!-- Footer ends here -->
 
+                <div id="message-error">
+                    <div class="error-wrapper">
+                        <table class="error">
+                            <tr>
+                                <td>
+                                    <img alt="OOPS" class="oops" src="images/icons/oops.png" />
+                                    <h5 data-i18n="cnt_msg_error_desc">your message went to another dimension.<br />Please contact one of our rocket scientists</h5>
+                                    <img alt="Rocket" src="images/icons/rocket.png" class="f-right" />
+                                    <input class="btn-gray" type="button" onclick="$('#form_contact > *').css('top', '');" value="close" data-i18n-value="cnt_btn_close" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <input type="hidden" name="submit_contact" />
+            </form>
+            
+            <div class="phones-and-media">
+                <ul class="phones clear-fix">
+                    <li>
+                        <h6><span data-i18n="cnt_address_state">Mexico City</span>, <span class="text-blue" data-i18n="cnt_address_country">México</span></h6>
+                        <div>Orinoco</div>
+                        <div data-i18n="cnt_address_hood">Col. Del Carmen, C.P. 03540</div>
+                        <div data-i18n="cnt_address_city">Benito Juárez, CDMX.</div>
+                        <div>+52 (55) 2328-8158</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="global-footer-container"></div>
     <script type="text/javascript" src="/assets/menu.js"></script>
     <script type="text/javascript" src="/assets/footer.js"></script>
     <script type="text/javascript" src="/assets/lang.js"></script>
 
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', () => {
+            // Coordenadas exactas para Orinoco, Col. María del Carmen, Benito Juárez (19.3758, -99.1387)
+            var map = L.map('map-canvas').setView([19.3758, -99.1387], 16);
+
+            // Carga las capas visuales libres desde OpenStreetMap
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            // Agrega el pin interactivo en la ubicación exacta
+            L.marker([19.3758, -99.1387]).addTo(map)
+                .bindPopup('<b>Headquarter</b><br>Orinoco, Col. María del Carmen.')
+                .openPopup();
+        });
+    </script>
 </body>
 
 </html>

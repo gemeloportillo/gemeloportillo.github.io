@@ -2,7 +2,7 @@
 let currentLang = localStorage.getItem('userLang') || 'en'; 
 let translations = {};
 
-// Cargar el archivo JSON mediante Fetch (ajusta la ruta según tu estructura)
+// Cargar el archivo JSON mediante Fetch
 async function loadTranslations() {
     try {
         // Usamos una ruta absoluta o relativa estable hacia el JSON
@@ -14,7 +14,7 @@ async function loadTranslations() {
             const browserLang = navigator.language.slice(0, 2);
             if (browserLang === 'es') {
                 currentLang = 'es';
-            }
+            }   
         }
 
         // Aplicamos el idioma inicial (sea el guardado o el detectado)
@@ -26,13 +26,34 @@ async function loadTranslations() {
     }
 }
 
-// 2. Función que aplica los textos al HTML (usando innerHTML para los <br>)
+// 2. Función que aplica los textos al HTML, placeholders y values de botones
 function applyTranslations(lang) {
-    const elements = document.querySelectorAll('[data-i18n]');
-    elements.forEach(el => {
+    if (!translations[lang]) return;
+
+    // A. Traducir contenido de texto estándar (usando innerHTML para los <br>)
+    const textElements = document.querySelectorAll('[data-i18n]');
+    textElements.forEach(el => {
         const key = el.getAttribute('data-i18n');
-        if (translations[lang] && translations[lang][key]) {
+        if (translations[lang][key]) {
             el.innerHTML = translations[lang][key];
+        }
+    });
+
+    // B. Traducir Placeholders de los inputs del formulario
+    const placeholderElements = document.querySelectorAll('[data-i18n-placeholder]');
+    placeholderElements.forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (translations[lang][key]) {
+            el.setAttribute('placeholder', translations[lang][key]);
+        }
+    });
+
+    // C. Traducir Atributos Value (para inputs tipo botón antiguos)
+    const valueElements = document.querySelectorAll('[data-i18n-value]');
+    valueElements.forEach(el => {
+        const key = el.getAttribute('data-i18n-value');
+        if (translations[lang][key]) {
+            el.value = translations[lang][key];
         }
     });
 }
@@ -51,7 +72,7 @@ function updateButtonVisuals(lang) {
     }
 }
 
-// 4. Función Switch / Toggle que ahora SÍ guarda en localStorage
+// 4. Función Switch / Toggle que guarda en localStorage
 function toggleLanguage() {
     currentLang = (currentLang === 'en') ? 'es' : 'en';
     
@@ -62,11 +83,11 @@ function toggleLanguage() {
     updateButtonVisuals(currentLang);
 }
 
-// Event Listeners integrando la delegación de eventos por si el menú tarda en cargar
+// Event Listeners integrando la delegación de eventos
 document.addEventListener('DOMContentLoaded', () => {
     loadTranslations();
     
-    // Delegación de eventos: escuchamos el clic en el body por si el botón se inyectó dinámicamente
+    // Delegación de eventos para el botón de traducción
     document.body.addEventListener('click', (e) => {
         if (e.target && e.target.id === 'btn-translate') {
             e.preventDefault();
