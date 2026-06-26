@@ -370,7 +370,7 @@ $(document).ready(function () {
                 Next = VideoSlogans.eq(0);
             }
             Next.addClass("active")
-        }, 3000);
+        }, 6000);
     }
 
     function InitCustomers() {
@@ -410,7 +410,7 @@ $(document).ready(function () {
             var Index = TestimonialPages.index(TestimonialPages.filter(".active"));
             Index = (Index + 1 < TestimonialPages.length) ? Index + 1 : 0;
             GoToTestimonial(Index);
-        }, 8000);
+        }, 12000);
     }
 
     function InitLeadership() {
