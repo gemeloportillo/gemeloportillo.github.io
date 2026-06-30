@@ -1,135 +1,171 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
-    <style type="text/css">
-        @charset "UTF-8";
-
-        [ng\:cloak],
-        [ng-cloak],
-        [data-ng-cloak],
-        [x-ng-cloak],
-        .ng-cloak,
-        .x-ng-cloak,
-        .ng-hide {
-            display: none !important;
-        }
-
-        ng\:form {
-            display: block;
-        }
-
-        .ng-animate-block-transitions {
-            transition: 0s all !important;
-            -webkit-transition: 0s all !important;
-        }
-
-        .ng-hide-add-active,
-        .ng-hide-remove {
-            display: block !important;
-        }
-    </style>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="keywords"
-        content="miguel, portillo, apps development, apps developers, designer, software product design, software design Mexico, best designers, software design, portfolio, application designer, creative process, multimedia, design product, diseño, miguel angel portillo, miguel angel, miguel angel portillo bobadilla, web design, web designer, product design,creativity, creative process, ideas, art, arte, ciencia, tecnologia">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="MobileOptimized" content="320">
-    <meta name="description"
-        content="ArteyCiencia for Miguel Portillo, Effective solutions for creative ideas - but also amazingly rich experiences for both clients and partners.">
-    <meta name="author" content="Miguel Portillo, Arte y Ciencia">
-    <meta name="title" content="Miguel Portillo, arte y ciencia">
-    <meta property="og:image" content="http://arteyciencia.mx/images/arteyciencia.png">
-    <meta property="og:title" content="Miguel Angel Portillo Bobadilla - Web Designer UI/UX">
-    <title>Miguel Portillo</title>
-    <link rel="shortcut icon" href="../imgs/favicon.ico">
-    <script type="text/javascript" src="../index_files/jquery-1.js"></script>
-    <script type="text/javascript" src="../index_files/bootstrap.js"></script>
-    <script type="text/javascript" src="../index_files/app.js"></script>
-    <link href="../index_files/css.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="../index_files/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="../index_files/settings.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="../index_files/font-awesome.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="../index_files/styles.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="../index_files/firebugResetStyles.css" media="screen">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio — Miguel Angel Portillo | UX/UI Designer</title>
+  <meta name="description" content="Portfolio de diseño UX/UI de Miguel Angel Portillo Bobadilla — Web Design, Mobile Apps, Marketing, Doodles, Interactive Design, Posters &amp; Banners.">
+  <meta name="author" content="Miguel Angel Portillo Bobadilla">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/x-icon" href="../imgs/favicon.ico">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../index_files/styles.css">
+  <style>
+    :root { --mp-green: #6abf69; --mp-blue: #44c5db; }
+    body  { font-family: 'Open Sans', Tahoma, Geneva, sans-serif; }
+    header            { position: relative; background: transparent; z-index: auto; width: auto; }
+    header *          { color: inherit; }
+    header .container { padding-left: .75rem !important; padding-right: .75rem !important; }
+    /* styles.css adds margin-top:100px and h1 margin-top:-70px for old fixed navbar */
+    #services           { margin-top: 0; }
+    #services h1        { margin-top: 0; }
+    /* styles.css sets #services .container { height: 28em } — fixed height clips 3rd row on mobile */
+    #services .container { height: auto !important; }
+    .navbar-brand img        { height: 38px; }
+    .navbar .nav-link        { font-size: .9rem; letter-spacing: .02em; }
+    .navbar .nav-link:hover,
+    .navbar .nav-link.active { color: var(--mp-green) !important; }
+  </style>
 </head>
 
-<body id="index" class="">
-    <!-- Menu begins here -->
-    <div id="global-nav-container"></div>
-    <!-- Menu ends here -->
-    <!-- Video begins -->
+<body>
 
-    <!-- Video ends -->
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm"
+       aria-label="Navegación principal">
+    <div class="container">
+      <a class="navbar-brand" href="/"><img src="../imgs/arteyciencia.png" alt="Arte y Ciencia — Miguel Portillo"></a>
+      <button class="navbar-toggler border-0" type="button"
+              data-bs-toggle="collapse" data-bs-target="#navMenu"
+              aria-controls="navMenu" aria-expanded="false"
+              aria-label="Abrir o cerrar menú de navegación">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1 py-2 py-lg-0">
+          <li class="nav-item"><a class="nav-link" href="../" data-i18n="menu_home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="../about/" data-i18n="menu_about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="../cv/">CV</a></li>
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="../portfolio/" data-i18n="menu_portfolio">Portfolio</a></li>
+          <li class="nav-item"><a class="nav-link" href="../certifications/" data-i18n="menu_certfications">Certs</a></li>
+          <li class="nav-item ms-lg-3"><a class="btn btn-outline-dark btn-sm px-4 rounded-pill" href="../contact/" data-i18n="menu_contact">Contact</a></li>
+          <li class="nav-item ms-lg-2">
+            <button id="btn-translate"
+                    class="btn btn-sm fw-bold px-2"
+                    style="color:#00ff7f; background:none; border:none; letter-spacing:.05em;"
+                    aria-label="Switch language / Cambiar idioma">ESP</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
 
-    <!-- Services begin here -->
-    <div id="services" data-current-service-index="0">
-        <div class="header">
-            <h1>&nbsp;</h1>
-            <h1 class="text-center">portfolio</h1>
-            <div class="container">
+<main>
+  <!-- Portfolio categories grid -->
+  <section id="services" class="py-5">
+    <div class="container">
+      <h1 class="text-center mb-2" data-i18n="portfolio_main_title">
+        my <span class="text-blue">portfolio</span>
+      </h1>
+      <p class="text-center text-muted mb-5" data-i18n="portfolio_subtitle">select a category to explore</p>
 
-                <div class="categories grid-6cols">
-                    <a class="circle-left-arrow" href="javascript:MoveToService('--');">&nbsp;</a>
-                    <a class="circle-right-arrow" href="javascript:MoveToService('++');">&nbsp;</a>
-                    <div class="col padding-sm banners">
-                        <a class="ico-service PosterBanners" href="posters/index.html">
-                            <img alt="background" src="../index_files/empty.png">
-                        </a>
-                        <h5 class="text-green">Posters<br>& Banners</h5>
-                    </div>
-                    <div class="col padding-sm desktop active">
-                        <a class="ico-service Mobiledev" href="movil/mobile.html">
-                            <img alt="background" src="../index_files/empty.png">
-                        </a>
-                        <h5 class="text-green">Desktop<br>& Mobile Devs</h5>
-                    </div>
+      <div class="row row-cols-2 row-cols-sm-3 row-cols-lg-6 g-4 justify-content-center">
 
-                    <div class="col padding-sm marketing">
-                        <a class="ico-service Marketing" href="marketing/index.html">
-                            <img alt="background" src="../index_files/empty.png">
-                        </a>
-                        <h5 class="text-green">Business<br> Marketing</h5>
-                    </div>
-                    <div class="col padding-sm doodles">
-                        <a class="ico-service Doodles" href="doodles/doodles.html">
-                            <img alt="background" src="../index_files/empty.png">
-                        </a>
-                        <h5 class="text-green">Doodles<br> & illustration</h5>
-                    </div>
-                    <div class="col padding-sm webdesigns">
-                        <a class="ico-service WebDesign" href="webdesign/index.html">
-                            <img alt="background" src="../index_files/empty.png">
-                        </a>
-                        <h5 class="text-green">Web<br>Design</h5>
-                    </div>
-                    <div class="col padding-sm interactivedesign">
-                        <a class="ico-service interactives" href="interactivedesign/index.html">
-                            <img alt="background" src="../index_files/empty.png">
-                        </a>
-                        <h5 class="text-green">Interactive<br> Design</h5>
-                    </div>
-
-
-                </div>
-            </div>
+        <div class="col text-center">
+          <a href="posters/" class="portfolio-card portfolio-card--banners d-block mx-auto" style="max-width:140px;"
+             aria-label="Posters &amp; Banners"></a>
+          <p class="portfolio-card-label mt-2" data-i18n="service_posters">Posters &amp; Banners</p>
         </div>
+
+        <div class="col text-center">
+          <a href="movil/mobile.html" class="portfolio-card portfolio-card--desktop d-block mx-auto" style="max-width:140px;"
+             aria-label="Desktop &amp; Apps"></a>
+          <p class="portfolio-card-label mt-2" data-i18n="service_desktop">Desktop &amp; Apps</p>
+        </div>
+
+        <div class="col text-center">
+          <a href="marketing/" class="portfolio-card portfolio-card--marketing d-block mx-auto" style="max-width:140px;"
+             aria-label="Business Marketing"></a>
+          <p class="portfolio-card-label mt-2" data-i18n="service_marketing">Business Marketing</p>
+        </div>
+
+        <div class="col text-center">
+          <a href="doodles/doodles.html" class="portfolio-card portfolio-card--doodles d-block mx-auto" style="max-width:140px;"
+             aria-label="Doodles &amp; Cartoons"></a>
+          <p class="portfolio-card-label mt-2" data-i18n="service_doodles">Doodles &amp; Cartoons</p>
+        </div>
+
+        <div class="col text-center">
+          <a href="webdesign/" class="portfolio-card portfolio-card--webdesigns d-block mx-auto" style="max-width:140px;"
+             aria-label="Web Design"></a>
+          <p class="portfolio-card-label mt-2" data-i18n="service_web">Web Design</p>
+        </div>
+
+        <div class="col text-center">
+          <a href="interactivedesign/" class="portfolio-card portfolio-card--interactive d-block mx-auto" style="max-width:140px;"
+             aria-label="Interactive Design"></a>
+          <p class="portfolio-card-label mt-2" data-i18n="service_interactive">Interactive Design</p>
+        </div>
+
+      </div>
     </div>
-    <!-- Services end here -->
-    <div id="customers">
+  </section>
 
 
-        <a class="btn-gray" href="http://arteyciencia.mx/cv/portfolio">take a look at my portfolio</a>
+</main>
+
+<footer class="bg-dark text-light pt-5 pb-4" aria-label="Pie de página">
+  <div class="container">
+    <div class="row gy-4">
+      <div class="col-6 col-md-3">
+        <h6 class="text-uppercase fw-semibold mb-3 text-secondary small" data-i18n="footer_title_portfolio">Portfolio</h6>
+        <ul class="list-unstyled small lh-lg">
+          <li><a href="movil/mobile.html"    class="text-light text-decoration-none" data-i18n="footer_link_desktop">Desktop &amp; Apps</a></li>
+          <li><a href="posters/"             class="text-light text-decoration-none" data-i18n="footer_link_posters">Posters &amp; Banners</a></li>
+          <li><a href="marketing/"           class="text-light text-decoration-none" data-i18n="footer_link_marketing">Business Marketing</a></li>
+          <li><a href="doodles/doodles.html" class="text-light text-decoration-none" data-i18n="footer_link_doodles">Doodles &amp; Cartoons</a></li>
+          <li><a href="interactivedesign/"   class="text-light text-decoration-none" data-i18n="footer_link_interactive">Interactive Design</a></li>
+          <li><a href="webdesign/"           class="text-light text-decoration-none" data-i18n="footer_link_web">Web Design</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-md-3">
+        <h6 class="text-uppercase fw-semibold mb-3 text-secondary small" data-i18n="footer_title_about">About</h6>
+        <ul class="list-unstyled small lh-lg">
+          <li><a href="../about/"          class="text-light text-decoration-none" data-i18n="menu_about">About me</a></li>
+          <li><a href="../cv/"             class="text-light text-decoration-none" data-i18n="footer_title_cv">CV</a></li>
+          <li><a href="../certifications/" class="text-light text-decoration-none" data-i18n="menu_certfications">Certifications</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-md-3">
+        <h6 class="text-uppercase fw-semibold mb-3 text-secondary small" data-i18n="footer_title_contact">Contact</h6>
+        <address class="small text-secondary lh-lg mb-0" style="font-style:normal;">
+          <span data-i18n="cnt_address_state">Ciudad de México</span>,
+          <span style="color:var(--mp-blue);" data-i18n="cnt_address_country">México</span><br>
+          <span data-i18n="cnt_address_hood">Col. Narvarte, C.P. 03023</span><br>
+          +52 (55) 2328-8158
+        </address>
+      </div>
+      <div class="col-6 col-md-3">
+        <h6 class="text-uppercase fw-semibold mb-3 text-secondary small" data-i18n="footer_title_connect">Connect</h6>
+        <div class="d-flex gap-3 fs-4">
+          <a href="https://twitter.com/gemeloportillo" target="_blank" rel="noopener noreferrer" aria-label="Twitter" class="text-secondary"><i class="fab fa-twitter"></i></a>
+          <a href="https://mx.linkedin.com/in/miguelportilloux" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="text-secondary"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://www.youtube.com/user/mikepb77" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="text-secondary"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
     </div>
+    <hr class="border-secondary mt-4 mb-3">
+    <p class="text-secondary small text-center mb-0">&copy; 2026 Miguel Angel Portillo Bobadilla &mdash; Arte y Ciencia</p>
+  </div>
+</footer>
 
-    <div id="global-footer-container"></div>
-    <!-- Footer ends here -->
-
-    <script type="text/javascript" src="/assets/menu.js"></script>
-    <script type="text/javascript" src="/assets/footer.js"></script>
-    <script type="text/javascript" src="/assets/lang.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script src="../assets/lang.js"></script>
 
 </body>
-
 </html>

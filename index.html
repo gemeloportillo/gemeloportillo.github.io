@@ -1,257 +1,508 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
-    <style type="text/css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    </style>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="keywords"
-        content="miguel, portillo, apps development, apps developers, designer, software product design, software design Mexico, best designers, software design, portfolio, application designer, creative process, multimedia, design product, diseño, miguel angel portillo, miguel angel, miguel angel portillo bobadilla, web design, web designer, product design,creativity, creative process, ideas, art, arte, ciencia, tecnologia">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="MobileOptimized" content="320">
-    <meta name="description"
-        content="ArteyCiencia for Miguel Portillo, Effective solutions for creative ideas - but also amazingly rich experiences for both clients and partners.">
-    <meta name="author" content="Miguel Portillo, Arte y Ciencia">
-    <meta name="title" content="Miguel Portillo, arte y ciencia">
-    <meta property="og:image" content="http://arteyciencia.mx/images/arteyciencia.png">
-    <meta property="og:title" content="Miguel Angel Portillo Bobadilla - Web Designer UI/UX">
-    <title>Miguel Portillo</title>
-    <link rel="shortcut icon" href="imgs/favicon.ico">
-    <script type="text/javascript" src="index_files/jquery-1.js"></script>
-    <script type="text/javascript" src="index_files/bootstrap.js"></script>
+  <!-- ═══ PRIMARY META TAGS ════════════════════════════════════════════ -->
+  <title>Miguel Angel Portillo — UX/UI Designer &amp; Navigation Expert | México</title>
+  <meta name="description"
+        content="Miguel Angel Portillo Bobadilla — Diseñador UX/UI y Frontend Developer con más de 10 años creando experiencias digitales accesibles e intuitivas. Especialista en Sistemas de Navegación, Arquitectura de Información, WCAG 2.1 y Design Systems.">
+  <meta name="keywords"
+        content="UX/UI Designer, Diseñador UX, Experto en Navegación Web, Accesibilidad WCAG 2.1, Arquitectura de Información, Information Architecture, Interaction Design, Design Systems, Frontend Developer, User Research, Wireframing, Prototipado, Figma, Adobe XD, HTML5, CSS3, Bootstrap 5, ARIA, México, Miguel Angel Portillo Bobadilla">
+  <meta name="author"  content="Miguel Angel Portillo Bobadilla">
+  <meta name="robots"  content="index, follow">
+  <meta name="theme-color" content="#ffffff">
 
-    <script type="text/javascript" src="index_files/app.js"></script>
-    <link href="index_files/css.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="index_files/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="index_files/settings.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="index_files/font-awesome.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="index_files/styles.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="assets/firebugResetStyles.css" media="screen">
+  <!-- ═══ OPEN GRAPH — Facebook / LinkedIn ═════════════════════════════ -->
+  <meta property="og:type"         content="website">
+  <meta property="og:url"          content="https://arteyciencia.mx/">
+  <meta property="og:title"        content="Miguel Portillo — UX/UI Designer &amp; Navigation Expert">
+  <meta property="og:description"  content="Especialista en diseño de sistemas de navegación accesibles, Arquitectura de Información y experiencias digitales intuitivas. +10 años en UX/UI y Frontend.">
+  <meta property="og:image"        content="https://arteyciencia.mx/imgs/arteyciencia.png">
+  <meta property="og:image:width"  content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale"       content="es_MX">
+  <meta property="og:site_name"    content="Arte y Ciencia · Miguel Portillo">
+
+  <!-- ═══ TWITTER CARD ══════════════════════════════════════════════════ -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:site"        content="@gemeloportillo">
+  <meta name="twitter:creator"     content="@gemeloportillo">
+  <meta name="twitter:title"       content="Miguel Portillo — UX/UI Designer &amp; Navigation Expert">
+  <meta name="twitter:description" content="Especialista en navegación accesible, Arquitectura de Información y UX/UI. +10 años de experiencia en México.">
+  <meta name="twitter:image"       content="https://arteyciencia.mx/imgs/arteyciencia.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="imgs/favicon.ico">
+
+  <!-- ═══ CSS ══════════════════════════════════════════════════════════ -->
+  <!-- Bootstrap 5.3 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet" crossorigin="anonymous">
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        crossorigin="anonymous">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap"
+        rel="stylesheet">
+  <!-- Estilos transitionales (fondos de íconos del portfolio) — se refactorizarán en próxima iteración -->
+  <link rel="stylesheet" href="index_files/styles.css">
+
+  <style>
+    :root {
+      --mp-green: #6abf69;
+      --mp-blue:  #44c5db;
+    }
+
+    body { font-family: 'Open Sans', Tahoma, Geneva, sans-serif; }
+
+    /* ── Navbar ── */
+    .navbar-brand img           { height: 38px; }
+    .navbar .nav-link           { font-size: .9rem; letter-spacing: .02em; }
+    .navbar .nav-link:hover,
+    .navbar .nav-link.active    { color: var(--mp-green) !important; }
+
+    /* ── Hero ── */
+    #hero {
+      min-height: 100vh;
+      background: url('imgs/intro.jpg') center center / cover no-repeat;
+    }
+    #hero .overlay {
+      min-height: 100vh;
+      background: rgba(0, 0, 0, 0.58);
+      display: flex;
+      align-items: center;
+    }
+    /* styles.css tiene "html * { color: #303030 }" que rompe la herencia de color;
+       este override fuerza blanco en todos los hijos del hero */
+    #hero .overlay * { color: #fff; }
+
+    /* ── Portfolio icon grid (preserva selectores de styles.css) ── */
+    #portfolio .col { cursor: pointer; }
+    #portfolio h6   { font-size: .8rem; color: #555; }
+
+    /* ── Testimonials carousel ── */
+    #testimonials-carousel .carousel-item { padding: 0 .5rem; }
+    #testimonials-carousel .carousel-indicators [data-bs-target] {
+      background-color: var(--mp-green);
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      border: none;
+      opacity: .4;
+    }
+    #testimonials-carousel .carousel-indicators .active { opacity: 1; }
+    #testimonials-carousel .carousel-indicators {
+      position: static;
+      margin-top: 1.5rem;
+      justify-content: flex-start;
+      gap: .4rem;
+    }
+  </style>
 </head>
 
-<body id="index" class="">
-    <!-- Menu begins here -->
-    <div id="global-nav-container"></div>
-    <!-- Menu ends here -->
-    <!-- Video begins -->
-    <div class="slide" id="home">
-        <div class="video-background">
-            <div class="static-background" style="background: url(imgs/intro.jpg) no-repeat; background-size:cover;">
-            </div>
-            <video style="width: 100%; height: auto;" id="video"></video>
+<body>
 
-            <div style="opacity: 1;" class="texture ">
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <div class="content">
-                                    <div class="video-slogans">
+<!-- ═══════════════════════════════════════════════════════════════════
+     HEADER — Barra de navegación
+     ═══════════════════════════════════════════════════════════════════ -->
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm"
+       aria-label="Navegación principal">
+    <div class="container">
 
-                                        <div class="slogan">
-                                            <table>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>
-                                                            <h1 class="text-green" data-i18n="hero_title1">CREATIVITY +
-                                                            </h1><br>
-                                                            <h1 class="text-white" data-i18n="hero_title2">LEARNING +
-                                                            </h1><br>
-                                                            <h2 class="text-green" data-i18n="hero_subtitle1">
-                                                                INTERACTING&nbsp;+&nbsp;</h2>
-                                                            <h1 class="text-white" data-i18n="hero_subtitle2">SHARING +
-                                                                CODE</h1>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
+      <!-- Logotipo -->
+      <a class="navbar-brand" href="/">
+        <img src="imgs/arteyciencia.png" alt="Arte y Ciencia — Miguel Portillo">
+      </a>
 
-                                        <div class="slogan">
-                                            <table>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>
-                                                            <h1>
-                                                                <span class="text-white"
-                                                                    data-i18n="slogan2_part1">PASSION +&nbsp;</span>
-                                                                <span class="text-blue"
-                                                                    data-i18n="slogan2_part2">writing</span>
-                                                            </h1><br>
-                                                            <h2 class="text-white" data-i18n="slogan2_part3">with</h2>
-                                                            &nbsp;&nbsp;
-                                                            <h1 class="text-white" data-i18n="slogan2_part4">images</h1>
-                                                            <br>
-                                                            <h1>
-                                                                <span class="text-white" data-i18n="slogan2_part5">is to
-                                                                    know narrative</span>
-                                                                <span class="text-blue" data-i18n="slogan2_part6">and
-                                                                    look at the man</span>
-                                                            </h1>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
+      <!-- Botón hamburguesa nativo Bootstrap 5 (sin jQuery) -->
+      <button class="navbar-toggler border-0" type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navMenu"
+              aria-controls="navMenu"
+              aria-expanded="false"
+              aria-label="Abrir o cerrar menú de navegación">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-                                        <div class="slogan active">
-                                            <table>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>
-                                                            <h1 class="text-white" data-i18n="slogan3_part1">DESIGN +
-                                                            </h1><br>
-                                                            <h1 class="text-blue" data-i18n="slogan3_part2">How we think
-                                                                (we live)</h1><br>
-                                                            <h2 class="text-white" data-i18n="slogan3_part3">
-                                                                is&nbsp;&nbsp;</h2>
-                                                            <h1 class="text-white" data-i18n="slogan3_part4">how we
-                                                                should live</h1>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
+      <!-- Menú colapsable -->
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1 py-2 py-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="index.html" data-i18n="menu_home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about/" data-i18n="menu_about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="cv/">CV</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="portfolio/" data-i18n="menu_portfolio">Portfolio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="certifications/" data-i18n="menu_certfications">Certs</a>
+          </li>
+          <li class="nav-item ms-lg-3">
+            <a class="btn btn-outline-dark btn-sm px-4 rounded-pill" href="contact/" data-i18n="menu_contact">Contact</a>
+          </li>
+          <li class="nav-item ms-lg-2">
+            <button id="btn-translate"
+                    class="btn btn-sm fw-bold px-2"
+                    style="color:#00ff7f; background:none; border:none; letter-spacing:.05em;"
+                    aria-label="Switch language / Cambiar idioma">
+              ESP
+            </button>
+          </li>
+        </ul>
+      </div>
 
-                                        <div class="clear-fix">
-                                            <h5 data-i18n="label_ideate">Ideate</h5>
-                                            <h5 style="padding-left: 32.8px;" data-i18n="label_design">Design</h5>
-                                            <h5 style="padding-left: 32.8px;" data-i18n="label_build">Build</h5>
-                                        </div>
-                                    </div>
+    </div>
+  </nav>
+</header>
 
-                                    <div class="buttons-container">
-                                        <a href="about/" data-i18n="menu_about">about me</a>
-                                        <a href="cv/" data-i18n="menu_cv">cv</a>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     MAIN
+     ═══════════════════════════════════════════════════════════════════ -->
+<main>
+
+  <!-- ── HERO ────────────────────────────────────────────────────────── -->
+  <section id="hero" aria-label="Presentación">
+
+    <div class="overlay">
+      <div class="container py-5 text-center text-white">
+
+        <!-- Slogans rotativos — 3 frases con fade, cada una i18n-aware -->
+        <div class="hero-slogans" aria-live="polite" aria-atomic="true">
+
+          <!-- Slogan 1 — Creatividad / Creativity -->
+          <div class="hero-slogan active" id="slogan-1">
+            <h1 class="display-4 fw-light lh-base">
+              <span data-i18n="hero_title1">CREATIVITY +</span>
+              <span data-i18n="hero_title2"> LEARNING +</span><br>
+              <span style="color:var(--mp-green);" data-i18n="hero_subtitle1">INTERACTING +</span>
+              <span data-i18n="hero_subtitle2"> SHARING + CODE</span>
+            </h1>
+            <p class="small text-uppercase opacity-75 mt-3" style="letter-spacing:.3em;">
+              <span data-i18n="label_ideate">Ideate</span>
+              &nbsp;·&nbsp;
+              <span data-i18n="label_design">Design</span>
+              &nbsp;·&nbsp;
+              <span data-i18n="label_build">Build</span>
+            </p>
+          </div>
+
+          <!-- Slogan 2 — Pasión / Passion -->
+          <div class="hero-slogan" id="slogan-2">
+            <h1 class="display-4 fw-light lh-base">
+              <span style="color:var(--mp-green);" data-i18n="slogan2_part1">PASSION +</span>
+              <span data-i18n="slogan2_part2"> writing</span>
+              <span data-i18n="slogan2_part3"> with</span>
+              <span style="color:var(--mp-blue);" data-i18n="slogan2_part4"> images</span>
+            </h1>
+            <p class="lead fw-light fst-italic mt-2">
+              <span data-i18n="slogan2_part5">is to know narrative</span>
+              <span data-i18n="slogan2_part6"> and look at the man</span>
+            </p>
+          </div>
+
+          <!-- Slogan 3 — Diseño / Design -->
+          <div class="hero-slogan" id="slogan-3">
+            <h1 class="display-4 fw-light lh-base">
+              <span data-i18n="slogan3_part1">DESIGN +</span>
+            </h1>
+            <p class="lead fw-light fst-italic mt-2">
+              <span data-i18n="slogan3_part2">How we think (we live)</span>
+              <span data-i18n="slogan3_part3"> is </span>
+              <span style="color:var(--mp-green);" data-i18n="slogan3_part4">how we should live</span>
+            </p>
+          </div>
+
+        </div><!-- /.hero-slogans -->
+
+        <div class="d-flex flex-wrap gap-3 justify-content-center">
+          <a href="about/" class="btn btn-outline-light btn-lg px-5">About me</a>
+          <a href="cv/"    class="btn btn-light btn-lg px-5 text-dark fw-semibold">View CV</a>
         </div>
-    </div>
-    <!-- Video ends -->
-    <div class="banner-about-us container">
-        <h1 data-i18n="banner_about_title1">UI/UX Design</h1><br>
-        <h1 class="text-blue" data-i18n="banner_about_title2">excellence,</h1>
-        <h4 class="text-gray" data-i18n="banner_about_subtitle">&nbsp;the smart way to build great digital experiences
-        </h4>
-        <a class="btn-gray" href="about/" data-i18n="banner_about_btn">learn about me</a>
-    </div>
-    <!-- Services begin here -->
-    <div id="services" data-current-service-index="0">
-        <div class="header">
-            <h1 class="text-center text-green" data-i18n="what_i_do">what I do</h1>
-            <div class="container">
 
-                <div class="categories grid-6cols">
-                    <a class="circle-left-arrow" href="javascript:MoveToService('--');">&nbsp;</a>
-                    <a class="circle-right-arrow" href="javascript:MoveToService('++');">&nbsp;</a>
-                    <div class="col padding-sm banners">
-                        <a class="ico-service PosterBanners" href="http://arteyciencia.mx/cv/portfolio?PosterBanners">
-                            <img alt="background" src="index_files/empty.png">
-                        </a>
-                        <h5 data-i18n="service_posters">Posters<br>& Banners</h5>
-                    </div>
-                    <div class="col padding-sm desktop active">
-                        <a class="ico-service Mobiledev" href="portfolio/movil/mobile.html">
-                            <img alt="background" src="index_files/empty.png">
-                        </a>
-                        <h5 data-i18n="service_desktop">Desktop<br>& Mobile Devs</h5>
-                    </div>
+      </div>
+    </div>
+  </section>
 
-                    <div class="col padding-sm marketing">
-                        <a class="ico-service Marketing" href="portfolio/marketing/">
-                            <img alt="background" src="index_files/empty.png">
-                        </a>
-                        <h5 data-i18n="service_marketing">Business<br> Marketing</h5>
-                    </div>
-                    <div class="col padding-sm doodles">
-                        <a class="ico-service Doodles" href="portfolio/doodles/doodles.html">
-                            <img alt="background" src="index_files/empty.png">
-                        </a>
-                        <h5 data-i18n="service_doodles">Doodles<br>& illustration</h5>
-                    </div>
-                    <div class="col padding-sm webdesigns">
-                        <a class="ico-service WebDesign" href="http://arteyciencia.mx/cv/portfolio?WebDesign">
-                            <img alt="background" src="index_files/empty.png">
-                        </a>
-                        <h5 data-i18n="service_web">Web<br>Design</h5>
-                    </div>
-                    <div class="col padding-sm interactivedesign">
-                        <a class="ico-service interactives" href="http://arteyciencia.mx/cv/portfolio?Interactive">
-                            <img alt="background" src="index_files/empty.png">
-                        </a>
-                        <h5 data-i18n="service_interactive">Interactive<br> Design</h5>
-                    </div>
-                </div>
-            </div>
+  <!-- ── PROPUESTA DE VALOR ───────────────────────────────────────────── -->
+  <section id="about-banner" aria-label="Propuesta de valor" class="py-5 bg-white">
+    <div class="container py-4 text-center">
+      <h2 class="display-6 fw-light mb-3">
+        <span data-i18n="banner_about_title1">UX/UI Design</span>
+        <span style="color: var(--mp-blue);" data-i18n="banner_about_title2">excellence</span>,
+      </h2>
+      <p class="fs-5 text-muted fw-light mb-4" data-i18n="banner_about_subtitle">
+        the smart way to build great digital experiences
+      </p>
+      <a href="about/" class="btn btn-outline-secondary px-5 rounded-pill" data-i18n="banner_about_btn">Learn about me</a>
+    </div>
+  </section>
+
+  <!-- ── PORTFOLIO / SERVICIOS ────────────────────────────────────────── -->
+  <section id="portfolio" aria-labelledby="portfolio-heading" class="py-5 bg-light">
+    <div class="container py-4">
+
+      <h2 id="portfolio-heading"
+          class="text-center fw-light mb-5"
+          style="color: var(--mp-green);"
+          data-i18n="what_i_do">
+        What I do
+      </h2>
+
+      <div class="row row-cols-2 row-cols-sm-3 row-cols-md-6 g-4 justify-content-center">
+
+        <div class="col text-center">
+          <a href="portfolio/posters/"
+             class="portfolio-card portfolio-card--banners"
+             aria-label="Ver proyectos: Posters y Banners"></a>
+          <p class="portfolio-card-label fw-light mt-2 mb-0" data-i18n="service_posters">Posters<br>&amp; Banners</p>
         </div>
-    </div>
-    <div id="customers">
-        <a class="btn-gray" href="portfolio/" data-i18n="btn_portfolio_take_look">take a look at my portfolio</a>
-    </div>
 
-    <div id="testimonials">
-        <div class="container">
-            <div class="left">
-                <h1 data-i18n="shoutouts_title">My favorite shout-outs</h1>
-            </div>
-
-            <div class="testimonials-slider">
-                <div style="opacity: 0;" class="slide active">
-                    <h4 class="justify">
-                        <img alt="quotes" src="index_files/l-quotes.png">
-                        <span data-i18n="testimonial_1">Performance means changing workflow: <br><br>"Everyone has to
-                            give a little, because the end result is going to be better for the user."</span>
-                    </h4>
-                    <h4>– Yesenia Perez-Cruz </h4>
-                </div>
-                <div style="opacity: 1;" class="slide">
-                    <h4 class="justify">
-                        <img alt="quotes" src="index_files/l-quotes.png">
-                        <span data-i18n="testimonial_2">Content precedes design.<br><br> Design in the absence of
-                            content is not design, it's decoration.</span>
-                    </h4>
-                    <h4>– Jeffrey Zeldman</h4>
-                </div>
-                <div style="opacity: 0;" class="slide">
-                    <h4 class="justify">
-                        <img alt="quotes" src="index_files/l-quotes.png">
-                        <span data-i18n="testimonial_3">When research is integrated into your team it transforms how you
-                            design products. When done by a separate group, it often lacks impact.<br><br></span>
-                    </h4>
-                    <h4>– Luke Wroblewski</h4>
-                </div>
-                <div style="opacity: 0;" class="slide">
-                    <h4 class="justify">
-                        <img alt="quotes" src="index_files/l-quotes.png">
-                        <span data-i18n="testimonial_4">Great Resource: John Cleese on Creativity: "Creativity is not a
-                            talent. It is a way of operating." - SolidSmack</span>
-                    </h4>
-                    <h4>– Denise Jacobs</h4>
-                </div>
-                <div class="slider-pagination">
-                    <a class="page" href="javascript:GoToTestimonial(0)"></a>
-                    <a class="page active" href="javascript:GoToTestimonial(1)"></a>
-                    <a class="page" href="javascript:GoToTestimonial(2)"></a>
-                    <a class="page" href="javascript:GoToTestimonial(3)"></a>
-                </div>
-            </div>
+        <div class="col text-center">
+          <a href="portfolio/movil/mobile.html"
+             class="portfolio-card portfolio-card--desktop"
+             aria-label="Ver proyectos: Desktop y Mobile"></a>
+          <p class="portfolio-card-label fw-light mt-2 mb-0" data-i18n="service_desktop">Desktop<br>&amp; Mobile Devs</p>
         </div>
-    </div>
-    <div id="global-footer-container"></div>
-    <!-- Footer ends here -->
 
-    <script type="text/javascript" src="/assets/menu.js"></script>
-    <script type="text/javascript" src="/assets/footer.js"></script>
-    <script type="text/javascript" src="/assets/lang.js"></script>
+        <div class="col text-center">
+          <a href="portfolio/marketing/"
+             class="portfolio-card portfolio-card--marketing"
+             aria-label="Ver proyectos: Business Marketing"></a>
+          <p class="portfolio-card-label fw-light mt-2 mb-0" data-i18n="service_marketing">Business<br>Marketing</p>
+        </div>
+
+        <div class="col text-center">
+          <a href="portfolio/doodles/doodles.html"
+             class="portfolio-card portfolio-card--doodles"
+             aria-label="Ver proyectos: Doodles e Ilustración"></a>
+          <p class="portfolio-card-label fw-light mt-2 mb-0" data-i18n="service_doodles">Doodles<br>&amp; Illustration</p>
+        </div>
+
+        <div class="col text-center">
+          <a href="portfolio/webdesign/"
+             class="portfolio-card portfolio-card--webdesigns"
+             aria-label="Ver proyectos: Web Design"></a>
+          <p class="portfolio-card-label fw-light mt-2 mb-0" data-i18n="service_web">Web<br>Design</p>
+        </div>
+
+        <div class="col text-center">
+          <a href="portfolio/interactivedesign/"
+             class="portfolio-card portfolio-card--interactive"
+             aria-label="Ver proyectos: Interactive Design"></a>
+          <p class="portfolio-card-label fw-light mt-2 mb-0" data-i18n="service_interactive">Interactive<br>Design</p>
+        </div>
+
+      </div>
+
+      <div class="text-center mt-5">
+        <a href="portfolio/" class="btn btn-outline-secondary px-5 rounded-pill" data-i18n="btn_portfolio_take_look">
+          Take a look at my portfolio
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── TESTIMONIALS ─────────────────────────────────────────────────── -->
+  <section id="testimonials" aria-labelledby="testimonials-heading" class="py-5 bg-white">
+    <div class="container py-4">
+      <div class="row justify-content-center">
+        <div class="col-lg-7">
+
+          <h2 id="testimonials-heading" class="fw-light mb-5" data-i18n="shoutouts_title">
+            My favorite shout-outs
+          </h2>
+
+          <!-- Carrusel BS5 nativo — auto-avance cada 6 s, sin jQuery -->
+          <div id="testimonials-carousel"
+               class="carousel slide"
+               data-bs-ride="carousel"
+               data-bs-interval="6000">
+
+            <div class="carousel-inner">
+
+              <div class="carousel-item active">
+                <figure>
+                  <blockquote class="blockquote">
+                    <p class="fs-5 fw-light fst-italic text-muted" data-i18n="testimonial_1">
+                      "Performance means changing workflow: Everyone has to give a little,
+                      because the end result is going to be better for the user."
+                    </p>
+                  </blockquote>
+                  <figcaption class="blockquote-footer">Yesenia Perez-Cruz</figcaption>
+                </figure>
+              </div>
+
+              <div class="carousel-item">
+                <figure>
+                  <blockquote class="blockquote">
+                    <p class="fs-5 fw-light fst-italic text-muted" data-i18n="testimonial_2">
+                      "Content precedes design. Design in the absence of content
+                      is not design, it's decoration."
+                    </p>
+                  </blockquote>
+                  <figcaption class="blockquote-footer">Jeffrey Zeldman</figcaption>
+                </figure>
+              </div>
+
+              <div class="carousel-item">
+                <figure>
+                  <blockquote class="blockquote">
+                    <p class="fs-5 fw-light fst-italic text-muted" data-i18n="testimonial_3">
+                      "When research is integrated into your team it transforms how you design products.
+                      When done by a separate group, it often lacks impact."
+                    </p>
+                  </blockquote>
+                  <figcaption class="blockquote-footer">Luke Wroblewski</figcaption>
+                </figure>
+              </div>
+
+              <div class="carousel-item">
+                <figure>
+                  <blockquote class="blockquote">
+                    <p class="fs-5 fw-light fst-italic text-muted" data-i18n="testimonial_4">
+                      "Creativity is not a talent. It is a way of operating."
+                    </p>
+                  </blockquote>
+                  <figcaption class="blockquote-footer">
+                    John Cleese
+                    <cite title="Referenciado por Denise Jacobs"> · vía Denise Jacobs</cite>
+                  </figcaption>
+                </figure>
+              </div>
+
+            </div><!-- /.carousel-inner -->
+
+            <!-- Indicadores (puntos) debajo de la cita -->
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#testimonials-carousel"
+                      data-bs-slide-to="0" class="active"
+                      aria-current="true" aria-label="Cita 1"></button>
+              <button type="button" data-bs-target="#testimonials-carousel"
+                      data-bs-slide-to="1" aria-label="Cita 2"></button>
+              <button type="button" data-bs-target="#testimonials-carousel"
+                      data-bs-slide-to="2" aria-label="Cita 3"></button>
+              <button type="button" data-bs-target="#testimonials-carousel"
+                      data-bs-slide-to="3" aria-label="Cita 4"></button>
+            </div>
+
+          </div><!-- /#testimonials-carousel -->
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     FOOTER
+     ═══════════════════════════════════════════════════════════════════ -->
+<footer class="bg-dark text-light pt-5 pb-4" aria-label="Pie de página">
+  <div class="container">
+    <div class="row gy-4">
+
+      <!-- Portfolio -->
+      <div class="col-6 col-md-3">
+        <h6 class="text-uppercase fw-semibold mb-3 text-secondary small" data-i18n="footer_title_portfolio">Portfolio</h6>
+        <ul class="list-unstyled small lh-lg">
+          <li><a href="portfolio/movil/mobile.html"    class="text-light text-decoration-none" data-i18n="footer_link_desktop">Desktop &amp; Apps</a></li>
+          <li><a href="portfolio/posters/"             class="text-light text-decoration-none" data-i18n="footer_link_posters">Posters &amp; Banners</a></li>
+          <li><a href="portfolio/marketing/"           class="text-light text-decoration-none" data-i18n="footer_link_marketing">Business Marketing</a></li>
+          <li><a href="portfolio/doodles/doodles.html" class="text-light text-decoration-none" data-i18n="footer_link_doodles">Doodles &amp; Cartoons</a></li>
+          <li><a href="portfolio/interactivedesign/"   class="text-light text-decoration-none" data-i18n="footer_link_interactive">Interactive Design</a></li>
+          <li><a href="portfolio/webdesign/"           class="text-light text-decoration-none" data-i18n="footer_link_web">Web Design</a></li>
+        </ul>
+      </div>
+
+      <!-- About -->
+      <div class="col-6 col-md-3">
+        <h6 class="text-uppercase fw-semibold mb-3 text-secondary small" data-i18n="footer_title_about">About</h6>
+        <ul class="list-unstyled small lh-lg">
+          <li><a href="about/"          class="text-light text-decoration-none" data-i18n="menu_about">About me</a></li>
+          <li><a href="cv/"             class="text-light text-decoration-none" data-i18n="footer_title_cv">CV</a></li>
+          <li><a href="certifications/" class="text-light text-decoration-none" data-i18n="menu_certfications">Certifications</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div class="col-6 col-md-3">
+        <h6 class="text-uppercase fw-semibold mb-3 text-secondary small" data-i18n="footer_title_contact">Contact</h6>
+        <address class="small text-secondary lh-lg mb-0" style="font-style: normal;">
+          <span data-i18n="cnt_address_state">Ciudad de México</span>,
+          <span style="color: var(--mp-blue);" data-i18n="cnt_address_country">México</span><br>
+          <span data-i18n="cnt_address_hood">Col. Narvarte, C.P. 03023</span><br>
+          +52 (55) 2328-8158
+        </address>
+      </div>
+
+      <!-- Social -->
+      <div class="col-6 col-md-3">
+        <h6 class="text-uppercase fw-semibold mb-3 text-secondary small" data-i18n="footer_title_connect">Connect</h6>
+        <div class="d-flex gap-3 fs-4">
+          <a href="https://twitter.com/gemeloportillo"
+             target="_blank" rel="noopener noreferrer"
+             aria-label="Twitter de Miguel Portillo"
+             class="text-secondary">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="https://mx.linkedin.com/in/miguelportilloux"
+             target="_blank" rel="noopener noreferrer"
+             aria-label="LinkedIn de Miguel Portillo"
+             class="text-secondary">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a href="https://www.youtube.com/user/mikepb77"
+             target="_blank" rel="noopener noreferrer"
+             aria-label="YouTube de Miguel Portillo"
+             class="text-secondary">
+            <i class="fab fa-youtube"></i>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <hr class="border-secondary mt-4 mb-3">
+    <p class="text-secondary small text-center mb-0">
+      &copy; 2026 Miguel Angel Portillo Bobadilla &mdash; Arte y Ciencia
+    </p>
+  </div>
+</footer>
+
+<!-- Bootstrap 5.3 JS Bundle (Popper incluido — sin jQuery) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+
+<!-- i18n: carga traducciones y gestiona el toggle de idioma -->
+<script src="assets/lang.js"></script>
+
+<!-- Hero slogans: cicla entre los 3 slogans con fade cada 4.5 s -->
+<script>
+  (() => {
+    const slogans = document.querySelectorAll('.hero-slogan');
+    if (!slogans.length) return;
+    let current = 0;
+    setInterval(() => {
+      slogans[current].classList.remove('active');
+      current = (current + 1) % slogans.length;
+      slogans[current].classList.add('active');
+    }, 4500);
+  })();
+</script>
 
 </body>
-
 </html>
