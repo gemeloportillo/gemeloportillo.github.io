@@ -75,13 +75,6 @@ p { margin: 0 0 10px; }
 .text-right { text-align: right; }
 ul,
 ol { margin-top: 0; margin-bottom: 10px; padding: 0 0 0 20px; }
-.container { margin: 0 auto; max-width: 970px; padding-bottom: 4.1%; padding-top: 4.1%; position: relative; width: 100%; }
-.container:before,
-.container:after { display: table; content: " "; }
-.container:after { clear: both; }
-.container:before,
-.container:after { display: table; content: " "; }
-.container:after { clear: both; }
 .row { margin-right: -15px; margin-left: -15px; }
 .row:before,
 .row:after { display: table; content: " "; }

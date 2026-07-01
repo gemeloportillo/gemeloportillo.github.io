@@ -65,10 +65,27 @@
       z-index: 2;
     }
     .vid-btn:hover { background: #e5fafd; }
+    /* Portfolio sub-nav */
+    .portfolio-subnav { background: #fff; border-bottom: 1px solid #e9ecef; position: sticky; top: 57px; z-index: 99; }
+    .portfolio-subnav__scroll { display: flex; align-items: center; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding: .4rem 1rem; gap: .3rem; max-width: 1140px; margin: 0 auto; }
+    .portfolio-subnav__scroll::-webkit-scrollbar { display: none; }
+    .portfolio-subnav__back { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; color: #888; text-decoration: none; flex-shrink: 0; transition: background .15s, color .15s; }
+    .portfolio-subnav__back:hover { background: #f0f0f0; color: #333; }
+    .portfolio-subnav__sep { width: 1px; height: 16px; background: #dee2e6; flex-shrink: 0; margin: 0 .4rem; }
+    .portfolio-subnav__link { display: inline-flex; align-items: center; white-space: nowrap; padding: .28rem .85rem; border-radius: 2rem; font-size: .77rem; text-decoration: none; color: #555; font-family: 'Open Sans', sans-serif; letter-spacing: .02em; transition: background .15s, color .15s; flex-shrink: 0; }
+    .portfolio-subnav__link:hover { background: #e8f9fc; color: #44c5db; }
+    .portfolio-subnav__link.active { background: #44c5db; color: #fff; font-weight: 600; }
+
+    /* styles.css fuerza color oscuro en html * (incluyendo <span> e <i> dentro de botones).
+       Scoped a #interactivedesign: corrige color en reposo Y en hover de hijos. */
+    #interactivedesign a.btn,
+    #interactivedesign a.btn * { color: var(--bs-btn-color); }
+    #interactivedesign a.btn:hover,
+    #interactivedesign a.btn:hover * { color: var(--bs-btn-hover-color) !important; }
   </style>
 </head>
 
-<body>
+<body id="interactivedesign">
 
 <header>
   <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm"
@@ -100,6 +117,18 @@
     </div>
   </nav>
 </header>
+
+<nav class="portfolio-subnav" aria-label="Secciones del portafolio">
+  <div class="portfolio-subnav__scroll">
+    <a href="/portfolio/" class="portfolio-subnav__back" aria-label="Ver todo el portafolio"><i class="fa-solid fa-grip fa-xs"></i></a>
+    <span class="portfolio-subnav__sep" aria-hidden="true"></span>
+    <a href="/portfolio/webdesign/" class="portfolio-subnav__link" data-i18n="footer_link_web">Web Design</a>
+    <a href="/portfolio/interactivedesign/" class="portfolio-subnav__link active" aria-current="page" data-i18n="footer_link_interactive">Interactive Design</a>
+    <a href="/portfolio/movil/mobile.html" class="portfolio-subnav__link" data-i18n="footer_link_desktop">Mobile Apps</a>
+    <a href="/portfolio/marketing/" class="portfolio-subnav__link" data-i18n="footer_link_marketing">Branding &amp; Marketing</a>
+    <a href="/portfolio/doodles/doodles.html" class="portfolio-subnav__link" data-i18n="footer_link_doodles">Digital Illustration</a>
+  </div>
+</nav>
 
 <main class="py-5">
   <div class="container">
@@ -175,7 +204,14 @@
       <div class="col-12 col-md-4">
         <div class="card exhibit-card h-100 border-0 shadow-sm p-4 d-flex flex-column"
              style="border-top-color: #8e2d8e !important;">
-          <i class="fa-solid fa-calculator mb-3 exhibit-icon" style="color:#8e2d8e;"></i>
+          <div class="card-video-wrap">
+            <video id="vid-matematicas" src="/assets/videos/matematicas.mp4"
+                   muted loop playsinline autoplay></video>
+            <button class="vid-btn" onclick="toggleVid('vid-matematicas', this)" aria-label="Play / Pause"
+                    style="background:#8e2d8e;">
+              <i class="fa-solid fa-pause"></i>
+            </button>
+          </div>
           <h2 class="h5 fw-semibold mb-2">Imaginario Matemático</h2>
           <p class="text-muted small lh-lg mb-3 flex-grow-1">
             Recursos educativos interactivos para la divulgación de las matemáticas dirigidos a jóvenes. Micrositio con materiales didácticos digitales, ilustraciones y navegación lúdica — UNIVERSUM, UNAM.

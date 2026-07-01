@@ -29,10 +29,10 @@
     
     "what_i_do": "what I do",
 
-    "service_posters": "Posters<br>& Banners",
-    "service_desktop": "Desktop<br>& Mobile Devs",
-    "service_marketing": "Business<br> Marketing",
-    "service_doodles": "Doodles<br> & illustration",
+    "service_posters": "Editorial<br>Design",
+    "service_desktop": "Mobile<br>Apps",
+    "service_marketing": "Branding &amp;<br>Marketing",
+    "service_doodles": "Digital<br>Illustration",
     "service_web": "Plataformas<br>Digitales",
     "service_interactive": "Interactive<br>&amp; Educational",
     
@@ -50,10 +50,10 @@
     "testimonial_4": "Great Resource: John Cleese on Creativity: \"Creativity is not a talent. It is a way of operating.\" - SolidSmack",
     
     "footer_title_portfolio": "portfolio",
-    "footer_link_desktop": "Desktop & Apps devs",
-    "footer_link_posters": "Posters & Banners",
-    "footer_link_marketing": "Business Marketing",
-    "footer_link_doodles": "Doodles & Cartoons",
+    "footer_link_desktop": "Mobile Apps",
+    "footer_link_posters": "Editorial Design",
+    "footer_link_marketing": "Branding & Marketing",
+    "footer_link_doodles": "Digital Illustration",
     "footer_link_interactive": "Interactive Design",
     "footer_link_web": "Web Design",
     
@@ -126,6 +126,14 @@
     "webdesign_dataton_sub": "Visual identity &amp; platform design for each annual edition — SESNA",
     "interactivedesign_title": "Interactivo &amp; <span class=\"text-blue\">Educativo</span>",
     "interactivedesign_subtitle": "Educational microsites and interactive experiences for scientific knowledge dissemination",
+    "posters_title": "Diseño <span class=\"text-blue\">Editorial</span>",
+    "posters_subtitle": "Posters, banners and print editorial design",
+    "movil_title": "Apps <span class=\"text-blue\">Móviles</span>",
+    "movil_subtitle": "UI/UX design for mobile and cross-platform applications",
+    "marketing_title": "Branding &amp; <span class=\"text-blue\">Marketing</span>",
+    "marketing_subtitle": "Brand identity, visual communication and marketing collateral",
+    "doodles_title": "Ilustración <span class=\"text-blue\">Digital</span>",
+    "doodles_subtitle": "Digital doodles, cartoons and original characters",
     "btn_see_project": "View project",
     "btn_see_coverage": "View coverage",
 
@@ -210,10 +218,10 @@
     
     "what_i_do": "lo que hago",
 
-    "service_posters": "Pósters<br>& Banners",
-    "service_desktop": "Desarrollo<br>Escritorio y Móvil",
-    "service_marketing": "Marketing<br>Empresarial",
-    "service_doodles": "Doodles<br>& Ilustración",
+    "service_posters": "Diseño<br>Editorial",
+    "service_desktop": "Apps<br>Móviles",
+    "service_marketing": "Branding &amp;<br>Marketing",
+    "service_doodles": "Ilustración<br>Digital",
     "service_web": "Plataformas<br>Digitales",
     "service_interactive": "Interactivo &amp;<br>Educativo",
     
@@ -231,10 +239,10 @@
     "testimonial_4": "Gran recurso: John Cleese sobre la creatividad: \"La creatividad no es un talento. Es una forma de operar\". - SolidSmack",
     
     "footer_title_portfolio": "portafolio",
-    "footer_link_desktop": "Desarrollo Escritorio y Apps",
-    "footer_link_posters": "Pósters y Banners",
-    "footer_link_marketing": "Marketing Empresarial",
-    "footer_link_doodles": "Doodles y Cartones",
+    "footer_link_desktop": "Apps Móviles",
+    "footer_link_posters": "Diseño Editorial",
+    "footer_link_marketing": "Branding & Marketing",
+    "footer_link_doodles": "Ilustración Digital",
     "footer_link_interactive": "Diseño Interactivo",
     "footer_link_web": "Diseño Web",
     
@@ -307,6 +315,14 @@
     "webdesign_dataton_sub": "Identidad visual y diseño de plataforma para cada edición anual — SESNA",
     "interactivedesign_title": "Interactivo &amp; <span class=\"text-blue\">Educativo</span>",
     "interactivedesign_subtitle": "Micrositios educativos y experiencias interactivas para la divulgación del conocimiento científico",
+    "posters_title": "Diseño <span class=\"text-blue\">Editorial</span>",
+    "posters_subtitle": "Carteles, banners y diseño editorial impreso",
+    "movil_title": "Apps <span class=\"text-blue\">Móviles</span>",
+    "movil_subtitle": "Diseño UI/UX para aplicaciones móviles y multiplataforma",
+    "marketing_title": "Branding &amp; <span class=\"text-blue\">Marketing</span>",
+    "marketing_subtitle": "Identidad de marca, comunicación visual y materiales de marketing",
+    "doodles_title": "Ilustración <span class=\"text-blue\">Digital</span>",
+    "doodles_subtitle": "Doodles digitales, caricaturas y personajes originales",
     "btn_see_project": "Ver proyecto",
     "btn_see_coverage": "Ver cobertura",
 

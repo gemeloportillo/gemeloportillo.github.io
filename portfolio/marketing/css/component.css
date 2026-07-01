@@ -363,24 +363,29 @@ p.dummy-text:nth-child(3), p.card-text2:nth-child(2)  {
 	text-align: left;
 	margin: 0 auto;
 	padding: 10px 0;
-	color: #ddd;
-	font-size: 1em;
-	font-family: 'Blokk', Arial, serif;
+	color: #444;
+	font-size: .9em;
+	font-family: 'Open Sans', Arial, sans-serif;
+	line-height: 1.6;
 }
 
 .card-text1 {
-    color: #777;
+    color: #333;
     font-size: 1em;
+    font-weight: 600;
     margin: 0 auto;
     padding: 10px 0;
     text-align: left;
+    font-family: 'Open Sans', Arial, sans-serif;
 }
 .card-text2 {
-    color: #ddd;
-    font-size: 1em;
+    color: #444;
+    font-size: .9em;
     margin: 0 auto;
     padding: 10px 0;
     text-align: left;
+    font-family: 'Open Sans', Arial, sans-serif;
+    line-height: 1.6;
 }
 
 .dummy-text:last-child {

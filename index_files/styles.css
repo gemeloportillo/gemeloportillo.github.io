@@ -3697,7 +3697,7 @@ ol.trending-articles > li:before{
 .portfolio-card--doodles     { background-image: url('../imgs/doodles.jpg');     border: 8px solid #94045d; }
 .portfolio-card--webdesigns  { background-image: url('../imgs/web.jpg');         border: 8px solid #ef970e; }
 .portfolio-card--interactive { background-image: url('../imgs/interactive.png'); border: 8px solid #5c90c5; }
-.portfolio-card-label { font-size: .8rem; color: #555; }
+.portfolio-card-label { font-size: .8rem; color: #555; min-height: 2.6em; display: flex; align-items: center; justify-content: center; flex-direction: column; text-align: center; }
 
 /* ─── Hero slogans — cycling fade ────────────────────────────────────── */
 .hero-slogans {

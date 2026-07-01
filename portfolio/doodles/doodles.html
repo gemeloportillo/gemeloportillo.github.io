@@ -168,7 +168,7 @@ style.firebugResetStyles {
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
   :root { --mp-green: #6abf69; --mp-blue: #44c5db; }
-  body { font-family: 'Open Sans', Tahoma, Geneva, sans-serif; }
+  body { font-family: 'Open Sans', Tahoma, Geneva, sans-serif; background: #f6f6f6; }
   header { position: relative !important; background: transparent !important; z-index: auto !important; width: auto !important; }
   header * { color: inherit; }
   header .container { padding-left: .75rem !important; padding-right: .75rem !important; }
@@ -176,6 +176,18 @@ style.firebugResetStyles {
   .navbar .nav-link { font-size: .9rem; letter-spacing: .02em; }
   .navbar .nav-link:hover,
   .navbar .nav-link.active { color: var(--mp-green) !important; }
+  .text-blue { color: var(--mp-blue); }
+  h1.fw-light { font-size: 50px !important; font-weight: 300 !important; }
+  /* Portfolio sub-nav */
+  .portfolio-subnav { background: #fff; border-bottom: 1px solid #e9ecef; position: sticky; top: 57px; z-index: 99; }
+  .portfolio-subnav__scroll { display: flex; align-items: center; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding: .4rem 1rem; gap: .3rem; max-width: 1140px; margin: 0 auto; }
+  .portfolio-subnav__scroll::-webkit-scrollbar { display: none; }
+  .portfolio-subnav__back { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; color: #888; text-decoration: none; flex-shrink: 0; transition: background .15s, color .15s; }
+  .portfolio-subnav__back:hover { background: #f0f0f0; color: #333; }
+  .portfolio-subnav__sep { width: 1px; height: 16px; background: #dee2e6; flex-shrink: 0; margin: 0 .4rem; }
+  .portfolio-subnav__link { display: inline-flex; align-items: center; white-space: nowrap; padding: .28rem .85rem; border-radius: 2rem; font-size: .77rem; text-decoration: none; color: #555; font-family: 'Open Sans', sans-serif; letter-spacing: .02em; transition: background .15s, color .15s; flex-shrink: 0; }
+  .portfolio-subnav__link:hover { background: #e8f9fc; color: #44c5db; }
+  .portfolio-subnav__link.active { background: #44c5db; color: #fff; font-weight: 600; }
 </style>
 
 </head>
@@ -211,6 +223,28 @@ style.firebugResetStyles {
     </div>
   </nav>
 </header>
+
+<nav class="portfolio-subnav" aria-label="Secciones del portafolio">
+  <div class="portfolio-subnav__scroll">
+    <a href="/portfolio/" class="portfolio-subnav__back" aria-label="Ver todo el portafolio"><i class="fa-solid fa-grip fa-xs"></i></a>
+    <span class="portfolio-subnav__sep" aria-hidden="true"></span>
+    <a href="/portfolio/webdesign/" class="portfolio-subnav__link" data-i18n="footer_link_web">Web Design</a>
+    <a href="/portfolio/interactivedesign/" class="portfolio-subnav__link" data-i18n="footer_link_interactive">Interactive Design</a>
+    <!-- <a href="/portfolio/posters/" class="portfolio-subnav__link" data-i18n="footer_link_posters">Editorial Design</a> -->
+    <a href="/portfolio/movil/mobile.html" class="portfolio-subnav__link" data-i18n="footer_link_desktop">Mobile Apps</a>
+    <a href="/portfolio/marketing/" class="portfolio-subnav__link" data-i18n="footer_link_marketing">Branding &amp; Marketing</a>
+    <a href="/portfolio/doodles/doodles.html" class="portfolio-subnav__link active" aria-current="page" data-i18n="footer_link_doodles">Digital Illustration</a>
+  </div>
+</nav>
+
+
+<div class="py-5 pb-3 text-center">
+  <div class="container">
+    <h1 class="fw-light mb-2" data-i18n="doodles_title">Ilustración <span class="text-blue">Digital</span></h1>
+    <p class="text-muted small mb-0" data-i18n="doodles_subtitle">Doodles digitales, caricaturas y personajes originales</p>
+  </div>
+</div>
+
         <!-- Video begins -->
 
 <!-- Video ends -->
@@ -222,7 +256,6 @@ style.firebugResetStyles {
 			
 			<section class="grid3d vertical" id="grid3d">
 				<div class="grid-wrap">
-<h1 class="text-center">Doodles</h1>                
 					<div class="grid">
 						<figure>
                         	<div class="head">
@@ -320,58 +353,57 @@ style.firebugResetStyles {
 				</div><!-- /grid-wrap -->
 				<div class="content">
 					<div>
-						<div class="dummy-img"><figure><img src="img/1a.jpg" alt="img01"/></figure></div>
-						<p class="card-text1">November 1-2. Día de los muertos</p>
-                        <p class="card-text2">We have brought  together culture, art, music, food and drinks and perhaps most importantly -  the chance to remember those who have passed while taking full advantage of our time with those who are still with us. We invite you and your family to come and "Celebrate the Living - and Honor the Dead"</p>
-						
+						<div class="dummy-img"><figure><img src="img/1a.jpg" alt="Iusabook — ilustración Día de Muertos"/></figure></div>
+						<p class="card-text1">Iusabook — Día de Muertos</p>
+                        <p class="card-text2">Portada estacional de la red social interna Iusabook (Iusacell) para el Día de Muertos. La "i" corporativa se transforma en una vela encendida rodeada de papel picado multicolor, cempasúchil, calaveras y un esqueleto festivo. Ilustración vectorial 3D de alta complejidad sobre fondo oscuro. 1–2 de noviembre. © Iusacell 2010.</p>
 					</div>
 					<div>
-						<div class="dummy-img"><figure><img src="img/5a.jpg" alt="img02"/></figure></div>
-						<p class="card-text1">December 24. Christmas Day</p>
-                        <p class="dummy-text">We have brought  together culture, art, music, food and drinks and perhaps most importantly -  the chance to remember those who have passed while taking full advantage of our time with those who are still with us. We invite you and your family to come and "Celebrate the Living - and Honor the Dead"</p>
+						<div class="dummy-img"><figure><img src="img/5a.jpg" alt="Iusabook — ilustración Navidad"/></figure></div>
+						<p class="card-text1">Iusabook — Navidad</p>
+                        <p class="dummy-text">Portada navideña de Iusabook: la "i" corporativa vestida de Santa Claus con saco rojo y cinturón, árbol de navidad decorado con esferas magenta y destellos, bastón de caramelo como remate tipográfico y letras 3D con efecto de nieve. Composición festiva con equilibrio y profundidad de render. 25 de diciembre. © Iusacell 2010.</p>
 					</div>
 					<div>
-						<div class="dummy-img"><figure><img src="img/8a.jpg" alt="img03"/></figure></div>
-						<p class="card-text1">Welcome</p>
-                        <p class="dummy-text">We have brought  together culture, art, music, food and drinks and perhaps most importantly -  the chance to remember those who have passed while taking full advantage of our time with those who are still with us. We invite you and your family to come and "Celebrate the Living - and Honor the Dead"</p>
+						<div class="dummy-img"><figure><img src="img/8a.jpg" alt="Iusabook — ilustración de bienvenida comunidad"/></figure></div>
+						<p class="card-text1">Iusabook — Bienvenida a la Comunidad</p>
+                        <p class="dummy-text">Ilustración de bienvenida para nuevos usuarios de Iusabook: figuras humanas 3D en colores vivos (rojo, azul, morado, verde, amarillo, naranja) celebrando alrededor del logotipo. Concepto visual de comunidad, inclusión y red social corporativa. Alta producción con reflejos y efectos de iluminación. © Iusacell 2010.</p>
 					</div>
 					<div>
-						<div class="dummy-img"><figure><img src="img/2a.jpg" alt="img04"/></figure></div>
-						<p class="card-text1">Iusabook Social</p>
-                        <p class="dummy-text">We have brought  together culture, art, music, food and drinks and perhaps most importantly -  the chance to remember those who have passed while taking full advantage of our time with those who are still with us. We invite you and your family to come and "Celebrate the Living - and Honor the Dead"</p>
+						<div class="dummy-img"><figure><img src="img/2a.jpg" alt="Iusabook — ilustración módulo Social"/></figure></div>
+						<p class="card-text1">Iusabook — Social</p>
+                        <p class="dummy-text">Ilustración para la sección Social de Iusabook: globos de diálogo en múltiples colores (rojo, verde, rosa, azul, amarillo, morado) emergiendo desde y alrededor del logotipo. Concepto minimalista de conversación, colaboración y conectividad entre equipos. © Iusacell 2010.</p>
 					</div>
 					<div>
-						<div class="dummy-img"><figure><img src="img/4a.jpg" alt="img05"/></figure></div>
-						<p class="card-text1">Iusabook. Projects</p>
-                        <p class="dummy-text">We have brought  together culture, art, music, food and drinks and perhaps most importantly -  the chance to remember those who have passed while taking full advantage of our time with those who are still with us. We invite you and your family to come and "Celebrate the Living - and Honor the Dead"</p>
+						<div class="dummy-img"><figure><img src="img/4a.jpg" alt="Iusabook — ilustración módulo Proyectos"/></figure></div>
+						<p class="card-text1">Iusabook — Proyectos</p>
+                        <p class="dummy-text">Ilustración para el módulo de Proyectos de Iusabook: pizarrón con fórmula matemática, equipo de trabajo en mesa redonda (figuras estilo dibujo a tiza), diagrama de flujo y notas adhesivas. Concepto de trabajo colaborativo, gestión de proyectos e innovación interna. © Iusacell 2010.</p>
 					</div>
 					<div>
-						<div class="dummy-img"><figure><img src="img/3a.jpg" alt="img06"/></figure></div>
-						<p class="card-text1">September 15. Independence Day Celebration</p>
-                        <p class="dummy-text">We have brought  together culture, art, music, food and drinks and perhaps most importantly -  the chance to remember those who have passed while taking full advantage of our time with those who are still with us. We invite you and your family to come and "Celebrate the Living - and Honor the Dead"</p>
+						<div class="dummy-img"><figure><img src="img/3a.jpg" alt="Iusabook — ilustración Día de Independencia"/></figure></div>
+						<p class="card-text1">Iusabook — Día de Independencia</p>
+                        <p class="dummy-text">Portada festiva de Iusabook para el Grito de Independencia: la "i" con sombrero mexicano y cuerno de fiesta, confeti y serpentinas en movimiento. Diseño dinámico y celebratorio con composición diagonal de alto impacto visual. 15 de septiembre. © Iusacell 2010.</p>
 					</div>
 					<div>
-						<div class="dummy-img"><figure><img src="img/9a.jpg" alt="img07"/></figure></div>
-						<p class="card-text1">Iusabook. Family Day</p>
-                        <p class="dummy-text">We have brought  together culture, art, music, food and drinks and perhaps most importantly -  the chance to remember those who have passed while taking full advantage of our time with those who are still with us. We invite you and your family to come and "Celebrate the Living - and Honor the Dead"</p>
+						<div class="dummy-img"><figure><img src="img/9a.jpg" alt="Iusabook — ilustración Día de Familia / Descanso"/></figure></div>
+						<p class="card-text1">Iusabook — Día de Familia</p>
+                        <p class="dummy-text">Ilustración para el día de descanso y vida familiar de Iusabook: escena hogareña con casa etiquetada "HOGAR", iconos de vida cotidiana (maleta, corbata, pelota de fútbol, paleta, perro, gato) y lluvia de confeti. Narrativa visual que celebra el equilibrio trabajo-vida. © Iusacell 2010.</p>
 					</div>
 					<div>
-						<div class="dummy-img"><figure><img src="img/6a.jpg" alt="img08"/></figure></div>
-						<p class="card-text1">Iusabook. Improvements Site</p>
-                        <p class="dummy-text">We have brought  together culture, art, music, food and drinks and perhaps most importantly -  the chance to remember those who have passed while taking full advantage of our time with those who are still with us. We invite you and your family to come and "Celebrate the Living - and Honor the Dead"</p>
+						<div class="dummy-img"><figure><img src="img/6a.jpg" alt="Iusabook — ilustración mejoras y actualización del sitio"/></figure></div>
+						<p class="card-text1">Iusabook — Mejoras del Sitio</p>
+                        <p class="dummy-text">Ilustración minimalista para comunicar actualizaciones y mejoras de la plataforma Iusabook: brocha y bote de pintura 3D junto a la "i" corporativa. Render limpio con profundidad y reflejos sutiles. Concepto de renovación, mantenimiento y evolución continua. © Iusacell 2010.</p>
 					</div>
 					<div>
-						<div class="dummy-img"><figure><img src="img/7a.jpg" alt="img09"/></figure></div>
-						<p class="card-text1">May 10. Mother's Day</p>
-                        <p class="dummy-text">We have brought  together culture, art, music, food and drinks and perhaps most importantly -  the chance to remember those who have passed while taking full advantage of our time with those who are still with us. We invite you and your family to come and "Celebrate the Living - and Honor the Dead"</p>
+						<div class="dummy-img"><figure><img src="img/7a.jpg" alt="Iusabook — ilustración Día de las Madres"/></figure></div>
+						<p class="card-text1">Iusabook — Día de las Madres</p>
+                        <p class="dummy-text">Portada del Día de las Madres en Iusabook: logotipo con letras estilo chalk y texto "Feliz día de las madres", personajes ilustrados de mamá e hijos en estilo caricatura cálida, flores y corazones. Tipografía manuscrita y paleta suave. 10 de mayo. © Iusacell 2010.</p>
 					</div>
 
 
 				<div>
-						<div class="dummy-img"><figure><img src="img/10a.jpg" alt="img10"/></figure></div>
-						<p class="card-text1">March 21st. Birthday of Benito Juárez</p>
-                        <p class="dummy-text">We have brought  together culture, art, music, food and drinks and perhaps most importantly -  the chance to remember those who have passed while taking full advantage of our time with those who are still with us. We invite you and your family to come and "Celebrate the Living - and Honor the Dead"</p>
-					</div>                                                           
+						<div class="dummy-img"><figure><img src="img/10a.jpg" alt="Iusabook — ilustración Natalicio de Benito Juárez y Primavera"/></figure></div>
+						<p class="card-text1">Iusabook — Natalicio de Juárez y Primavera</p>
+                        <p class="dummy-text">Ilustración para el Natalicio de Benito Juárez y el inicio de la Primavera: arco iris, mariposas amarillas, orquídeas y retrato ilustrado de Juárez con lazo en colores de la bandera mexicana. Composición que celebra simultáneamente la figura histórica y la llegada de la primavera. 21 de marzo. © Iusacell 2010.</p>
+					</div>
 					<span class="loading"></span>
 					<span class="icon close-content"></span>
 				</div>

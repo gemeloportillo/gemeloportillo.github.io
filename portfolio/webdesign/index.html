@@ -28,12 +28,27 @@
     .text-blue { color: var(--mp-blue); }
     .pdn-card  { border-top: 4px solid var(--mp-blue) !important; }
     .dataton-card { border-top: 3px solid transparent !important; }
-    .dataton-card .dataton-icon { font-size: 1.6rem; }
     .dataton-card .btn { margin-top: auto; }
+    /* styles.css fuerza color oscuro en html * (incluyendo <span> e <i> dentro de botones).
+       Scoped a #webdesign: corrige color en reposo Y en hover de hijos, sin tocar el home. */
+    #webdesign a.btn,
+    #webdesign a.btn * { color: var(--bs-btn-color); }
+    #webdesign a.btn:hover,
+    #webdesign a.btn:hover * { color: var(--bs-btn-hover-color) !important; }
+    /* Portfolio sub-nav */
+    .portfolio-subnav { background: #fff; border-bottom: 1px solid #e9ecef; position: sticky; top: 57px; z-index: 99; }
+    .portfolio-subnav__scroll { display: flex; align-items: center; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding: .4rem 1rem; gap: .3rem; max-width: 1140px; margin: 0 auto; }
+    .portfolio-subnav__scroll::-webkit-scrollbar { display: none; }
+    .portfolio-subnav__back { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; color: #888; text-decoration: none; flex-shrink: 0; transition: background .15s, color .15s; }
+    .portfolio-subnav__back:hover { background: #f0f0f0; color: #333; }
+    .portfolio-subnav__sep { width: 1px; height: 16px; background: #dee2e6; flex-shrink: 0; margin: 0 .4rem; }
+    .portfolio-subnav__link { display: inline-flex; align-items: center; white-space: nowrap; padding: .28rem .85rem; border-radius: 2rem; font-size: .77rem; text-decoration: none; color: #555; font-family: 'Open Sans', sans-serif; letter-spacing: .02em; transition: background .15s, color .15s; flex-shrink: 0; }
+    .portfolio-subnav__link:hover { background: #e8f9fc; color: #44c5db; }
+    .portfolio-subnav__link.active { background: #44c5db; color: #fff; font-weight: 600; }
   </style>
 </head>
 
-<body>
+<body id="webdesign">
 
 <header>
   <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm"
@@ -65,6 +80,19 @@
     </div>
   </nav>
 </header>
+
+<nav class="portfolio-subnav" aria-label="Secciones del portafolio">
+  <div class="portfolio-subnav__scroll">
+    <a href="/portfolio/" class="portfolio-subnav__back" aria-label="Ver todo el portafolio"><i class="fa-solid fa-grip fa-xs"></i></a>
+    <span class="portfolio-subnav__sep" aria-hidden="true"></span>
+    <a href="/portfolio/webdesign/" class="portfolio-subnav__link active" aria-current="page" data-i18n="footer_link_web">Web Design</a>
+    <a href="/portfolio/interactivedesign/" class="portfolio-subnav__link" data-i18n="footer_link_interactive">Interactive Design</a>
+    <!-- <a href="/portfolio/posters/" class="portfolio-subnav__link" data-i18n="footer_link_posters">Editorial Design</a> -->
+    <a href="/portfolio/movil/mobile.html" class="portfolio-subnav__link" data-i18n="footer_link_desktop">Mobile Apps</a>
+    <a href="/portfolio/marketing/" class="portfolio-subnav__link" data-i18n="footer_link_marketing">Branding &amp; Marketing</a>
+    <a href="/portfolio/doodles/doodles.html" class="portfolio-subnav__link" data-i18n="footer_link_doodles">Digital Illustration</a>
+  </div>
+</nav>
 
 <main class="py-5">
   <div class="container">
@@ -99,9 +127,11 @@
                   <span data-i18n="btn_see_project">Ver proyecto</span>
                 </a>
               </div>
-              <div class="col-md-4 text-center mt-5 mt-md-0">
-                <i class="fa-solid fa-landmark-dome"
-                   style="font-size:8rem; color:var(--mp-blue); opacity:.12;"></i>
+              <div class="col-md-4 mt-5 mt-md-0">
+                <video class="w-100 rounded shadow-sm" autoplay muted loop playsinline
+                       aria-label="Demo de la Plataforma Digital Nacional">
+                  <source src="../../assets/videos/pdn.mp4" type="video/mp4">
+                </video>
               </div>
             </div>
           </div>
@@ -120,80 +150,92 @@
     <div class="row g-4">
 
       <div class="col-12 col-md-4">
-        <div class="card dataton-card h-100 border-0 shadow-sm p-4 d-flex flex-column"
+        <div class="card dataton-card h-100 border-0 shadow-sm d-flex flex-column"
              style="border-top-color: var(--mp-blue) !important;">
-          <i class="fa-solid fa-database mb-3 dataton-icon" style="color:var(--mp-blue);"></i>
-          <h3 class="h5 fw-semibold mb-1">Datatón 2025</h3>
-          <p class="text-muted small mb-3 flex-grow-1">Diseño de identidad visual y plataforma digital completa.</p>
-          <a href="https://dataton2025.plataformadigitalnacional.org/" target="_blank" rel="noopener noreferrer"
-             class="btn btn-sm btn-outline-dark align-self-start">
-            <span data-i18n="btn_see_project">Ver proyecto</span> →
-          </a>
+          <img src="../../assets/imagenes/dataton2025.png" class="card-img-top" alt="Datatón Anticorrupción 2025" style="border-radius:.375rem .375rem 0 0; object-fit:cover; max-height:180px;">
+          <div class="card-body p-4 d-flex flex-column">
+            <h3 class="h5 fw-semibold mb-1">Datatón 2025</h3>
+            <p class="text-muted small mb-3 flex-grow-1">Diseño de identidad visual y plataforma digital completa.</p>
+            <a href="https://dataton2025.plataformadigitalnacional.org/" target="_blank" rel="noopener noreferrer"
+               class="btn btn-sm btn-outline-dark align-self-start">
+              <span data-i18n="btn_see_project">Ver proyecto</span> →
+            </a>
+          </div>
         </div>
       </div>
 
       <div class="col-12 col-md-4">
-        <div class="card dataton-card h-100 border-0 shadow-sm p-4 d-flex flex-column"
+        <div class="card dataton-card h-100 border-0 shadow-sm d-flex flex-column"
              style="border-top-color: #8e2d8e !important;">
-          <i class="fa-solid fa-database mb-3 dataton-icon" style="color:#8e2d8e;"></i>
-          <h3 class="h5 fw-semibold mb-1">Datatón 2024</h3>
-          <p class="text-muted small mb-3 flex-grow-1">Diseño de identidad visual y plataforma digital completa.</p>
-          <a href="https://dataton2024.plataformadigitalnacional.org/" target="_blank" rel="noopener noreferrer"
-             class="btn btn-sm btn-outline-dark align-self-start">
-            <span data-i18n="btn_see_project">Ver proyecto</span> →
-          </a>
+          <img src="../../assets/imagenes/dataton2024.png" class="card-img-top" alt="Datatón Anticorrupción 2024" style="border-radius:.375rem .375rem 0 0; object-fit:cover; max-height:180px;">
+          <div class="card-body p-4 d-flex flex-column">
+            <h3 class="h5 fw-semibold mb-1">Datatón 2024</h3>
+            <p class="text-muted small mb-3 flex-grow-1">Diseño de identidad visual y plataforma digital completa.</p>
+            <a href="https://dataton2024.plataformadigitalnacional.org/" target="_blank" rel="noopener noreferrer"
+               class="btn btn-sm btn-outline-dark align-self-start">
+              <span data-i18n="btn_see_project">Ver proyecto</span> →
+            </a>
+          </div>
         </div>
       </div>
 
       <div class="col-12 col-md-4">
-        <div class="card dataton-card h-100 border-0 shadow-sm p-4 d-flex flex-column"
+        <div class="card dataton-card h-100 border-0 shadow-sm d-flex flex-column"
              style="border-top-color: #e05252 !important;">
-          <i class="fa-solid fa-database mb-3 dataton-icon" style="color:#e05252;"></i>
-          <h3 class="h5 fw-semibold mb-1">Datatón 2023</h3>
-          <p class="text-muted small mb-3 flex-grow-1">Diseño de identidad visual y plataforma digital completa.</p>
-          <a href="https://dataton2023.plataformadigitalnacional.org/" target="_blank" rel="noopener noreferrer"
-             class="btn btn-sm btn-outline-dark align-self-start">
-            <span data-i18n="btn_see_project">Ver proyecto</span> →
-          </a>
+          <img src="../../assets/imagenes/dataton2023.png" class="card-img-top" alt="Datatón Anticorrupción 2023" style="border-radius:.375rem .375rem 0 0; object-fit:cover; max-height:180px;">
+          <div class="card-body p-4 d-flex flex-column">
+            <h3 class="h5 fw-semibold mb-1">Datatón 2023</h3>
+            <p class="text-muted small mb-3 flex-grow-1">Diseño de identidad visual y plataforma digital completa.</p>
+            <a href="https://dataton2023.plataformadigitalnacional.org/" target="_blank" rel="noopener noreferrer"
+               class="btn btn-sm btn-outline-dark align-self-start">
+              <span data-i18n="btn_see_project">Ver proyecto</span> →
+            </a>
+          </div>
         </div>
       </div>
 
       <div class="col-12 col-md-4">
-        <div class="card dataton-card h-100 border-0 shadow-sm p-4 d-flex flex-column"
+        <div class="card dataton-card h-100 border-0 shadow-sm d-flex flex-column"
              style="border-top-color: #e8971d !important;">
-          <i class="fa-solid fa-database mb-3 dataton-icon" style="color:#e8971d;"></i>
-          <h3 class="h5 fw-semibold mb-1">Datatón 2022</h3>
-          <p class="text-muted small mb-3 flex-grow-1">Diseño de identidad visual y plataforma digital.</p>
-          <a href="https://sg.com.mx/buzz/dataton-2022-mercado-digital-anticorrupcion" target="_blank" rel="noopener noreferrer"
-             class="btn btn-sm btn-outline-dark align-self-start">
-            <span data-i18n="btn_see_coverage">Ver cobertura</span> →
-          </a>
+          <img src="../../assets/imagenes/dataton2022.png" class="card-img-top" alt="Datatón Anticorrupción 2022" style="border-radius:.375rem .375rem 0 0; object-fit:cover; max-height:180px;">
+          <div class="card-body p-4 d-flex flex-column">
+            <h3 class="h5 fw-semibold mb-1">Datatón 2022</h3>
+            <p class="text-muted small mb-3 flex-grow-1">Diseño de identidad visual y plataforma digital.</p>
+            <a href="https://sg.com.mx/buzz/dataton-2022-mercado-digital-anticorrupcion" target="_blank" rel="noopener noreferrer"
+               class="btn btn-sm btn-outline-dark align-self-start">
+              <span data-i18n="btn_see_coverage">Ver cobertura</span> →
+            </a>
+          </div>
         </div>
       </div>
 
       <div class="col-12 col-md-4">
-        <div class="card dataton-card h-100 border-0 shadow-sm p-4 d-flex flex-column"
+        <div class="card dataton-card h-100 border-0 shadow-sm d-flex flex-column"
              style="border-top-color: #5bc0de !important;">
-          <i class="fa-solid fa-database mb-3 dataton-icon" style="color:#5bc0de;"></i>
-          <h3 class="h5 fw-semibold mb-1">Datatón 2021</h3>
-          <p class="text-muted small mb-3 flex-grow-1">Diseño de identidad visual y plataforma digital completa.</p>
-          <a href="https://dataton2021.plataformadigitalnacional.org/" target="_blank" rel="noopener noreferrer"
-             class="btn btn-sm btn-outline-dark align-self-start">
-            <span data-i18n="btn_see_project">Ver proyecto</span> →
-          </a>
+          <img src="../../assets/imagenes/dataton2021.png" class="card-img-top" alt="Datatón Anticorrupción 2021" style="border-radius:.375rem .375rem 0 0; object-fit:cover; max-height:180px;">
+          <div class="card-body p-4 d-flex flex-column">
+            <h3 class="h5 fw-semibold mb-1">Datatón 2021</h3>
+            <p class="text-muted small mb-3 flex-grow-1">Diseño de identidad visual y plataforma digital completa.</p>
+            <a href="https://dataton2021.plataformadigitalnacional.org/" target="_blank" rel="noopener noreferrer"
+               class="btn btn-sm btn-outline-dark align-self-start">
+              <span data-i18n="btn_see_project">Ver proyecto</span> →
+            </a>
+          </div>
         </div>
       </div>
 
       <div class="col-12 col-md-4">
-        <div class="card dataton-card h-100 border-0 shadow-sm p-4 d-flex flex-column"
+        <div class="card dataton-card h-100 border-0 shadow-sm d-flex flex-column"
              style="border-top-color: #99bd2a !important;">
-          <i class="fa-solid fa-database mb-3 dataton-icon" style="color:#99bd2a;"></i>
-          <h3 class="h5 fw-semibold mb-1">Datatón 2019</h3>
-          <p class="text-muted small mb-3 flex-grow-1">Primera edición del Datatón Anticorrupción.</p>
-          <a href="https://sg.com.mx/buzz/conoce-los-ganadores-del-dataton-anticorrupcion-2019" target="_blank" rel="noopener noreferrer"
-             class="btn btn-sm btn-outline-dark align-self-start">
-            <span data-i18n="btn_see_coverage">Ver cobertura</span> →
-          </a>
+          <img src="../../assets/imagenes/dataton2019.png" class="card-img-top" alt="Datatón Anticorrupción 2019" style="border-radius:.375rem .375rem 0 0; object-fit:cover; max-height:180px;">
+          <div class="card-body p-4 d-flex flex-column">
+            <h3 class="h5 fw-semibold mb-1">Datatón 2019</h3>
+            <p class="text-muted small mb-3 flex-grow-1">Primera edición del Datatón Anticorrupción.</p>
+            <a href="https://sg.com.mx/buzz/conoce-los-ganadores-del-dataton-anticorrupcion-2019" target="_blank" rel="noopener noreferrer"
+               class="btn btn-sm btn-outline-dark align-self-start">
+              <span data-i18n="btn_see_coverage">Ver cobertura</span> →
+            </a>
+          </div>
         </div>
       </div>
 

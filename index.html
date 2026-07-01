@@ -77,9 +77,20 @@
       display: flex;
       align-items: center;
     }
-    /* styles.css tiene "html * { color: #303030 }" que rompe la herencia de color;
-       este override fuerza blanco en todos los hijos del hero */
-    #hero .overlay * { color: #fff; }
+
+    /* styles.css tiene "html * { color: #303030 }" — override selectivo:
+       blanco solo en elementos de texto; los botones siguen la lógica de Bootstrap */
+    #hero .overlay h1,
+    #hero .overlay h2,
+    #hero .overlay p,
+    #hero .overlay span { color: #fff; }
+
+    /* Botones: color en reposo = variable Bootstrap del btn (no forzado a blanco);
+       hover actúa sobre el <a> completo y propaga a sus hijos */
+    #hero .overlay a.btn,
+    #hero .overlay a.btn * { color: var(--bs-btn-color); }
+    #hero .overlay a.btn:hover,
+    #hero .overlay a.btn:hover * { color: var(--bs-btn-hover-color) !important; }
 
     /* ── Portfolio icon grid (preserva selectores de styles.css) ── */
     #portfolio .col { cursor: pointer; }
@@ -269,45 +280,45 @@
       <div class="row row-cols-2 row-cols-sm-3 row-cols-md-6 g-4 justify-content-center">
 
         <div class="col text-center">
-          <a href="portfolio/posters/"
-             class="portfolio-card portfolio-card--banners"
-             aria-label="Ver proyectos: Posters y Banners"></a>
-          <p class="portfolio-card-label fw-light mt-2 mb-0" data-i18n="service_posters">Posters<br>&amp; Banners</p>
-        </div>
-
-        <div class="col text-center">
-          <a href="portfolio/movil/mobile.html"
-             class="portfolio-card portfolio-card--desktop"
-             aria-label="Ver proyectos: Desktop y Mobile"></a>
-          <p class="portfolio-card-label fw-light mt-2 mb-0" data-i18n="service_desktop">Desktop<br>&amp; Mobile Devs</p>
-        </div>
-
-        <div class="col text-center">
-          <a href="portfolio/marketing/"
-             class="portfolio-card portfolio-card--marketing"
-             aria-label="Ver proyectos: Business Marketing"></a>
-          <p class="portfolio-card-label fw-light mt-2 mb-0" data-i18n="service_marketing">Business<br>Marketing</p>
-        </div>
-
-        <div class="col text-center">
-          <a href="portfolio/doodles/doodles.html"
-             class="portfolio-card portfolio-card--doodles"
-             aria-label="Ver proyectos: Doodles e Ilustración"></a>
-          <p class="portfolio-card-label fw-light mt-2 mb-0" data-i18n="service_doodles">Doodles<br>&amp; Illustration</p>
-        </div>
-
-        <div class="col text-center">
           <a href="portfolio/webdesign/"
              class="portfolio-card portfolio-card--webdesigns"
-             aria-label="Ver proyectos: Web Design"></a>
-          <p class="portfolio-card-label fw-light mt-2 mb-0" data-i18n="service_web">Web<br>Design</p>
+             aria-label="Ver proyectos: Plataformas Digitales"></a>
+          <p class="portfolio-card-label fw-light mt-2 mb-0" data-i18n="service_web">Plataformas<br>Digitales</p>
         </div>
 
         <div class="col text-center">
           <a href="portfolio/interactivedesign/"
              class="portfolio-card portfolio-card--interactive"
-             aria-label="Ver proyectos: Interactive Design"></a>
-          <p class="portfolio-card-label fw-light mt-2 mb-0" data-i18n="service_interactive">Interactive<br>Design</p>
+             aria-label="Ver proyectos: Interactivo &amp; Educativo"></a>
+          <p class="portfolio-card-label fw-light mt-2 mb-0" data-i18n="service_interactive">Interactivo<br>&amp; Educativo</p>
+        </div>
+
+<!--         <div class="col text-center">
+          <a href="portfolio/posters/"
+             class="portfolio-card portfolio-card--banners"
+             aria-label="Ver proyectos: Diseño Editorial"></a>
+          <p class="portfolio-card-label fw-light mt-2 mb-0" data-i18n="service_posters">Diseño<br>Editorial</p>
+        </div> -->
+
+        <div class="col text-center">
+          <a href="portfolio/movil/mobile.html"
+             class="portfolio-card portfolio-card--desktop"
+             aria-label="Ver proyectos: Apps Móviles"></a>
+          <p class="portfolio-card-label fw-light mt-2 mb-0" data-i18n="service_desktop">Apps<br>Móviles</p>
+        </div>
+
+        <div class="col text-center">
+          <a href="portfolio/marketing/"
+             class="portfolio-card portfolio-card--marketing"
+             aria-label="Ver proyectos: Branding &amp; Marketing"></a>
+          <p class="portfolio-card-label fw-light mt-2 mb-0" data-i18n="service_marketing">Branding &amp;<br>Marketing</p>
+        </div>
+
+        <div class="col text-center">
+          <a href="portfolio/doodles/doodles.html"
+             class="portfolio-card portfolio-card--doodles"
+             aria-label="Ver proyectos: Ilustración Digital"></a>
+          <p class="portfolio-card-label fw-light mt-2 mb-0" data-i18n="service_doodles">Ilustración<br>Digital</p>
         </div>
 
       </div>
