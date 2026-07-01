@@ -25,6 +25,15 @@
     .navbar .nav-link        { font-size: .9rem; letter-spacing: .02em; }
     .navbar .nav-link:hover,
     .navbar .nav-link.active { color: var(--mp-green) !important; }
+    .cert-card { border-top: 3px solid transparent !important; }
+    .cert-card .cert-icon { color: var(--mp-blue); opacity: 1; font-size: 1.6rem; }
+    .cert-card h2 { color: #303030; }
+    .cert-card-1 { border-top-color: #99bd2a !important; } /* coral rojo  — Pósters     */
+    .cert-card-2 { border-top-color: #99bd2a !important; } /* naranja     — Desarrollo  */
+    .cert-card-3 { border-top-color: #99bd2a !important; } /* cyan        — Marketing   */
+    .cert-card-4 { border-top-color: #99bd2a !important; } /* púrpura     — Doodles     */
+    .cert-card-5 { border-top-color: #99bd2a !important; } /* salmón      — Diseño Web  */
+    .cert-card-6 { border-top-color: #99bd2a !important; } /* azul claro  — Interactivo */
   </style>
 </head>
 
@@ -61,58 +70,67 @@
   </nav>
 </header>
 
-<main>
-  <div id="partners">
-    <div class="container">
-      <h1 class="text-center" data-i18n="cert_main_title">Certifications</h1>
-    </div>
+<main class="py-5">
+  <div class="container">
 
-    <div class="color-columns grid-3cols container justify">
-      <div class="col first">
-        <h2 data-i18n="cert_web_apps_title">Web &amp; Apps</h2>
-        <ul>
-          <li><p data-i18n="cert_web_apps_desc">Certification in Web &amp; Apps Development, 2014.</p></li>
-          <li><p data-i18n="cert_web_apps_inst">Aula Virtual, Adobe Training Center, México.</p></li>
-        </ul>
-      </div>
-      <div class="col second">
-        <h2 data-i18n="cert_flex_title">Flex Developer</h2>
-        <ul>
-          <li><p data-i18n="cert_flex_desc">Certification in Flex Developer, 2008.</p></li>
-          <li><p data-i18n="cert_flex_inst">Aula Virtual, Adobe Training Center, México. 120hr.</p></li>
-        </ul>
-      </div>
-      <div class="col third">
-        <h2 data-i18n="cert_flash_title">Flash Developer</h2>
-        <ul>
-          <li><p data-i18n="cert_flash_desc">Certification in Flash Developer, 2008.</p></li>
-          <li><p data-i18n="cert_flash_inst">Aula Virtual, Adobe Training Center, México. 120hr.</p></li>
-        </ul>
-      </div>
-    </div>
+    <h1 class="text-center fw-light mb-5" data-i18n="cert_main_title">Certifications</h1>
 
-    <div class="color-columns grid-3cols container justify">
-      <div class="col first">
-        <h2 data-i18n="cert_web_dev_title">Web Developer</h2>
-        <ul>
-          <li><p data-i18n="cert_web_dev_desc">Certification in Web Developer, 2007.</p></li>
-          <li><p data-i18n="cert_web_dev_inst">Aula Virtual, Adobe Training Center, Mexico. 120hrs.</p></li>
-        </ul>
+    <div class="row g-4">
+
+      <div class="col-12 col-md-4">
+        <div class="card cert-card cert-card-1 h-100 border-0 shadow-sm p-4">
+          <i class="fa-solid fa-globe mb-3 cert-icon"></i>
+          <h2 class="h5 fw-semibold mb-3" data-i18n="cert_web_apps_title">Web &amp; Apps</h2>
+          <p class="mb-1" data-i18n="cert_web_apps_desc">Certification in Web &amp; Apps Development, 2014.</p>
+          <p class="text-muted small mb-0" data-i18n="cert_web_apps_inst">Aula Virtual, Adobe Training Center, México.</p>
+        </div>
       </div>
-      <div class="col second">
-        <h2 data-i18n="cert_multimedia_title">Multimedia</h2>
-        <ul>
-          <li><p data-i18n="cert_multimedia_desc">Certification in Multimedia, 2002</p></li>
-          <li><p data-i18n="cert_multimedia_inst">DGTIC (DGSCA), UNAM. 160hrs</p></li>
-        </ul>
+
+      <div class="col-12 col-md-4">
+        <div class="card cert-card cert-card-2 h-100 border-0 shadow-sm p-4">
+          <i class="fa-solid fa-layer-group mb-3 cert-icon"></i>
+          <h2 class="h5 fw-semibold mb-3" data-i18n="cert_flex_title">Flex Developer</h2>
+          <p class="mb-1" data-i18n="cert_flex_desc">Certification in Flex Developer, 2008.</p>
+          <p class="text-muted small mb-0" data-i18n="cert_flex_inst">Aula Virtual, Adobe Training Center, México. 120hr.</p>
+        </div>
       </div>
-      <div class="col third">
-        <h2 data-i18n="cert_adobe_expert_title">Adobe Expert</h2>
-        <ul>
-          <li><p data-i18n="cert_adobe_expert_desc">Adobe Certified Expert (ACE)</p></li>
-          <li><p data-i18n="cert_adobe_expert_inst">DW. World Master Certification.</p></li>
-        </ul>
+
+      <div class="col-12 col-md-4">
+        <div class="card cert-card cert-card-3 h-100 border-0 shadow-sm p-4">
+          <i class="fa-solid fa-bolt mb-3 cert-icon"></i>
+          <h2 class="h5 fw-semibold mb-3" data-i18n="cert_flash_title">Flash Developer</h2>
+          <p class="mb-1" data-i18n="cert_flash_desc">Certification in Flash Developer, 2008.</p>
+          <p class="text-muted small mb-0" data-i18n="cert_flash_inst">Aula Virtual, Adobe Training Center, México. 120hr.</p>
+        </div>
       </div>
+
+      <div class="col-12 col-md-4">
+        <div class="card cert-card cert-card-4 h-100 border-0 shadow-sm p-4">
+          <i class="fa-solid fa-laptop-code mb-3 cert-icon"></i>
+          <h2 class="h5 fw-semibold mb-3" data-i18n="cert_web_dev_title">Web Developer</h2>
+          <p class="mb-1" data-i18n="cert_web_dev_desc">Certification in Web Developer, 2007.</p>
+          <p class="text-muted small mb-0" data-i18n="cert_web_dev_inst">Aula Virtual, Adobe Training Center, Mexico. 120hrs.</p>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-4">
+        <div class="card cert-card cert-card-5 h-100 border-0 shadow-sm p-4">
+          <i class="fa-solid fa-photo-film mb-3 cert-icon"></i>
+          <h2 class="h5 fw-semibold mb-3" data-i18n="cert_multimedia_title">Multimedia</h2>
+          <p class="mb-1" data-i18n="cert_multimedia_desc">Certification in Multimedia, 2002</p>
+          <p class="text-muted small mb-0" data-i18n="cert_multimedia_inst">DGTIC (DGSCA), UNAM. 160hrs</p>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-4">
+        <div class="card cert-card cert-card-6 h-100 border-0 shadow-sm p-4">
+          <i class="fa-solid fa-certificate mb-3 cert-icon"></i>
+          <h2 class="h5 fw-semibold mb-3" data-i18n="cert_adobe_expert_title">Adobe Expert</h2>
+          <p class="mb-1" data-i18n="cert_adobe_expert_desc">Adobe Certified Expert (ACE)</p>
+          <p class="text-muted small mb-0" data-i18n="cert_adobe_expert_inst">DW. World Master Certification.</p>
+        </div>
+      </div>
+
     </div>
   </div>
 </main>
