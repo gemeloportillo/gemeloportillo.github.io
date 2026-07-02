@@ -1,4 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Center active subnav pill in the horizontal scroll area
+    const subnavScroll = document.querySelector('.portfolio-subnav__scroll');
+    const activeLink  = subnavScroll?.querySelector('.portfolio-subnav__link.active');
+    if (subnavScroll && activeLink) {
+        requestAnimationFrame(() => {
+            const scrollLeft = activeLink.offsetLeft
+                             - subnavScroll.clientWidth / 2
+                             + activeLink.offsetWidth   / 2;
+            subnavScroll.scrollTo({ left: Math.max(0, scrollLeft), behavior: 'smooth' });
+        });
+    }
+
     const footerContainer = document.getElementById('global-footer-container');
     if (!footerContainer) return;
 
