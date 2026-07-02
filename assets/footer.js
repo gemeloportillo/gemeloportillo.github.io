@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const scrollLeft = activeLink.offsetLeft
                              - subnavScroll.clientWidth / 2
                              + activeLink.offsetWidth   / 2;
-            subnavScroll.scrollTo({ left: Math.max(0, scrollLeft), behavior: 'smooth' });
+            subnavScroll.scrollLeft = Math.max(0, scrollLeft);
         });
     }
 
