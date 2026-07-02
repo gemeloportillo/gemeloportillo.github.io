@@ -191,6 +191,26 @@ style.firebugResetStyles {
   .portfolio-subnav__link { display: inline-flex; align-items: center; white-space: nowrap; padding: .28rem .85rem; border-radius: 2rem; font-size: .77rem; text-decoration: none; color: #555; font-family: 'Open Sans', sans-serif; letter-spacing: .02em; transition: background .15s, color .15s; flex-shrink: 0; }
   .portfolio-subnav__link:hover { background: #e8f9fc; color: #44c5db; }
   .portfolio-subnav__link.active { background: #44c5db; color: #fff; font-weight: 600; }
+  /* Mobile: responsive grid3d */
+  @media (max-width: 640px) {
+    body { overflow-x: hidden; }
+    .grid-wrap { overflow: hidden; }
+    .grid figure, .grid .placeholder {
+      width: calc(50vw - 22px) !important;
+      height: 140px !important;
+      overflow: hidden !important;
+    }
+    .grid figure img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover;
+    }
+    [class^="magnify"], [class*=" magnify"] {
+      width: 100% !important;
+      height: 100% !important;
+      margin: 0 !important;
+    }
+  }
 </style>
 
 </head>
@@ -257,7 +277,7 @@ style.firebugResetStyles {
 				<div class="grid-wrap">
 					<div class="grid">
 						<figure><div class="magnify">
-	<div style="display: block; left: -58.5px; top: 73.5px; background-position: 4px -384px;" class="large"></div>
+	<div class="large"></div>
 	<img class="small" src="imgs/iphone01.jpg" width="200"></div></figure>
 						<figure><div class="magnify2">
 	<div class="large2"></div>
