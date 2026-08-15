@@ -1,237 +1,237 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Control de Finanzas</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Chart.js CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  </head>
-  <body class="bg-gray-100 text-gray-800 p-4 font-sans max-w-md mx-auto">
-    <h1 class="text-2xl font-bold text-center my-4">Control de Gastos</h1>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Control de Finanzas & Tarjetas</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-100 text-gray-800 p-4 font-sans max-w-md mx-auto">
 
-    <!-- Tarjeta de Saldo -->
-    <div class="bg-white p-4 rounded-xl shadow mb-4 text-center">
-      <p class="text-sm text-gray-500">Saldo Actual Disponible</p>
-      <p id="txtSaldo" class="text-3xl font-extrabold text-emerald-600">
-        $0.00
-      </p>
+  <h1 class="text-2xl font-bold text-center my-4 text-slate-800">Control de Finanzas</h1>
+
+  <!-- Bloque de Resumen de Saldos -->
+  <div class="space-y-3 mb-6">
+    
+    <!-- 1. Saldo Disponible en Mano / Débito -->
+    <div class="bg-white p-4 rounded-xl shadow text-center border-l-4 border-emerald-500">
+      <p class="text-xs font-bold text-gray-500 uppercase tracking-wider">Dinero Disponible (Efectivo/Débito)</p>
+      <p id="txtSaldoDisponible" class="text-2xl font-black text-emerald-600">$0.00</p>
+      <p class="text-[11px] text-gray-400 mt-1">Ingresos menos gastos pagados al contado</p>
     </div>
 
-    <!-- Formulario de Captura -->
-    <form id="formGasto" class="bg-white p-4 rounded-xl shadow mb-6 space-y-3">
-      <h2 class="font-semibold text-gray-700">Registrar Movimiento</h2>
-
-      <div class="flex gap-2">
-        <label
-          class="flex-1 text-center py-2 bg-gray-100 rounded cursor-pointer has-[:checked]:bg-emerald-500 has-[:checked]:text-white font-medium"
-        >
-          <input
-            type="radio"
-            name="tipo"
-            value="Ingreso"
-            class="hidden"
-            checked
-          />
-          + Ingreso
-        </label>
-        <label
-          class="flex-1 text-center py-2 bg-gray-100 rounded cursor-pointer has-[:checked]:bg-rose-500 has-[:checked]:text-white font-medium"
-        >
-          <input type="radio" name="tipo" value="Gasto" class="hidden" /> -
-          Gasto
-        </label>
+    <div class="grid grid-cols-2 gap-3">
+      <!-- 2. Deuda Acumulada en TDC -->
+      <div class="bg-white p-3 rounded-xl shadow text-center border-l-4 border-amber-500">
+        <p class="text-[11px] font-bold text-gray-500 uppercase tracking-wider">Por Pagar (TDC)</p>
+        <p id="txtDeudaTDC" class="text-lg font-bold text-amber-600">$0.00</p>
+        <p class="text-[10px] text-gray-400 mt-0.5">Reservar de ganancias</p>
       </div>
 
-      <div>
-        <label class="block text-xs font-semibold text-gray-500 mb-1"
-          >Categoría</label
-        >
-        <select
-          id="categoria"
-          class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none"
-        >
-          <option value="Gasolina">Gasolina</option>
-          <option value="Alimentos">Alimentos / Comida</option>
-          <option value="Mandado">Mandado / Súper</option>
-          <option value="Médico">Salud / Médico</option>
-          <option value="Gastos Fijos">Gastos Fijos</option>
-          <option value="Plataforma">Ingreso Uber/DiDi</option>
-        </select>
+      <!-- 3. Saldo Real Patrimonio (Disponible - TDC) -->
+      <div class="bg-white p-3 rounded-xl shadow text-center border-l-4 border-blue-500">
+        <p class="text-[11px] font-bold text-gray-500 uppercase tracking-wider">Saldo Neto Real</p>
+        <p id="txtSaldoNeto" class="text-lg font-bold text-blue-600">$0.00</p>
+        <p class="text-[10px] text-gray-400 mt-0.5">Tras saldar tarjetas</p>
       </div>
-
-      <div>
-        <label class="block text-xs font-semibold text-gray-500 mb-1">Método de Pago</label>
-        <select id="metodoPago" class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none">
-          <option value="Efectivo">Efectivo</option>
-          <option value="Tarjeta de Débito">Tarjeta de Débito</option>
-          <option value="Tarjeta de Crédito">Tarjeta de Crédito</option>
-        </select>
-      </div>
-
-      <div>
-        <label class="block text-xs font-semibold text-gray-500 mb-1"
-          >Monto ($)</label
-        >
-        <input
-          type="number"
-          step="0.01"
-          id="monto"
-          placeholder="0.00"
-          required
-          class="w-full p-2 border rounded-lg text-lg font-bold outline-none focus:ring-2 focus:ring-emerald-500"
-        />
-      </div>
-
-      <div>
-        <label class="block text-xs font-semibold text-gray-500 mb-1"
-          >Concepto / Nota</label
-        >
-        <input
-          type="text"
-          id="concepto"
-          placeholder="Ej. Gasolina Magna / Comida"
-          class="w-full p-2 border rounded-lg outline-none"
-        />
-      </div>
-
-      <button
-        type="submit"
-        id="btnGuardar"
-        class="w-full bg-slate-900 text-white font-bold py-3 rounded-lg shadow hover:bg-slate-800 transition"
-      >
-        Guardar Movimiento
-      </button>
-    </form>
-
-    <!-- Gráfica de Barras -->
-    <div class="bg-white p-4 rounded-xl shadow mb-6">
-      <h2 class="font-semibold text-gray-700 mb-2">Resumen de Gastos</h2>
-      <canvas id="chartGastos"></canvas>
     </div>
 
-    <script>
-      // SUSTITUYE ESTA CONSTANTE CON LA URL QUE COPIASTE DE GOOGLE APPS SCRIPT
-      const API_URL =
-        "https://script.google.com/macros/s/AKfycbxIlyWwvnEDlspZ3RNHVd9giOoVdcUV0Mnhn6RjElnkCnappCJ4Ph4WjEX2vqBnT44U/exec";
+  </div>
 
-      let chartInstance = null;
+  <!-- Formulario de Captura -->
+  <form id="formGasto" class="bg-white p-4 rounded-xl shadow mb-6 space-y-3">
+    <h2 class="font-semibold text-gray-700">Registrar Movimiento</h2>
+    
+    <div class="flex gap-2">
+      <label class="flex-1 text-center py-2 bg-gray-100 rounded cursor-pointer has-[:checked]:bg-emerald-500 has-[:checked]:text-white font-medium">
+        <input type="radio" name="tipo" value="Ingreso" class="hidden" checked> + Ingreso
+      </label>
+      <label class="flex-1 text-center py-2 bg-gray-100 rounded cursor-pointer has-[:checked]:bg-rose-500 has-[:checked]:text-white font-medium">
+        <input type="radio" name="tipo" value="Gasto" class="hidden"> - Gasto
+      </label>
+    </div>
 
-      // Cargar datos al iniciar
-      async function cargarDatos() {
-        try {
-          const res = await fetch(API_URL);
-          const data = await res.json();
+    <div>
+      <label class="block text-xs font-semibold text-gray-500 mb-1">Categoría</label>
+      <select id="categoria" class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none">
+        <option value="Gasolina">Gasolina</option>
+        <option value="Alimentos">Alimentos / Comida</option>
+        <option value="Mandado">Mandado / Súper</option>
+        <option value="Médico">Salud / Médico</option>
+        <option value="Gastos Fijos">Gastos Fijos</option>
+        <option value="Plataforma">Ingreso Uber/DiDi</option>
+        <option value="Mantenimiento Auto">Mantenimiento Auto</option>
+        <option value="Saldo">Saldo</option>
+      </select>
+    </div>
 
-          let ingresos = 0;
-          let gastos = 0;
-          const categoriasMap = {};
+    <div>
+      <label class="block text-xs font-semibold text-gray-500 mb-1">Método de Pago</label>
+      <select id="metodoPago" class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none">
+        <option value="Efectivo">Efectivo</option>
+        <option value="Tarjeta de Débito">Tarjeta de Débito</option>
+        <option value="Tarjeta de Crédito">Tarjeta de Crédito</option>
+      </select>
+    </div>
 
-          // Ignorar fila 0 si tiene encabezados (o procesar desde la fila 1)
-          const movimientos = data.movimientos.slice(1);
+    <div>
+      <label class="block text-xs font-semibold text-gray-500 mb-1">Monto ($)</label>
+      <input type="number" step="0.01" id="monto" placeholder="0.00" required class="w-full p-2 border rounded-lg text-lg font-bold outline-none focus:ring-2 focus:ring-emerald-500">
+    </div>
 
-          movimientos.forEach((row) => {
-            const tipo = row[2];
-            const cat = row[3];
-            const monto = parseFloat(row[5]) || 0;
+    <div>
+      <label class="block text-xs font-semibold text-gray-500 mb-1">Concepto / Nota</label>
+      <input type="text" id="concepto" placeholder="Ej. Gasolina / Pago parcial" class="w-full p-2 border rounded-lg outline-none">
+    </div>
 
-            if (tipo === "Ingreso") {
-              ingresos += monto;
-            } else if (tipo === "Gasto") {
-              gastos += monto;
-              categoriasMap[cat] = (categoriasMap[cat] || 0) + monto;
+    <button type="submit" id="btnGuardar" class="w-full bg-slate-900 text-white font-bold py-3 rounded-lg shadow hover:bg-slate-800 transition">
+      Guardar Movimiento
+    </button>
+  </form>
+
+  <!-- Gráfica de Barras -->
+  <div class="bg-white p-4 rounded-xl shadow mb-6">
+    <h2 class="font-semibold text-gray-700 mb-2">Resumen de Gastos por Categoría</h2>
+    <canvas id="chartGastos"></canvas>
+  </div>
+
+  <script>
+    // SUSTITUYE ESTA CONSTANTE CON LA URL PUBLICADA DE TU GOOGLE APPS SCRIPT
+    const API_URL = "https://script.googleusercontent.com/macros/echo?user_content_key=AUkAhnTzCCz0W4VbFVaJGaS7QGz4sO3tGNu-9qOUOZZ5xlVp2juL-85FaYYRzOdyWErzuhhUsZFB3XZ-kX6vLWCcOJCQDz1tnxU42FG510pcU4oBlrb5m0Ytm1qZuckQqjKwZZPswjomDXRinBq9mZoxIMWkxqgxts7dsEYELJLxuTwoGxn-3yg1sISFOLo4ejstsYkuSt0X-VZlMZN57kCBGUFfcCQg7_UJC-9aPcy4mnp01rQXXLh2tb6sd3N6vXMTFMDcB0DNixRT-fnq-XxiZUEHcWSRDQ&lib=M7PbZ5q68JqqytC04lJzkOSdpxDUCDjPE";
+
+    let chartInstance = null;
+
+    async function cargarDatos() {
+      try {
+        const res = await fetch(API_URL);
+        const data = await res.json();
+        
+        let ingresosContado = 0;
+        let gastosContado = 0; // Efectivo o Débito
+        let gastosTDC = 0;     // Tarjeta de Crédito
+
+        const categoriasMap = {};
+
+        // Ignorar la fila de encabezados
+        const movimientos = data.movimientos ? data.movimientos.slice(1) : [];
+
+        movimientos.forEach(row => {
+          const tipo = row[2];
+          const cat = row[3];
+          const monto = parseFloat(row[5]) || 0;
+          const metodo = row[6] ? row[6].toString().trim() : 'Efectivo';
+
+          if (tipo === 'Ingreso') {
+            ingresosContado += monto;
+          } else if (tipo === 'Gasto') {
+            // Clasificación por Método de Pago
+            if (metodo === 'Tarjeta de Crédito') {
+              gastosTDC += monto;
+            } else {
+              gastosContado += monto; // Efectivo o Débito
             }
-          });
 
-          // Calcular y formatear saldo
-          const saldoTotal = ingresos - gastos;
-          const elementoSaldo = document.getElementById("txtSaldo");
-
-          elementoSaldo.innerText = `$${saldoTotal.toFixed(2)}`;
-
-          // Cambiar el color del texto si el saldo es negativo
-          if (saldoTotal < 0) {
-            elementoSaldo.className = "text-3xl font-extrabold text-rose-600";
-          } else {
-            elementoSaldo.className =
-              "text-3xl font-extrabold text-emerald-600";
+            // Agrupar para la gráfica de gastos por categoría
+            categoriasMap[cat] = (categoriasMap[cat] || 0) + monto;
           }
+        });
 
-          // Renderizar Gráfica
-          renderChart(Object.keys(categoriasMap), Object.values(categoriasMap));
-        } catch (err) {
-          console.error("Error al cargar datos:", err);
+        // Cálculos
+        const disponible = ingresosContado - gastosContado;
+        const saldoNeto = disponible - gastosTDC;
+
+        // Actualizar UI
+        const elDisponible = document.getElementById('txtSaldoDisponible');
+        const elDeudaTDC = document.getElementById('txtDeudaTDC');
+        const elSaldoNeto = document.getElementById('txtSaldoNeto');
+
+        elDisponible.innerText = `$${disponible.toFixed(2)}`;
+        elDeudaTDC.innerText = `$${gastosTDC.toFixed(2)}`;
+        elSaldoNeto.innerText = `$${saldoNeto.toFixed(2)}`;
+
+        // Estilos condicionales según saldos
+        if (disponible < 0) {
+          elDisponible.className = "text-2xl font-black text-rose-600";
+        } else {
+          elDisponible.className = "text-2xl font-black text-emerald-600";
         }
+
+        if (saldoNeto < 0) {
+          elSaldoNeto.className = "text-lg font-bold text-rose-600";
+        } else {
+          elSaldoNeto.className = "text-lg font-bold text-blue-600";
+        }
+
+        // Renderizar Gráfica
+        renderChart(Object.keys(categoriasMap), Object.values(categoriasMap));
+
+      } catch (err) {
+        console.error("Error al cargar datos:", err);
       }
+    }
 
-      // Dibujar Gráfica con Chart.js
-      function renderChart(labels, data) {
-        const ctx = document.getElementById("chartGastos").getContext("2d");
+    function renderChart(labels, data) {
+      const ctx = document.getElementById('chartGastos').getContext('2d');
+      
+      if (chartInstance) chartInstance.destroy();
 
-        if (chartInstance) chartInstance.destroy();
+      chartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Gastos ($)',
+            data: data,
+            backgroundColor: '#f43f5e',
+            borderRadius: 6
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: { legend: { display: false } }
+        }
+      });
+    }
 
-        chartInstance = new Chart(ctx, {
-          type: "bar",
-          data: {
-            labels: labels,
-            datasets: [
-              {
-                label: "Gastos por Rubro ($)",
-                data: data,
-                backgroundColor: "#f43f5e",
-                borderRadius: 6,
-              },
-            ],
-          },
-          options: {
-            responsive: true,
-            plugins: { legend: { display: false } },
-          },
-        });
-      }
+    // Enviar Formulario
+    document.getElementById('formGasto').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('btnGuardar');
+      btn.disabled = true;
+      btn.innerText = "Guardando...";
 
-      // Enviar nuevo movimiento
-      document
-        .getElementById("formGasto")
-        .addEventListener("submit", async (e) => {
-          e.preventDefault();
-          const btn = document.getElementById("btnGuardar");
-          btn.disabled = true;
-          btn.innerText = "Guardando...";
+      const tipo = document.querySelector('input[name="tipo"]:checked').value;
+      const categoria = document.getElementById('categoria').value;
+      const metodoPago = document.getElementById('metodoPago').value;
+      const monto = document.getElementById('monto').value;
+      const concepto = document.getElementById('concepto').value;
 
-          const tipo = document.querySelector(
-            'input[name="tipo"]:checked'
-          ).value;
-          const categoria = document.getElementById("categoria").value;
-          const metodoPago = document.getElementById('metodoPago').value;
-          const monto = document.getElementById("monto").value;
-          const concepto = document.getElementById("concepto").value;
-
-          try {
-            await fetch(API_URL, {
-              method: "POST",
-              mode: "no-cors", // Evita problemas de CORS con Apps Script
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ tipo, categoria, metodoPago, monto, concepto }),
-            });
-
-            document.getElementById("monto").value = "";
-            document.getElementById("concepto").value = "";
-            alert("¡Registrado con éxito!");
-
-            setTimeout(cargarDatos, 1500); // Recargar datos actualizados
-          } catch (err) {
-            alert("Error al registrar movimiento");
-          } finally {
-            btn.disabled = false;
-            btn.innerText = "Guardar Movimiento";
-          }
+      try {
+        await fetch(API_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ tipo, categoria, metodoPago, monto, concepto })
         });
 
-      // Iniciar
-      cargarDatos();
-    </script>
-  </body>
+        document.getElementById('monto').value = '';
+        document.getElementById('concepto').value = '';
+        alert("¡Registrado con éxito!");
+        
+        setTimeout(cargarDatos, 1500);
+      } catch (err) {
+        alert("Error al registrar movimiento");
+      } finally {
+        btn.disabled = false;
+        btn.innerText = "Guardar Movimiento";
+      }
+    });
+
+    // Carga inicial
+    cargarDatos();
+  </script>
+</body>
 </html>
