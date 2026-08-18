@@ -4,477 +4,160 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Control de Finanzas</title>
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body class="bg-slate-100 text-slate-800 font-sans min-h-screen pb-12">
 
   <div class="max-w-md mx-auto p-4 space-y-4">
-    
-    <!-- Encabezado / Título principal -->
+    <!-- Header -->
     <header class="text-center py-1">
-      <h1 class="text-2xl font-extrabold text-slate-900 tracking-tight">Control de Finanzas</h1>
-      <!-- <p class="text-xs text-slate-500">Control rápido de tus movimientos</p> -->
+      <h1 class="text-2xl font-extrabold text-slate-900 tracking-tight">Finanzas Personales</h1>
+      <p class="text-xs text-slate-500">Control rápido y tarjetas de crédito</p>
     </header>
 
-    <!-- ==================== TARJETAS DE RESUMEN FINANCIERO ==================== -->
+    <!-- Resumen Financiero -->
     <div class="space-y-3">
-      <!-- Tarjeta Principal: Dinero Disponible -->
       <div class="bg-white rounded-2xl p-4 shadow-sm border-l-4 border-l-emerald-500 border border-slate-100 text-center space-y-1">
         <span class="text-xs font-bold uppercase tracking-wider text-slate-500 block">Dinero Disponible (Efectivo/Débito)</span>
         <div id="txtSaldoDisponible" class="text-3xl font-black text-emerald-600">$0.00</div>
         <p class="text-[11px] text-slate-400 font-medium">Ingresos menos gastos pagados al contado</p>
       </div>
 
-      <!-- Tarjetas Secundarias en 2 Columnas -->
       <div class="grid grid-cols-2 gap-3">
-        <!-- Por Pagar (TDC) -->
         <div class="bg-white rounded-2xl p-3 shadow-sm border-l-4 border-l-amber-500 border border-slate-100 text-center space-y-0.5">
-          <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500 block">Por Pagar (TDC)</span>
+          <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500 block">Total Por Pagar (TDC)</span>
           <div id="txtDeudaTDC" class="text-lg font-black text-amber-600">$0.00</div>
-          <p class="text-[10px] text-slate-400 font-medium">Reservar de ganancias</p>
+          <p class="text-[10px] text-slate-400 font-medium">Suma de todas las tarjetas</p>
         </div>
 
-        <!-- Saldo Neto Real -->
         <div class="bg-white rounded-2xl p-3 shadow-sm border-l-4 border-l-blue-500 border border-slate-100 text-center space-y-0.5">
           <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500 block">Saldo Neto Real</span>
           <div id="txtSaldoNeto" class="text-lg font-black text-blue-600">$0.00</div>
           <p class="text-[10px] text-slate-400 font-medium">Tras saldar tarjetas</p>
         </div>
       </div>
+
+      <div id="contenedorTarjetas" class="grid grid-cols-3 gap-2 pt-1"></div>
     </div>
 
-    <!-- NAVEGACIÓN PRINCIPAL (Registrar / Registros) -->
+    <!-- Navegación Tabs -->
     <nav class="flex bg-slate-200 p-1 rounded-xl gap-1">
-      <button id="tabBtnRegistrar" onclick="cambiarTab('registrar')" class="flex-1 py-2 text-sm font-bold rounded-lg transition-all text-slate-700 bg-white shadow-sm">
+      <button id="tabBtnRegistrar" class="flex-1 py-2 text-sm font-bold rounded-lg transition-all text-slate-700 bg-white shadow-sm">
         <i class="fa-solid fa-pen-to-square mr-1"></i> Registrar
       </button>
-      <button id="tabBtnHistorial" onclick="cambiarTab('historial')" class="flex-1 py-2 text-sm font-bold rounded-lg transition-all text-slate-500 hover:text-slate-700">
+      <button id="tabBtnHistorial" class="flex-1 py-2 text-sm font-bold rounded-lg transition-all text-slate-500 hover:text-slate-700">
         <i class="fa-solid fa-list-check mr-1"></i> Registros
       </button>
     </nav>
 
-    <!-- ==================== SECCIÓN 1: FORMULARIO Y GRÁFICAS ==================== -->
+    <!-- Sección Registrar -->
     <div id="secRegistrar" class="space-y-4">
-
-      <!-- Formulario de Registro -->
       <form id="formMovimiento" class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 space-y-3">
         <h2 class="text-sm font-bold text-slate-800">Registrar Movimiento</h2>
 
-        <!-- Selector de Tipo: Botones Rápida Selección -->
         <div class="grid grid-cols-2 gap-2">
-          <button type="button" id="btnTipoGasto" onclick="seleccionarTipo('Gasto')" class="py-2.5 px-4 rounded-xl font-extrabold text-sm transition-all bg-rose-500 text-white shadow-md">
-            - Gasto
-          </button>
-          <button type="button" id="btnTipoIngreso" onclick="seleccionarTipo('Ingreso')" class="py-2.5 px-4 rounded-xl font-extrabold text-sm transition-all bg-slate-100 text-slate-600 hover:bg-slate-200">
-            + Ingreso
-          </button>
+          <button type="button" id="btnTipoGasto" class="py-2.5 px-4 rounded-xl font-extrabold text-sm transition-all bg-rose-500 text-white shadow-md">- Gasto</button>
+          <button type="button" id="btnTipoIngreso" class="py-2.5 px-4 rounded-xl font-extrabold text-sm transition-all bg-slate-100 text-slate-600 hover:bg-slate-200">+ Ingreso</button>
         </div>
 
-        <!-- Categoría -->
         <div>
           <label class="block text-xs font-semibold text-slate-500 mb-1">Categoría</label>
-          <select id="categoria" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:ring-2 focus:ring-blue-500 focus:outline-none" required>
-            <!-- Se llena dinámicamente -->
-          </select>
+          <select id="categoria" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:outline-none" required></select>
         </div>
 
-        <!-- Fila en 2 columnas: Monto + Método de Pago -->
+        <div id="wrapperSubcategoria" class="hidden">
+          <label class="block text-xs font-semibold text-slate-500 mb-1">Subcategoría</label>
+          <select id="subcategoria" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:outline-none"></select>
+        </div>
+
         <div class="grid grid-cols-2 gap-2">
           <div>
             <label class="block text-xs font-semibold text-slate-500 mb-1">Monto ($)</label>
-            <input type="number" step="0.01" id="monto" placeholder="0.00" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-base font-bold focus:ring-2 focus:ring-blue-500 focus:outline-none" required>
+            <input type="number" step="0.01" id="monto" placeholder="0.00" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-base font-bold focus:outline-none" required>
           </div>
           <div>
             <label class="block text-xs font-semibold text-slate-500 mb-1">Método de Pago</label>
-            <select id="metodoPago" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:ring-2 focus:ring-blue-500 focus:outline-none">
+            <select id="metodoPago" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:outline-none">
               <option value="Efectivo">Efectivo</option>
               <option value="Débito">Débito</option>
-              <option value="Tarjeta de Crédito">Tarjeta de Crédito</option>
+              <option value="TDC HSBC">TDC HSBC</option>
+              <option value="TDC Banorte">TDC Banorte</option>
+              <option value="TDC Banregio">TDC Banregio</option>
             </select>
           </div>
         </div>
 
-        <!-- Concepto / Nota -->
         <div>
           <label class="block text-xs font-semibold text-slate-500 mb-1">Concepto / Nota</label>
-          <input type="text" id="concepto" placeholder="Ej. Gasolina / Pago parcial" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
+          <input type="text" id="concepto" placeholder="Ej. Gasolina / Compras" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none">
         </div>
 
-        <!-- Fecha -->
         <div>
           <label class="block text-xs font-semibold text-slate-500 mb-1">Fecha</label>
-          <input type="date" id="fecha" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
+          <input type="date" id="fecha" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none">
         </div>
 
-        <button type="submit" id="btnGuardar" class="w-full py-3 bg-slate-900 hover:bg-slate-800 text-white font-extrabold rounded-xl shadow-lg transition-all active:scale-98 text-base">
-          Guardar Movimiento
-        </button>
+        <button type="submit" id="btnGuardar" class="w-full py-3 bg-slate-900 hover:bg-slate-800 text-white font-extrabold rounded-xl shadow-lg transition-all text-base">Guardar Movimiento</button>
       </form>
 
-      <!-- Gráficas con Tabs -->
       <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 space-y-3">
         <div class="flex items-center justify-between border-b border-slate-100 pb-2">
           <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400">Distribución</h2>
           <div class="flex gap-1 bg-slate-100 p-0.5 rounded-lg text-xs font-bold">
-            <button id="btnTabChartGastos" onclick="cambiarTabGrafica('Gasto')" class="px-2.5 py-1 rounded-md bg-white shadow-xs text-rose-600">Gastos</button>
-            <button id="btnTabChartIngresos" onclick="cambiarTabGrafica('Ingreso')" class="px-2.5 py-1 rounded-md text-slate-500 hover:text-emerald-600">Ingresos</button>
+            <button id="btnTabChartGastos" class="px-2.5 py-1 rounded-md bg-white text-rose-600">Gastos</button>
+            <button id="btnTabChartIngresos" class="px-2.5 py-1 rounded-md text-slate-500">Ingresos</button>
           </div>
         </div>
         <div class="w-full max-w-[220px] mx-auto py-2">
           <canvas id="chartDistribucion"></canvas>
         </div>
       </div>
-
     </div>
 
-    <!-- ==================== SECCIÓN 2: HISTORIAL Y DETALLE ==================== -->
+    <!-- Sección Historial con Sub-Filtros -->
     <div id="secHistorial" class="hidden">
       <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 space-y-4">
-        
         <h2 class="text-sm font-bold text-slate-800">Historial de Movimientos</h2>
 
-        <!-- Sub-filtro Gastos vs Ingresos -->
         <div class="flex border-b border-slate-100 pb-1">
-          <button id="subTabGastos" onclick="filtrarDetalle('Gasto')" class="flex-1 py-2 font-bold text-sm text-rose-600 border-b-2 border-rose-600 transition-all">
-            <i class="fa-solid fa-arrow-down mr-1"></i> Gastos (<span id="countGastos">0</span>)
+          <button id="subTabGastos" class="flex-1 py-2 font-bold text-sm text-rose-600 border-b-2 border-rose-600">
+            Gastos (<span id="countGastos">0</span>)
           </button>
-          <button id="subTabIngresos" onclick="filtrarDetalle('Ingreso')" class="flex-1 py-2 font-bold text-sm text-slate-400 hover:text-emerald-600 border-b-2 border-transparent transition-all">
-            <i class="fa-solid fa-arrow-up mr-1"></i> Ingresos (<span id="countIngresos">0</span>)
+          <button id="subTabIngresos" class="flex-1 py-2 font-bold text-sm text-slate-400 border-b-2 border-transparent">
+            Ingresos (<span id="countIngresos">0</span>)
           </button>
         </div>
 
-        <!-- Tarjeta Resumen Total Acumulado -->
-        <div id="cardTotalSeccion" class="bg-rose-50 border border-rose-100 rounded-xl p-3 text-center transition-all">
+    <!-- Etiquetas de Sub-Filtro por Método de Pago -->
+    <div id="wrapperFiltrosMetodo" class="space-y-1.5">
+      <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">Filtrar por método:</span>
+      <div id="filtrosMetodoPago" class="flex flex-nowrap overflow-x-auto gap-1 pb-1 no-scrollbar">
+        <button data-metodo="Todos" class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-rose-500 text-white shadow-xs transition-all whitespace-nowrap">Todos</button>
+        <button data-metodo="Efectivo" class="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all whitespace-nowrap">Efectivo</button>
+        <button data-metodo="Débito" class="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all whitespace-nowrap">Débito</button>
+        <button data-metodo="TDC HSBC" class="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all whitespace-nowrap">HSBC</button>
+        <button data-metodo="TDC Banorte" class="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all whitespace-nowrap">Banorte</button>
+        <button data-metodo="TDC Banregio" class="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all whitespace-nowrap">Banregio</button>
+      </div>
+    </div>
+
+        <div id="cardTotalSeccion" class="bg-rose-50 border border-rose-100 rounded-xl p-3 text-center">
           <span id="lblTotalSeccion" class="text-xs font-semibold text-rose-600 block">Total Gastos Registrados</span>
           <span id="txtTotalSeccion" class="text-2xl font-black text-rose-600">$0.00</span>
         </div>
 
-        <!-- Lista de Registros -->
-        <div id="listaRegistros" class="space-y-2">
-          <!-- Contenido generado dinámicamente -->
-        </div>
-
+        <div id="listaRegistros" class="space-y-2"></div>
       </div>
     </div>
 
   </div>
 
-  <script>
-    // URL de tu Apps Script
-    const API_URL = "https://script.google.com/macros/s/AKfycbxIlyWwvnEDlspZ3RNHVd9giOoVdcUV0Mnhn6RjElnkCnappCJ4Ph4WjEX2vqBnT44U/exec"; // Reemplaza con tu URL real
-
-    // Categorías predefinidas
-    const CATEGORIAS = {
-      Gasto: ["Gasolina", "Alimentos", "Gastos Fijos", "Servicios", "Entretenimiento", "Mantenimiento", "Varios"],
-      Ingreso: ["Sueldo", "Plataformas Digitales", "Ventas", "Rendimientos", "Otros Ingresos"]
-    };
-
-    let tipoSeleccionado = 'Gasto';
-    let chartInstance = null;
-    let listaMovimientosGlobal = [];
-    let filtroDetalleActual = 'Gasto';
-    let tabGraficaActual = 'Gasto';
-    let mapGastosCat = {};
-    let mapIngresosCat = {};
-
-    function formatearFecha(strFecha) {
-      if (!strFecha) return '';
-      if (strFecha.includes('T')) {
-        return strFecha.split('T')[0];
-      }
-      return strFecha;
-    }
-
-    document.getElementById('fecha').value = new Date().toISOString().split('T')[0];
-
-    function seleccionarTipo(tipo) {
-      tipoSeleccionado = tipo;
-      const btnGasto = document.getElementById('btnTipoGasto');
-      const btnIngreso = document.getElementById('btnTipoIngreso');
-
-      if (tipo === 'Gasto') {
-        btnGasto.className = "py-2.5 px-4 rounded-xl font-extrabold text-sm transition-all bg-rose-500 text-white shadow-md";
-        btnIngreso.className = "py-2.5 px-4 rounded-xl font-extrabold text-sm transition-all bg-slate-100 text-slate-600 hover:bg-slate-200";
-      } else {
-        btnIngreso.className = "py-2.5 px-4 rounded-xl font-extrabold text-sm transition-all bg-emerald-500 text-white shadow-md";
-        btnGasto.className = "py-2.5 px-4 rounded-xl font-extrabold text-sm transition-all bg-slate-100 text-slate-600 hover:bg-slate-200";
-      }
-
-      actualizarComboCategorias(tipo);
-    }
-
-    function actualizarComboCategorias(tipo) {
-      const selectCat = document.getElementById('categoria');
-      selectCat.innerHTML = '';
-      CATEGORIAS[tipo].forEach(cat => {
-        const option = document.createElement('option');
-        option.value = cat;
-        option.textContent = cat;
-        selectCat.appendChild(option);
-      });
-    }
-
-    function cambiarTab(tab) {
-      const secRegistrar = document.getElementById('secRegistrar');
-      const secHistorial = document.getElementById('secHistorial');
-      const btnRegistrar = document.getElementById('tabBtnRegistrar');
-      const btnHistorial = document.getElementById('tabBtnHistorial');
-
-      if (tab === 'registrar') {
-        secRegistrar.classList.remove('hidden');
-        secHistorial.classList.add('hidden');
-        btnRegistrar.className = "flex-1 py-2 text-sm font-bold rounded-lg transition-all text-slate-700 bg-white shadow-sm";
-        btnHistorial.className = "flex-1 py-2 text-sm font-bold rounded-lg transition-all text-slate-500 hover:text-slate-700";
-      } else {
-        secRegistrar.classList.add('hidden');
-        secHistorial.classList.remove('hidden');
-        btnHistorial.className = "flex-1 py-2 text-sm font-bold rounded-lg transition-all text-slate-700 bg-white shadow-sm";
-        btnRegistrar.className = "flex-1 py-2 text-sm font-bold rounded-lg transition-all text-slate-500 hover:text-slate-700";
-        renderListaDetalle();
-      }
-    }
-
-    function filtrarDetalle(tipo) {
-      filtroDetalleActual = tipo;
-      const subGastos = document.getElementById('subTabGastos');
-      const subIngresos = document.getElementById('subTabIngresos');
-
-      if (tipo === 'Gasto') {
-        subGastos.className = "flex-1 py-2 font-bold text-sm text-rose-600 border-b-2 border-rose-600 transition-all";
-        subIngresos.className = "flex-1 py-2 font-bold text-sm text-slate-400 hover:text-emerald-600 border-b-2 border-transparent transition-all";
-      } else {
-        subIngresos.className = "flex-1 py-2 font-bold text-sm text-emerald-600 border-b-2 border-emerald-600 transition-all";
-        subGastos.className = "flex-1 py-2 font-bold text-sm text-slate-400 hover:text-rose-600 border-b-2 border-transparent transition-all";
-      }
-      renderListaDetalle();
-    }
-
-    function renderListaDetalle() {
-      const contenedor = document.getElementById('listaRegistros');
-      contenedor.innerHTML = '';
-
-      const cardTotal = document.getElementById('cardTotalSeccion');
-      const lblTotal = document.getElementById('lblTotalSeccion');
-      const txtTotal = document.getElementById('txtTotalSeccion');
-
-      const filtrados = listaMovimientosGlobal.filter(m => m.tipo === filtroDetalleActual);
-      const totalAcumulado = filtrados.reduce((acc, curr) => acc + curr.monto, 0);
-
-      if (filtroDetalleActual === 'Gasto') {
-        cardTotal.className = "bg-rose-50 border border-rose-100 rounded-xl p-3 text-center transition-all";
-        lblTotal.className = "text-xs font-semibold text-rose-600 block";
-        lblTotal.innerText = "Total Gastos Registrados";
-        txtTotal.className = "text-2xl font-black text-rose-600";
-        txtTotal.innerText = `$${totalAcumulado.toFixed(2)}`;
-      } else {
-        cardTotal.className = "bg-emerald-50 border border-emerald-100 rounded-xl p-3 text-center transition-all";
-        lblTotal.className = "text-xs font-semibold text-emerald-600 block";
-        lblTotal.innerText = "Total Ingresos Registrados";
-        txtTotal.className = "text-2xl font-black text-emerald-600";
-        txtTotal.innerText = `$${totalAcumulado.toFixed(2)}`;
-      }
-
-      if (filtrados.length === 0) {
-        contenedor.innerHTML = `
-          <div class="text-center py-8 text-slate-400">
-            <i class="fa-solid fa-inbox text-3xl mb-2 block"></i>
-            <p class="text-xs">No hay ${filtroDetalleActual.toLowerCase()}s registrados</p>
-          </div>
-        `;
-        return;
-      }
-
-      filtrados.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
-
-      filtrados.forEach(item => {
-        const esGasto = item.tipo === 'Gasto';
-        const colorMonto = esGasto ? 'text-rose-600' : 'text-emerald-600';
-        const bgBadge = esGasto ? 'bg-rose-50 text-rose-700' : 'bg-emerald-50 text-emerald-700';
-
-        const card = document.createElement('div');
-        card.className = "bg-slate-50 p-3 rounded-xl border border-slate-200/60 shadow-2xs flex justify-between items-center";
-        card.innerHTML = `
-          <div class="space-y-0.5">
-            <div class="flex items-center gap-2">
-              <span class="text-xs font-bold px-2 py-0.5 rounded-full ${bgBadge}">${item.categoria}</span>
-              <span class="text-[11px] text-slate-400 font-medium">${formatearFecha(item.fecha)}</span>
-            </div>
-            <p class="text-sm font-semibold text-slate-800">${item.concepto || item.categoria}</p>
-            <p class="text-[11px] text-slate-400">
-              <i class="fa-regular fa-credit-card mr-0.5"></i> ${item.metodoPago}
-            </p>
-          </div>
-          <div class="text-right">
-            <span class="text-base font-black ${colorMonto}">
-              ${esGasto ? '-' : '+'}$${item.monto.toFixed(2)}
-            </span>
-          </div>
-        `;
-        contenedor.appendChild(card);
-      });
-    }
-
-    function cambiarTabGrafica(tipo) {
-      tabGraficaActual = tipo;
-      const btnGastos = document.getElementById('btnTabChartGastos');
-      const btnIngresos = document.getElementById('btnTabChartIngresos');
-
-      if (tipo === 'Gasto') {
-        btnGastos.className = "px-2.5 py-1 rounded-md bg-white shadow-xs text-rose-600";
-        btnIngresos.className = "px-2.5 py-1 rounded-md text-slate-500 hover:text-emerald-600";
-        renderChart(Object.keys(mapGastosCat), Object.values(mapGastosCat), 'Gasto');
-      } else {
-        btnIngresos.className = "px-2.5 py-1 rounded-md bg-white shadow-xs text-emerald-600";
-        btnGastos.className = "px-2.5 py-1 rounded-md text-slate-500 hover:text-rose-600";
-        renderChart(Object.keys(mapIngresosCat), Object.values(mapIngresosCat), 'Ingreso');
-      }
-    }
-
-    // Cargar datos desde Google Sheets con colores dinámicos corregidos
-    async function cargarDatos() {
-      try {
-        const res = await fetch(API_URL);
-        const data = await res.json();
-        
-        let ingresosTotal = 0;
-        let gastosContado = 0;
-        let gastosTDC = 0;
-
-        mapGastosCat = {};
-        mapIngresosCat = {};
-        listaMovimientosGlobal = [];
-
-        const filas = data.movimientos ? data.movimientos.slice(1) : [];
-
-        let numGastos = 0;
-        let numIngresos = 0;
-
-        filas.forEach(row => {
-          const id = row[0];
-          const fecha = row[1];
-          const tipo = row[2];
-          const cat = row[3];
-          const concepto = row[4];
-          const monto = parseFloat(row[5]) || 0;
-          const metodo = row[6] ? row[6].toString().trim() : 'Efectivo';
-
-          listaMovimientosGlobal.push({ id, fecha, tipo, categoria: cat, concepto, monto, metodoPago: metodo });
-
-          if (tipo === 'Ingreso') {
-            ingresosTotal += monto;
-            numIngresos++;
-            if (cat) mapIngresosCat[cat] = (mapIngresosCat[cat] || 0) + monto;
-          } else if (tipo === 'Gasto') {
-            numGastos++;
-            if (metodo === 'Tarjeta de Crédito') {
-              gastosTDC += monto;
-            } else {
-              gastosContado += monto;
-            }
-            if (cat) mapGastosCat[cat] = (mapGastosCat[cat] || 0) + monto;
-          }
-        });
-
-        document.getElementById('countGastos').innerText = numGastos;
-        document.getElementById('countIngresos').innerText = numIngresos;
-
-        const disponible = ingresosTotal - gastosContado;
-        const saldoNeto = disponible - gastosTDC;
-
-        // --- APLICACIÓN DE COLORES DINÁMICOS ---
-        
-        // 1. Dinero Disponible: Verde si es positivo/cero, Rojo si es negativo
-        const elemDisponible = document.getElementById('txtSaldoDisponible');
-        elemDisponible.innerText = `$${disponible.toFixed(2)}`;
-        elemDisponible.className = disponible < 0 
-          ? "text-3xl font-black text-rose-600" 
-          : "text-3xl font-black text-emerald-600";
-
-        // 2. Por Pagar (TDC): Se mantiene en Amarillo
-        document.getElementById('txtDeudaTDC').innerText = `$${gastosTDC.toFixed(2)}`;
-        
-        // 3. Saldo Neto Real: Azul si es positivo/cero, Rojo si es negativo
-        const elemNeto = document.getElementById('txtSaldoNeto');
-        elemNeto.innerText = `$${saldoNeto.toFixed(2)}`;
-        elemNeto.className = saldoNeto < 0 
-          ? "text-lg font-black text-rose-600" 
-          : "text-lg font-black text-blue-600";
-
-        cambiarTabGrafica(tabGraficaActual);
-
-      } catch (err) {
-        console.error("Error al cargar datos:", err);
-      }
-    }
-
-    function renderChart(labels, values, tipo) {
-      const ctx = document.getElementById('chartDistribucion').getContext('2d');
-      if (chartInstance) chartInstance.destroy();
-
-      const paletteGastos = ['#f43f5e', '#ef4444', '#f97316', '#f59e0b', '#8b5cf6', '#ec4899', '#64748b'];
-      const paletteIngresos = ['#10b981', '#06b6d4', '#3b82f6', '#6366f1', '#14b8a6'];
-
-      chartInstance = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-          labels: labels.length ? labels : ['Sin Datos'],
-          datasets: [{
-            data: values.length ? values : [1],
-            backgroundColor: tipo === 'Gasto' ? paletteGastos : paletteIngresos
-          }]
-        },
-        options: {
-          responsive: true,
-          plugins: {
-            legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 10 } } }
-          }
-        }
-      });
-    }
-
-    document.getElementById('formMovimiento').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const btn = document.getElementById('btnGuardar');
-      btn.disabled = true;
-      btn.innerText = 'Guardando...';
-
-      const payload = {
-        tipo: tipoSeleccionado,
-        categoria: document.getElementById('categoria').value,
-        monto: document.getElementById('monto').value,
-        concepto: document.getElementById('concepto').value,
-        metodoPago: document.getElementById('metodoPago').value,
-        fecha: document.getElementById('fecha').value
-      };
-
-      try {
-        await fetch(API_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-
-        document.getElementById('monto').value = '';
-        document.getElementById('concepto').value = '';
-
-        await cargarDatos();
-        alert('¡Movimiento guardado!');
-      } catch (error) {
-        console.error('Error al guardar:', error);
-        alert('Error al guardar el movimiento.');
-      } finally {
-        btn.disabled = false;
-        btn.innerText = 'Guardar Movimiento';
-      }
-    });
-
-    actualizarComboCategorias('Gasto');
-    cargarDatos();
+  <!-- Carga del módulo principal -->
+  <script type="module">
+    import { initUI } from './js/ui/index.js';
+    document.addEventListener('DOMContentLoaded', initUI);
   </script>
 </body>
 </html>
