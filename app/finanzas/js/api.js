@@ -28,28 +28,36 @@ export async function cargarDatos() {
       const [id, fecha, tipo, cat, concepto, rawMonto, rawMetodo, periodo] = row;
       const monto = parseFloat(rawMonto) || 0;
       const metodo = rawMetodo ? rawMetodo.toString().trim() : 'Efectivo';
-
+    
       state.movimientos.push({ id, fecha, tipo, categoria: cat, concepto, monto, metodoPago: metodo, periodo });
-
+    
       if (tipo === 'Ingreso') {
         ingresosTotal += monto;
         if (cat) state.mapIngresosCat[cat] = (state.mapIngresosCat[cat] || 0) + monto;
+    
       } else if (tipo === 'Gasto') {
         if (metodo.startsWith('TDC')) {
           const tdcConf = TARJETAS_CONFIG.find(t => t.id === metodo);
           const fechaGasto = fecha ? fecha.split('T')[0] : '';
           
           if (tdcConf && fechaGasto > tdcConf.fechaCorte) {
-            // Gasto posterior al corte -> Consumo Actual
             state.saldosTarjetas[metodo].consumoActual += monto;
           } else {
-            // Gasto dentro o previo al corte -> Por Pagar
             state.saldosTarjetas[metodo].porPagar += monto;
           }
         } else {
           gastosContado += monto;
         }
         if (cat) state.mapGastosCat[cat] = (state.mapGastosCat[cat] || 0) + monto;
+    
+      } else if (tipo === 'Pago') {
+        // 1. Sale dinero de tu disponible / efectivo
+        gastosContado += monto;
+      
+        // 2. Se le descuenta directamente a la tarjeta indicada en Metodo_Pago
+        if (state.saldosTarjetas[metodo]) {
+          state.saldosTarjetas[metodo].porPagar = Math.max(0, state.saldosTarjetas[metodo].porPagar - monto);
+        }
       }
     });
 

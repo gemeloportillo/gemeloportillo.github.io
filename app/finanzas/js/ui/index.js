@@ -22,6 +22,7 @@ function setupEventListeners() {
   // Eventos de formulario
   document.getElementById('btnTipoGasto').addEventListener('click', () => cambiarTipoForm('Gasto'));
   document.getElementById('btnTipoIngreso').addEventListener('click', () => cambiarTipoForm('Ingreso'));
+  document.getElementById('btnTipoPago').addEventListener('click', () => cambiarTipoForm('Pago'));
   document.getElementById('categoria').addEventListener('change', actualizarSubcategorias);
   document.getElementById('formMovimiento').addEventListener('submit', guardarMovimiento);
 
