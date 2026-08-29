@@ -1,10 +1,13 @@
 import { cambiarTipoForm, actualizarCategorias, actualizarSubcategorias } from './formUI.js';
 import { cambiarSubTabHistorial, actualizarEstilosFiltrosMetodo, renderHistorial } from './historialUI.js';
-import { cambiarTabGrafica } from './dashboardUI.js';
+import { cambiarTabGrafica } from './chartUI.js';
 import { guardarMovimiento, cargarDatos } from '../api.js';
 import { state } from '../state.js';
 
+// Re-exportar todos los módulos de UI (Barrel Export)
 export * from './dashboardUI.js';
+export * from './tarjetasUI.js';
+export * from './chartUI.js';
 export * from './formUI.js';
 export * from './historialUI.js';
 
