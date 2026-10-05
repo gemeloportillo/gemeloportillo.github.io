@@ -169,6 +169,7 @@ style.firebugResetStyles {
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#ffffff">  <!-- theme.js lo actualiza según el tema -->
 <!-- Sistema de color (tokens claro/oscuro) — debe ir después de Bootstrap y styles.css -->
 <link rel="stylesheet" href="../../assets/theme.css">
 <script src="../../assets/theme.js"></script>
@@ -178,6 +179,37 @@ style.firebugResetStyles {
   header * { color: inherit; }
   header .container { padding-left: .75rem !important; padding-right: .75rem !important; }
   h1.fw-light { font-size: 50px !important; font-weight: 300 !important; }
+  /* Panel ampliado de la galería: component.css usa #fff fijo */
+  .grid3d .content,
+  .grid3d .content > div { background: var(--color-bg); }
+  /* Capturas de iPhone: JPG con fondo blanco. La máscara (silueta del teléfono,
+     5 KB) recorta las esquinas para que se vean bien en modo claro y oscuro */
+  img[src^="imgs/iphone"] {
+    -webkit-mask: url(imgs/phone-mask.png) center / 100% 100% no-repeat;
+            mask: url(imgs/phone-mask.png) center / 100% 100% no-repeat;
+  }
+  /* Lupa (.large, .large2…):
+     · z-index: la máscara de la imagen crea un contexto de apilamiento;
+       sin él, la lupa quedaría debajo del teléfono.
+     · La imagen ampliada se dibuja en ::before con la misma máscara (para
+       no ver el fondo blanco del JPG). No se enmascara la lupa misma porque
+       la máscara recortaría también el aro de cristal (box-shadow).
+     · lupa.js actualiza --lens-pos para mover imagen y máscara juntas. */
+  [class^="magnify"] > [class^="large"] { z-index: 2; background-size: 0 0; }
+  [class^="magnify"] > [class^="large"]::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background-image: inherit;
+    background-repeat: no-repeat;
+    background-position: var(--lens-pos, 0 0);
+    box-shadow: inset 0 0 40px 2px rgba(0, 0, 0, .25);
+    -webkit-mask: url(imgs/phone-mask.png) no-repeat;
+            mask: url(imgs/phone-mask.png) no-repeat;
+    -webkit-mask-position: var(--lens-pos, 0 0);
+            mask-position: var(--lens-pos, 0 0);
+  }
   /* Mobile: responsive grid3d */
   @media (max-width: 640px) {
     .grid-wrap { overflow: hidden; }

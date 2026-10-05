@@ -26,10 +26,11 @@ $(document).ready(function(){
                 var rx = Math.round(mx / $img.width()  * nw - $glass.width()  / 2) * -1;
                 var ry = Math.round(my / $img.height() * nh - $glass.height() / 2) * -1;
                 $glass.css({
-                    left:               mx - $glass.width()  / 2,
-                    top:                my - $glass.height() / 2,
-                    backgroundPosition: rx + 'px ' + ry + 'px'
+                    left: mx - $glass.width()  / 2,
+                    top:  my - $glass.height() / 2
                 });
+                // Posición de la imagen ampliada y de su máscara (ver mobile.html)
+                $glass[0].style.setProperty('--lens-pos', rx + 'px ' + ry + 'px');
             })
             .on('mouseleave', function() {
                 $(largeClass).fadeOut(100);

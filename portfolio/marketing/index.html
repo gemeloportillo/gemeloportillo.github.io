@@ -168,6 +168,7 @@ style.firebugResetStyles {
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#ffffff">  <!-- theme.js lo actualiza según el tema -->
 <!-- Sistema de color (tokens claro/oscuro) — debe ir después de Bootstrap y styles.css -->
 <link rel="stylesheet" href="../../assets/theme.css">
 <script src="../../assets/theme.js"></script>
@@ -177,6 +178,9 @@ style.firebugResetStyles {
   header * { color: inherit; }
   header .container { padding-left: .75rem !important; padding-right: .75rem !important; }
   h1.fw-light { font-size: 50px !important; font-weight: 300 !important; }
+  /* Panel ampliado de la galería: component.css usa #fff fijo */
+  .grid3d .content,
+  .grid3d .content > div { background: var(--color-bg); }
   /* Mobile: responsive grid3d */
   @media (max-width: 640px) {
     .grid-wrap { overflow: hidden; }
