@@ -369,6 +369,10 @@ body, .site-navbar, .card, .portfolio-subnav, .site-footer {
 /* Íconos circulares del portafolio: el enlace envuelve círculo + texto
    visible (el círculo es decorativo, aria-hidden) */
 .portfolio-item { display: block; text-decoration: none; }
+.portfolio-card--sm { max-width: 140px; }
+/* El círculo escalado (transform) se pinta encima del texto: sin esto, su
+   sombra oscurece la primera línea de la etiqueta al pasar el cursor */
+.portfolio-item .portfolio-card-label { position: relative; z-index: 1; }
 .portfolio-item:hover .portfolio-card,
 .portfolio-item:focus-visible .portfolio-card { transform: scale(1.08); box-shadow: var(--shadow-md); }
 .portfolio-item:hover .portfolio-card-label { color: var(--color-primary); }
