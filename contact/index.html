@@ -141,8 +141,8 @@
             </p>
             <p class="mb-0">
               <i class="fa fa-envelope me-2" aria-hidden="true"></i>
-              <a href="mailto:miguel.portillo.bobadilla@gmail.com" class="text-decoration-none"
-                 style="color:inherit;">miguel.portillo.bobadilla@gmail.com</a>
+              <a href="mailto:miguelportilloux@gmail.com" class="text-decoration-none"
+                 style="color:inherit;">miguelportilloux@gmail.com</a>
             </p>
           </address>
         </div>
@@ -158,16 +158,22 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
 
-          <!-- Error alert — hidden until validation fails -->
+          <!-- Error alert — validación fallida o envío fallido (el texto lo pone el script) -->
           <div id="msg-error" class="alert alert-danger alert-dismissible d-none" role="alert">
             <i class="fa fa-exclamation-triangle me-2" aria-hidden="true"></i>
-            <strong>Oops!</strong>
-            <span data-i18n="cnt_msg_error_desc"> Please fill in all required fields correctly.</span>
+            <span id="msg-error-invalid" data-i18n="cnt_msg_invalid">Please fill in the required fields correctly.</span>
+            <span id="msg-error-send" class="d-none" data-i18n="cnt_msg_send_error">Your message couldn't be sent right now.</span>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
 
           <form id="form_contact" name="form_contact" novalidate>
             <div class="row g-3">
+
+              <!-- Honeypot anti-spam: invisible para personas; si un bot lo llena, FormSubmit descarta el envío -->
+              <div class="d-none" aria-hidden="true">
+                <label for="ct_honey" data-i18n="cnt_lbl_honey">Leave this field empty</label>
+                <input type="text" id="ct_honey" name="_honey" tabindex="-1" autocomplete="off">
+              </div>
 
               <div class="col-12">
                 <label for="ct_company_name" class="form-label small fw-semibold"
@@ -181,7 +187,7 @@
                        data-i18n="cnt_lbl_name">Name</label>
                 <input type="text" class="form-control" id="ct_name" name="ct_name"
                        placeholder="your full name" data-i18n-placeholder="cnt_ph_name" required>
-                <div class="invalid-feedback">This field is required.</div>
+                <div class="invalid-feedback" data-i18n="cnt_val_required">This field is required.</div>
               </div>
 
               <div class="col-sm-6">
@@ -189,7 +195,7 @@
                        data-i18n="cnt_lbl_email">Email</label>
                 <input type="email" class="form-control" id="ct_email" name="ct_email"
                        placeholder="your@email.com" data-i18n-placeholder="cnt_ph_email" required>
-                <div class="invalid-feedback">A valid e-mail address is required.</div>
+                <div class="invalid-feedback" data-i18n="cnt_val_email">A valid e-mail address is required.</div>
               </div>
 
               <div class="col-12">
@@ -197,7 +203,7 @@
                        data-i18n="cnt_lbl_subject">Subject</label>
                 <input type="text" class="form-control" id="ct_subject" name="ct_subject"
                        placeholder="subject" data-i18n-placeholder="cnt_ph_subject" required>
-                <div class="invalid-feedback">This field is required.</div>
+                <div class="invalid-feedback" data-i18n="cnt_val_required">This field is required.</div>
               </div>
 
               <div class="col-12">
@@ -206,7 +212,7 @@
                 <textarea class="form-control" id="ct_message" name="ct_message" rows="5"
                           placeholder="tell me about your project…"
                           data-i18n-placeholder="cnt_ph_message" required></textarea>
-                <div class="invalid-feedback">This field is required.</div>
+                <div class="invalid-feedback" data-i18n="cnt_val_required">This field is required.</div>
               </div>
 
               <div class="col-12 d-flex align-items-center justify-content-between flex-wrap gap-3">
@@ -216,8 +222,10 @@
                     Send me a copy
                   </label>
                 </div>
-                <button type="submit" class="btn btn-brand px-5 rounded-pill"
-                        data-i18n="cnt_btn_send">Send</button>
+                <button type="submit" class="btn btn-brand px-5 rounded-pill">
+                  <span class="spinner-border spinner-border-sm me-2 d-none" aria-hidden="true"></span>
+                  <span class="btn-label" data-i18n="cnt_btn_send">Send</span>
+                </button>
               </div>
 
             </div>
@@ -250,27 +258,79 @@
       .openPopup();
   });
 
-  // Contact form — Bootstrap 5 native validation
-  document.getElementById('form_contact').addEventListener('submit', function (e) {
+  // Contact form — validación nativa de Bootstrap 5 + envío real vía FormSubmit.
+  // GitHub Pages no puede enviar correos: FormSubmit (https://formsubmit.co)
+  // recibe el POST y lo reenvía al correo configurado. El PRIMER envío dispara
+  // un correo de activación que hay que confirmar una sola vez.
+  // Tras activar, se puede reemplazar el correo por el alias aleatorio que da
+  // FormSubmit para no exponer la dirección en el código.
+  const FORM_ENDPOINT = 'https://formsubmit.co/ajax/miguelportilloux@gmail.com';
+
+  document.getElementById('form_contact').addEventListener('submit', async function (e) {
     e.preventDefault();
-    var form    = this;
-    var success = document.getElementById('msg-success');
-    var error   = document.getElementById('msg-error');
+    const form       = this;
+    const success    = document.getElementById('msg-success');
+    const error      = document.getElementById('msg-error');
+    const errInvalid = document.getElementById('msg-error-invalid');
+    const errSend    = document.getElementById('msg-error-send');
+    const button     = form.querySelector('[type="submit"]');
+    const spinner    = button.querySelector('.spinner-border');
+    const label      = button.querySelector('.btn-label');
 
-    form.classList.add('was-validated');
-
-    if (!form.checkValidity()) {
+    function showError(kind) {
+      errInvalid.classList.toggle('d-none', kind !== 'invalid');
+      errSend.classList.toggle('d-none', kind !== 'send');
       error.classList.remove('d-none');
       success.classList.add('d-none');
       error.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      return;
     }
 
-    success.classList.remove('d-none');
-    error.classList.add('d-none');
-    success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    form.reset();
-    form.classList.remove('was-validated');
+    function setSending(sending) {
+      button.disabled = sending;
+      spinner.classList.toggle('d-none', !sending);
+      // Textos desde lang.json (variables globales de lang.js)
+      const t = (typeof translations !== 'undefined' && translations[currentLang]) || {};
+      label.textContent = sending ? (t.cnt_btn_sending || 'Sending…') : (t.cnt_btn_send || 'Send');
+    }
+
+    form.classList.add('was-validated');
+    if (!form.checkValidity()) { showError('invalid'); return; }
+
+    const data = new FormData(form);
+    const payload = {
+      _subject:  'Portafolio · ' + data.get('ct_subject'),
+      _template: 'table',
+      _honey:    data.get('_honey'),
+      Nombre:    data.get('ct_name'),
+      Empresa:   data.get('ct_company_name') || '—',
+      email:     data.get('ct_email'),          // FormSubmit lo usa como Reply-To
+      Asunto:    data.get('ct_subject'),
+      Mensaje:   data.get('ct_message')
+    };
+    if (data.get('chbx-copy')) payload._cc = data.get('ct_email');
+
+    setSending(true);
+    try {
+      const res  = await fetch(FORM_ENDPOINT, {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body:    JSON.stringify(payload)
+      });
+      const json = await res.json().catch(() => ({}));
+      // Solo se confirma el éxito si el servicio lo confirma (nunca antes)
+      if (!res.ok || String(json.success) !== 'true') throw new Error(json.message || res.status);
+
+      success.classList.remove('d-none');
+      error.classList.add('d-none');
+      success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      form.reset();
+      form.classList.remove('was-validated');
+    } catch (err) {
+      console.error('Contact form:', err);
+      showError('send');
+    } finally {
+      setSending(false);
+    }
   });
 </script>
 

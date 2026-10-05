@@ -25,7 +25,7 @@ Each section is a self-contained directory with its own `index.html`:
 - `portfolio/` — work showcase with sub-sections: `webdesign/`, `movil/`, `marketing/`, `posters/`, `interactivedesign/`, `doodles/`
 - `cv/` — résumé
 - `certifications/` — certifications page
-- `contact/` — contact form
+- `contact/` — contact form (sends via FormSubmit AJAX to the owner's Gmail; `FORM_ENDPOINT` in the page script — success is shown only when the service confirms)
 - `art/` — art gallery
 - `social/` — social links
 - `video/` — video section

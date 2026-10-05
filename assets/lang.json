@@ -193,7 +193,11 @@
     "cnt_address_hood": "Col. Narvarte, C.P. 03023",
     "cnt_address_city": "Benito Juárez, CDMX.",
     "cnt_val_required": "This information is required",
-    "cnt_val_email": "A valid e-mail address is required"
+    "cnt_val_email": "A valid e-mail address is required",
+    "cnt_msg_invalid": "Please fill in the required fields correctly.",
+    "cnt_msg_send_error": "Your message couldn't be sent right now. Please try again in a moment, or write to me directly by email or LinkedIn.",
+    "cnt_btn_sending": "Sending…",
+    "cnt_lbl_honey": "Leave this field empty"
 
 
   },
@@ -391,6 +395,10 @@
     "cnt_address_hood": "Col. Narvarte, C.P. 03023",
     "cnt_address_city": "Benito Juárez, CDMX.",
     "cnt_val_required": "Este campo es obligatorio",
-    "cnt_val_email": "Se requiere una dirección de correo válida"
+    "cnt_val_email": "Se requiere una dirección de correo válida",
+    "cnt_msg_invalid": "Por favor completa correctamente los campos obligatorios.",
+    "cnt_msg_send_error": "Tu mensaje no se pudo enviar en este momento. Intenta de nuevo en un momento o escríbeme directamente por correo o LinkedIn.",
+    "cnt_btn_sending": "Enviando…",
+    "cnt_lbl_honey": "Deja este campo vacío"
   }
 }
