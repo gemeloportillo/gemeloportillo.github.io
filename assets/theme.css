@@ -366,7 +366,12 @@ body, .site-navbar, .card, .portfolio-subnav, .site-footer {
 /* ═══════════════════════════════════════════════════════════════════════
    COMPONENTES COMPARTIDOS
    ═══════════════════════════════════════════════════════════════════════ */
-/* Íconos circulares del portafolio */
+/* Íconos circulares del portafolio: el enlace envuelve círculo + texto
+   visible (el círculo es decorativo, aria-hidden) */
+.portfolio-item { display: block; text-decoration: none; }
+.portfolio-item:hover .portfolio-card,
+.portfolio-item:focus-visible .portfolio-card { transform: scale(1.08); box-shadow: var(--shadow-md); }
+.portfolio-item:hover .portfolio-card-label { color: var(--color-primary); }
 .portfolio-card--webdesigns  { border-color: var(--cat-web); }
 .portfolio-card--interactive { border-color: var(--cat-interactive); }
 .portfolio-card--desktop     { border-color: var(--cat-mobile); }

@@ -65,6 +65,7 @@
                             data-i18n-aria-label="theme_toggle_label">
                         <i class="fa-solid fa-sun" aria-hidden="true"></i>
                         <i class="fa-solid fa-moon" aria-hidden="true"></i>
+                        <span class="visually-hidden" data-i18n="theme_toggle_label">Dark mode</span>
                     </button>`;
                 langItem.after(li);
             }

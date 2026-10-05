@@ -77,6 +77,8 @@
     #hero .overlay span { color: var(--color-hero-text); }
     #hero .overlay .hero-accent   { color: var(--color-hero-accent); }
     #hero .overlay .hero-accent-2 { color: var(--color-hero-accent-2); }
+    .hero-kicker { letter-spacing: .3em; }
+    #hero h1.hero-kicker { font-size: .85rem; line-height: 1.6; margin-top: 0; }
 
     /* Botones: color en reposo = variable Bootstrap del btn (no forzado a blanco);
        hover actúa sobre el <a> completo y propaga a sus hijos */
@@ -86,7 +88,6 @@
     #hero .overlay a.btn:hover * { color: var(--bs-btn-hover-color) !important; }
 
     /* ── Portfolio icon grid (preserva selectores de styles.css) ── */
-    #portfolio .col { cursor: pointer; }
     #portfolio h6   { font-size: .8rem; color: var(--color-text-muted); }
 
     /* ── Testimonials carousel ── */
@@ -121,7 +122,7 @@
 
       <!-- Logotipo -->
       <a class="navbar-brand" href="/">
-        <img src="imgs/arteyciencia.png" alt="Arte y Ciencia — Miguel Portillo">
+        <img src="imgs/arteyciencia.png" alt="Arte y Ciencia — Miguel Portillo" width="87" height="38">
       </a>
 
       <!-- Botón hamburguesa nativo Bootstrap 5 (sin jQuery) -->
@@ -131,7 +132,7 @@
               aria-controls="navMenu"
               aria-expanded="false"
               aria-label="Abrir o cerrar menú de navegación">
-        <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon"></span><span class="visually-hidden">Menu</span>
       </button>
 
       <!-- Menú colapsable -->
@@ -181,18 +182,22 @@
     <div class="overlay">
       <div class="container py-5 text-center text-white">
 
-        <!-- Slogans rotativos — 3 frases con fade, cada una i18n-aware -->
-        <div class="hero-slogans" aria-live="polite" aria-atomic="true">
+        <!-- Único h1 de la página: quién soy -->
+        <h1 class="hero-kicker small text-uppercase fw-semibold mb-4" data-i18n="hero_name">Miguel Angel Portillo · UX/UI Designer</h1>
+
+        <!-- Slogans rotativos — 3 frases con fade, cada una i18n-aware.
+             Sin aria-live: anunciar cada 4.5 s interrumpe a usuarios de lector de pantalla -->
+        <div class="hero-slogans">
 
           <!-- Slogan 1 — Creatividad / Creativity -->
           <div class="hero-slogan active" id="slogan-1">
-            <h1 class="display-4 fw-light lh-base">
+            <p class="display-4 fw-light lh-base">
               <span data-i18n="hero_title1">CREATIVITY +</span>
               <span data-i18n="hero_title2"> LEARNING +</span><br>
               <span class="hero-accent" data-i18n="hero_subtitle1">INTERACTING +</span>
               <span data-i18n="hero_subtitle2"> SHARING + CODE</span>
-            </h1>
-            <p class="small text-uppercase opacity-75 mt-3" style="letter-spacing:.3em;">
+            </p>
+            <p class="hero-kicker small text-uppercase opacity-75 mt-3">
               <span data-i18n="label_ideate">Ideate</span>
               &nbsp;·&nbsp;
               <span data-i18n="label_design">Design</span>
@@ -203,12 +208,12 @@
 
           <!-- Slogan 2 — Pasión / Passion -->
           <div class="hero-slogan" id="slogan-2">
-            <h1 class="display-4 fw-light lh-base">
+            <p class="display-4 fw-light lh-base">
               <span class="hero-accent" data-i18n="slogan2_part1">PASSION +</span>
               <span data-i18n="slogan2_part2"> writing</span>
               <span data-i18n="slogan2_part3"> with</span>
               <span class="hero-accent-2" data-i18n="slogan2_part4"> images</span>
-            </h1>
+            </p>
             <p class="lead fw-light fst-italic mt-2">
               <span data-i18n="slogan2_part5">is to know narrative</span>
               <span data-i18n="slogan2_part6"> and look at the man</span>
@@ -217,9 +222,9 @@
 
           <!-- Slogan 3 — Diseño / Design -->
           <div class="hero-slogan" id="slogan-3">
-            <h1 class="display-4 fw-light lh-base">
+            <p class="display-4 fw-light lh-base">
               <span data-i18n="slogan3_part1">DESIGN +</span>
-            </h1>
+            </p>
             <p class="lead fw-light fst-italic mt-2">
               <span data-i18n="slogan3_part2">How we think (we live)</span>
               <span data-i18n="slogan3_part3"> is </span>
@@ -235,7 +240,7 @@
           <a href="cv/Miguel-Angel-Portillo_CV-2026.pdf"
              download
              class="btn btn-outline-light btn-lg px-5 d-inline-flex align-items-center gap-2">
-            <i class="fa fa-download"></i>
+            <i class="fa fa-download" aria-hidden="true"></i>
             <span data-i18n="btn_hero_download_cv">Download CV</span>
           </a>
         </div>
@@ -271,45 +276,45 @@
       <div class="row row-cols-2 row-cols-sm-3 row-cols-md-6 g-4 justify-content-center">
 
         <div class="col text-center">
-          <a href="portfolio/webdesign/"
-             class="portfolio-card portfolio-card--webdesigns"
-             aria-label="Ver proyectos: Plataformas Digitales"></a>
-          <p class="portfolio-card-label fw-light mt-2 mb-0" data-i18n="service_web">Plataformas<br>Digitales</p>
+          <a href="portfolio/webdesign/" class="portfolio-item">
+            <span class="portfolio-card portfolio-card--webdesigns" aria-hidden="true"></span>
+            <span class="portfolio-card-label fw-light mt-2" data-i18n="service_web">Plataformas<br>Digitales</span>
+          </a>
         </div>
 
         <div class="col text-center">
-          <a href="portfolio/interactivedesign/"
-             class="portfolio-card portfolio-card--interactive"
-             aria-label="Ver proyectos: Interactivo &amp; Educativo"></a>
-          <p class="portfolio-card-label fw-light mt-2 mb-0" data-i18n="service_interactive">Interactivo<br>&amp; Educativo</p>
+          <a href="portfolio/interactivedesign/" class="portfolio-item">
+            <span class="portfolio-card portfolio-card--interactive" aria-hidden="true"></span>
+            <span class="portfolio-card-label fw-light mt-2" data-i18n="service_interactive">Interactivo<br>&amp; Educativo</span>
+          </a>
         </div>
 
-<!--         <div class="col text-center">
-          <a href="portfolio/posters/"
-             class="portfolio-card portfolio-card--banners"
-             aria-label="Ver proyectos: Diseño Editorial"></a>
-          <p class="portfolio-card-label fw-light mt-2 mb-0" data-i18n="service_posters">Diseño<br>Editorial</p>
+<!--     <div class="col text-center">
+          <a href="portfolio/posters/" class="portfolio-item">
+            <span class="portfolio-card portfolio-card--banners" aria-hidden="true"></span>
+            <span class="portfolio-card-label fw-light mt-2" data-i18n="service_posters">Diseño<br>Editorial</span>
+          </a>
         </div> -->
 
         <div class="col text-center">
-          <a href="portfolio/movil/mobile.html"
-             class="portfolio-card portfolio-card--desktop"
-             aria-label="Ver proyectos: Apps Móviles"></a>
-          <p class="portfolio-card-label fw-light mt-2 mb-0" data-i18n="service_desktop">Apps<br>Móviles</p>
+          <a href="portfolio/movil/mobile.html" class="portfolio-item">
+            <span class="portfolio-card portfolio-card--desktop" aria-hidden="true"></span>
+            <span class="portfolio-card-label fw-light mt-2" data-i18n="service_desktop">Apps<br>Móviles</span>
+          </a>
         </div>
 
         <div class="col text-center">
-          <a href="portfolio/marketing/"
-             class="portfolio-card portfolio-card--marketing"
-             aria-label="Ver proyectos: Branding &amp; Marketing"></a>
-          <p class="portfolio-card-label fw-light mt-2 mb-0" data-i18n="service_marketing">Branding &amp;<br>Marketing</p>
+          <a href="portfolio/marketing/" class="portfolio-item">
+            <span class="portfolio-card portfolio-card--marketing" aria-hidden="true"></span>
+            <span class="portfolio-card-label fw-light mt-2" data-i18n="service_marketing">Branding &amp;<br>Marketing</span>
+          </a>
         </div>
 
         <div class="col text-center">
-          <a href="portfolio/doodles/doodles.html"
-             class="portfolio-card portfolio-card--doodles"
-             aria-label="Ver proyectos: Ilustración Digital"></a>
-          <p class="portfolio-card-label fw-light mt-2 mb-0" data-i18n="service_doodles">Ilustración<br>Digital</p>
+          <a href="portfolio/doodles/doodles.html" class="portfolio-item">
+            <span class="portfolio-card portfolio-card--doodles" aria-hidden="true"></span>
+            <span class="portfolio-card-label fw-light mt-2" data-i18n="service_doodles">Ilustración<br>Digital</span>
+          </a>
         </div>
 
       </div>
@@ -397,13 +402,13 @@
             <div class="carousel-indicators">
               <button type="button" data-bs-target="#testimonials-carousel"
                       data-bs-slide-to="0" class="active"
-                      aria-current="true" aria-label="Cita 1"></button>
+                      aria-current="true" aria-label="Cita 1"><span class="visually-hidden">1</span></button>
               <button type="button" data-bs-target="#testimonials-carousel"
-                      data-bs-slide-to="1" aria-label="Cita 2"></button>
+                      data-bs-slide-to="1" aria-label="Cita 2"><span class="visually-hidden">2</span></button>
               <button type="button" data-bs-target="#testimonials-carousel"
-                      data-bs-slide-to="2" aria-label="Cita 3"></button>
+                      data-bs-slide-to="2" aria-label="Cita 3"><span class="visually-hidden">3</span></button>
               <button type="button" data-bs-target="#testimonials-carousel"
-                      data-bs-slide-to="3" aria-label="Cita 4"></button>
+                      data-bs-slide-to="3" aria-label="Cita 4"><span class="visually-hidden">4</span></button>
             </div>
 
           </div><!-- /#testimonials-carousel -->
@@ -434,6 +439,8 @@
   (() => {
     const slogans = document.querySelectorAll('.hero-slogan');
     if (!slogans.length) return;
+    // WCAG 2.2.2: no animar si el usuario pidió reducir movimiento
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     let current = 0;
     setInterval(() => {
       slogans[current].classList.remove('active');

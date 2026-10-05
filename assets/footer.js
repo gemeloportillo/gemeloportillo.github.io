@@ -52,9 +52,9 @@ document.addEventListener('DOMContentLoaded', () => {
               <div class="col-6 col-md-3">
                 <h6 class="text-uppercase fw-semibold mb-3 small footer-muted" data-i18n="footer_title_connect">Connect</h6>
                 <div class="d-flex gap-3 fs-4 footer-muted">
-                  <a href="https://twitter.com/gemeloportillo" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                  <a href="https://mx.linkedin.com/in/miguelportilloux" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                  <a href="https://www.youtube.com/user/mikepb77" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                  <a href="https://twitter.com/gemeloportillo" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter" aria-hidden="true"></i><span class="visually-hidden">Twitter</span></a>
+                  <a href="https://mx.linkedin.com/in/miguelportilloux" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in" aria-hidden="true"></i><span class="visually-hidden">LinkedIn</span></a>
+                  <a href="https://www.youtube.com/user/mikepb77" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube" aria-hidden="true"></i><span class="visually-hidden">YouTube</span></a>
                 </div>
               </div>
 
