@@ -381,6 +381,20 @@ body, .site-navbar, .card, .portfolio-subnav, .site-footer {
 .portfolio-card:hover        { box-shadow: var(--shadow-md); }
 .portfolio-card-label        { color: var(--color-text-muted); }
 
+/* Botón pausa / reproducir de contenido en movimiento (WCAG 2.2.2).
+   aria-pressed="true" = pausado → muestra "play" */
+.motion-toggle {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 32px; height: 32px; padding: 0;
+  border: 1px solid currentColor; border-radius: 50%;
+  background: transparent; color: inherit;
+  font-size: .7rem; opacity: .75; cursor: pointer;
+  transition: opacity .2s ease;
+}
+.motion-toggle:hover, .motion-toggle:focus-visible { opacity: 1; }
+.motion-toggle[aria-pressed="true"]  .fa-pause,
+.motion-toggle[aria-pressed="false"] .fa-play { display: none; }
+
 /* Cards con borde superior de color */
 .card { --bs-card-bg: var(--color-surface); --bs-card-border-color: var(--color-border); }
 .card-accent-top { border-top: 3px solid var(--color-primary) !important; }

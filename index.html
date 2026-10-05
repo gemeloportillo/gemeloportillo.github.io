@@ -81,6 +81,8 @@
     #hero .overlay .hero-accent-2 { color: var(--color-hero-accent-2); }
     .hero-kicker { letter-spacing: .3em; }
     #hero h1.hero-kicker { font-size: .85rem; line-height: 1.6; margin-top: 0; }
+    #hero { position: relative; }
+    #hero .hero-motion { position: absolute; left: 1rem; bottom: 1rem; color: var(--color-hero-text); }
 
     /* Botones: color en reposo = variable Bootstrap del btn (no forzado a blanco);
        hover actúa sobre el <a> completo y propaga a sus hijos */
@@ -93,6 +95,11 @@
     #portfolio h6   { font-size: .8rem; color: var(--color-text-muted); }
 
     /* ── Testimonials carousel ── */
+    /* Misma capa oscura que el hero: el texto blanco sobre la foto no
+       alcanzaba el contraste mínimo WCAG en las zonas claras */
+    #testimonials {
+      background-image: var(--color-hero-overlay), url('imgs/testimonials.jpg') !important;
+    }
     #testimonials-carousel .carousel-item { padding: 0 .5rem; }
     #testimonials-carousel .carousel-indicators [data-bs-target] {
       background-color: var(--color-primary);
@@ -249,6 +256,14 @@
 
       </div>
     </div>
+
+    <!-- WCAG 2.2.2: control para pausar la rotación de slogans -->
+    <button type="button" class="motion-toggle hero-motion" id="hero-motion" aria-pressed="false"
+                  aria-label="Pause animation" title="Pause animation" data-i18n-aria-label="motion_pause_label">
+            <i class="fa-solid fa-pause" aria-hidden="true"></i>
+            <i class="fa-solid fa-play" aria-hidden="true"></i>
+            <span class="visually-hidden" data-i18n="motion_pause_label">Pause animation</span>
+          </button>
   </section>
 
   <!-- ── PROPUESTA DE VALOR ───────────────────────────────────────────── -->
@@ -343,8 +358,7 @@
           <!-- Carrusel BS5 nativo — auto-avance cada 6 s, sin jQuery -->
           <div id="testimonials-carousel"
                class="carousel slide"
-               data-bs-ride="carousel"
-               data-bs-interval="6000">
+               data-bs-interval="6000">  <!-- se inicializa por script (ver abajo) para respetar la pausa -->
 
             <div class="carousel-inner">
 
@@ -411,6 +425,12 @@
                       data-bs-slide-to="2" aria-label="Cita 3"><span class="visually-hidden">3</span></button>
               <button type="button" data-bs-target="#testimonials-carousel"
                       data-bs-slide-to="3" aria-label="Cita 4"><span class="visually-hidden">4</span></button>
+              <button type="button" class="motion-toggle ms-2" id="quotes-motion" aria-pressed="false"
+                  aria-label="Pause animation" title="Pause animation" data-i18n-aria-label="motion_pause_label">
+            <i class="fa-solid fa-pause" aria-hidden="true"></i>
+            <i class="fa-solid fa-play" aria-hidden="true"></i>
+            <span class="visually-hidden" data-i18n="motion_pause_label">Pause animation</span>
+          </button>
             </div>
 
           </div><!-- /#testimonials-carousel -->
@@ -437,19 +457,48 @@
 <script src="assets/layers.js"></script>
 <script src="assets/lang.js"></script>
 
-<!-- Hero slogans: cicla entre los 3 slogans con fade cada 4.5 s -->
+<!-- Contenido en movimiento (slogans del hero y carrusel de citas).
+     WCAG 2.2.2: cada uno tiene botón de pausa; si el usuario pidió reducir
+     movimiento, ambos inician pausados. -->
 <script>
   (() => {
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Conecta un botón .motion-toggle con funciones play/pause
+    function bindToggle(button, play, pause) {
+      if (!button) return;
+      const set = paused => {
+        button.setAttribute('aria-pressed', String(paused));
+        paused ? pause() : play();
+      };
+      button.addEventListener('click', () => set(button.getAttribute('aria-pressed') !== 'true'));
+      set(reduceMotion);
+    }
+
+    // 1. Slogans del hero: fade cada 4.5 s
     const slogans = document.querySelectorAll('.hero-slogan');
-    if (!slogans.length) return;
-    // WCAG 2.2.2: no animar si el usuario pidió reducir movimiento
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    let current = 0;
-    setInterval(() => {
-      slogans[current].classList.remove('active');
-      current = (current + 1) % slogans.length;
-      slogans[current].classList.add('active');
-    }, 4500);
+    let current = 0, timer = null;
+    bindToggle(document.getElementById('hero-motion'),
+      () => {
+        clearInterval(timer);
+        timer = setInterval(() => {
+          slogans[current].classList.remove('active');
+          current = (current + 1) % slogans.length;
+          slogans[current].classList.add('active');
+        }, 4500);
+      },
+      () => clearInterval(timer));
+
+    // 2. Carrusel de citas: una sola instancia sin auto-avance propio de
+    //    Bootstrap (ride/pause en false) para que nada lo reanude sin que el
+    //    usuario lo pida (p. ej. al quitar el cursor); el botón llama a
+    //    cycle() / pause(), que son API pública y seguros durante la transición.
+    const carousel = new bootstrap.Carousel(
+      document.getElementById('testimonials-carousel'),
+      { interval: 6000, ride: false, pause: false });
+    bindToggle(document.getElementById('quotes-motion'),
+      () => carousel.cycle(),
+      () => carousel.pause());
   })();
 </script>
 
