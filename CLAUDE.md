@@ -57,10 +57,12 @@ All translatable text uses HTML attributes — **never hardcode display strings 
 | `data-i18n="key"` | Sets `innerHTML` of the element |
 | `data-i18n-placeholder="key"` | Sets `placeholder` attribute on inputs |
 | `data-i18n-value="key"` | Sets `value` attribute on button/input elements |
+| `data-i18n-aria-label="key"` | Sets `aria-label` and `title` (icon-only controls) |
+| `data-i18n-href="key"` | Sets `href` (e.g. the CV PDF for the current language) |
 
 The language toggle button must have `id="btn-translate"`.
 
-`lang.js` also sets `<html lang>` to the current language. **Exception — the CV (`cv/index.html`)**: long-form content is written as two complete documents (`<article class="cv-doc" lang="en">` / `lang="es"`), and CSS shows the one matching `<html lang>`; edit both when the CV changes. The page has a print stylesheet: "Save as PDF" (browser print) is how the downloadable CV PDF is produced — keep it to 2 pages and keep `.cv-doc header` unpositioned so the PDF text order stays ATS-friendly. `lang.js` binds it automatically via event delegation.
+`lang.js` also sets `<html lang>` to the current language. **Exception — the CV (`cv/index.html`)**: long-form content is written as two complete documents (`<article class="cv-doc" lang="en">` / `lang="es"`), and CSS shows the one matching `<html lang>`; edit both when the CV changes. The downloadable PDFs `cv/Miguel-Angel-Portillo_CV_EN.pdf` / `_ES.pdf` are linked per language via `data-i18n-href="cv_pdf_url"` (home and CV page). **After editing the CV, regenerate both**: open `/cv/` in each language → Ctrl+P → Save as PDF (Letter, background graphics on, headers/footers off) over the same filename. The print stylesheet keeps it to 2 pages; keep `.cv-doc header` unpositioned so the PDF text order stays ATS-friendly. `lang.js` binds it automatically via event delegation.
 
 ## Color & theming
 

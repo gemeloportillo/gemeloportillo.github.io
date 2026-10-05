@@ -60,6 +60,14 @@ function applyTranslations(lang) {
         }
     });
 
+    // E. Traducir href (p. ej. el PDF del CV en el idioma activo)
+    document.querySelectorAll('[data-i18n-href]').forEach(el => {
+        const key = el.getAttribute('data-i18n-href');
+        if (translations[lang][key]) {
+            el.setAttribute('href', translations[lang][key]);
+        }
+    });
+
     // D. Traducir aria-label (y title) de controles solo-ícono
     document.querySelectorAll('[data-i18n-aria-label]').forEach(el => {
         const key = el.getAttribute('data-i18n-aria-label');

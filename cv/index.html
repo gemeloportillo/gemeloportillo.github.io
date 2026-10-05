@@ -150,9 +150,10 @@
         <button class="lang-opt" id="lang-btn-en" aria-label="Switch to English">EN</button>
         <button class="lang-opt" id="lang-btn-es" aria-label="Cambiar a Español">ES</button>
       </div>
-      <button type="button" class="btn btn-brand btn-sm rounded-pill px-4" id="cv-print">
-        <i class="fa fa-file-pdf me-2" aria-hidden="true"></i><span data-i18n="cv_btn_pdf">Save as PDF</span>
-      </button>
+      <a class="btn btn-brand btn-sm rounded-pill px-4" href="/cv/Miguel-Angel-Portillo_CV_EN.pdf"
+         data-i18n-href="cv_pdf_url" download>
+        <i class="fa fa-file-pdf me-2" aria-hidden="true"></i><span data-i18n="cv_btn_pdf">Download PDF</span>
+      </a>
     </div>
 
     <!-- ═══════════════════════════ ENGLISH ═══════════════════════════ -->
@@ -445,13 +446,12 @@
     new MutationObserver(sync).observe(root, { attributes: true, attributeFilter: ['lang'] });
     sync();
 
-    // "Guardar como PDF": el título del documento es el nombre de archivo que sugiere el navegador
+    // Ctrl+P / "Guardar como PDF": el título es el nombre de archivo que sugiere el navegador
     const pageTitle = document.title;
     addEventListener('beforeprint', () => {
       document.title = 'Miguel-Angel-Portillo_CV_' + (root.lang === 'es' ? 'ES' : 'EN');
     });
     addEventListener('afterprint', () => { document.title = pageTitle; });
-    document.getElementById('cv-print').addEventListener('click', () => print());
   })();
 </script>
 
