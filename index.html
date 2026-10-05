@@ -55,6 +55,8 @@
   <!-- Sistema de color (tokens claro/oscuro) — debe ir después de Bootstrap y styles.css -->
   <link rel="stylesheet" href="assets/theme.css">
   <script src="assets/theme.js"></script>
+  <!-- Selector de capas (Contenido / Wireframe / Diseño final): única hoja que sigue activa sin estilos -->
+  <link rel="stylesheet" href="assets/layers.css" data-layer-keep>
   <style>
     body { font-family: 'Open Sans', Tahoma, Geneva, sans-serif; }
 
@@ -432,6 +434,7 @@
 
 <!-- i18n: carga traducciones y gestiona el toggle de idioma -->
 <script src="assets/footer.js"></script>
+<script src="assets/layers.js"></script>
 <script src="assets/lang.js"></script>
 
 <!-- Hero slogans: cicla entre los 3 slogans con fade cada 4.5 s -->

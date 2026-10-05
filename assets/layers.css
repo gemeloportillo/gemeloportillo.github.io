@@ -1,0 +1,166 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   LAYERS — Selector "Contenido → Wireframe → Diseño final"
+   ───────────────────────────────────────────────────────────────────────
+   Esta hoja lleva data-layer-keep en su <link>: es la única que sigue
+   activa en la capa "Contenido" (sin estilos). Por eso los colores usan
+   valores de respaldo: theme.css puede estar desactivado.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── 1. Barra flotante (aspecto fijo de "herramienta", igual en todas las capas) ── */
+.layer-switch {
+  --ls-bg:     #0f172a;
+  --ls-text:   #e2e8f0;
+  --ls-muted:  #94a3b8;
+  --ls-active: #6fbdeb;
+  --ls-on-active: #0f172a;
+
+  position: fixed;
+  right: max(16px, env(safe-area-inset-right));
+  bottom: max(16px, env(safe-area-inset-bottom));
+  z-index: 2000;
+  max-width: min(420px, calc(100vw - 32px));
+  background: var(--ls-bg);
+  color: var(--ls-text);
+  border: 1px solid #334155;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .35);
+  font: 400 13px/1.4 "Open Sans", system-ui, sans-serif;
+}
+.layer-switch summary {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .6rem .9rem;
+  cursor: pointer;
+  list-style: none;
+  font-weight: 600;
+  letter-spacing: .02em;
+}
+.layer-switch summary::-webkit-details-marker { display: none; }
+.layer-switch summary::after {
+  content: "▴";
+  margin-left: auto;
+  color: var(--ls-muted);
+  transition: transform .2s ease;
+}
+.layer-switch[open] summary::after { transform: rotate(180deg); }
+.layer-switch summary:focus-visible,
+.layer-switch input:focus-visible + label { outline: 2px solid var(--ls-active); outline-offset: 2px; }
+
+.layer-switch__body { padding: 0 .9rem .9rem; }
+.layer-switch fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+.layer-switch legend {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+.layer-switch__options {
+  display: flex;
+  gap: 2px;
+  padding: 3px;
+  background: #1e293b;
+  border-radius: 10px;
+}
+.layer-switch input {
+  position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0;
+}
+.layer-switch label {
+  flex: 1;
+  text-align: center;
+  white-space: nowrap;
+  padding: .4rem .6rem;
+  border-radius: 8px;
+  color: var(--ls-muted);
+  cursor: pointer;
+  transition: background .2s ease, color .2s ease;
+}
+.layer-switch label:hover { color: var(--ls-text); }
+.layer-switch input:checked + label {
+  background: var(--ls-active);
+  color: var(--ls-on-active);
+  font-weight: 600;
+}
+.layer-switch__desc {
+  margin: .6rem 0 0;
+  color: var(--ls-muted);
+  font-size: 12px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .layer-switch summary::after, .layer-switch label { transition: none; }
+}
+
+
+/* ── 2. Capa WIREFRAME ─────────────────────────────────────────────────
+   :where() deja la regla general con especificidad mínima para que las
+   excepciones de abajo la sobrescriban sin pelear.                      */
+html.layer-wireframe {
+  --wf-paper: #fafafa;
+  --wf-fill:  #e6e6e6;
+  --wf-line:  #9e9e9e;
+  --wf-ink:   #3a3a3a;
+  --wf-x: linear-gradient(to top right, transparent calc(50% - .5px), var(--wf-line) 50%, transparent calc(50% + .5px)),
+          linear-gradient(to top left,  transparent calc(50% - .5px), var(--wf-line) 50%, transparent calc(50% + .5px));
+  color-scheme: light;
+}
+html.layer-wireframe,
+html.layer-wireframe body { background: var(--wf-paper) !important; color: var(--wf-ink) !important; }
+
+html.layer-wireframe :where(body *:not(.layer-switch, .layer-switch *)) {
+  color: var(--wf-ink) !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border-color: var(--wf-line) !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  filter: none !important;
+  transition: none !important;
+}
+
+/* Legado: styles.css fuerza "#testimonials * { color:#fff !important }" */
+html.layer-wireframe #testimonials * { color: var(--wf-ink) !important; }
+
+/* Bloques: contorno punteado */
+html.layer-wireframe :is(header, section, footer, .card, form) {
+  outline: 1px dashed var(--wf-line);
+  outline-offset: -1px;
+}
+
+/* Imágenes → caja gris (el clásico placeholder) */
+html.layer-wireframe img,
+html.layer-wireframe video {
+  filter: brightness(0) invert(.9) !important;
+  background: var(--wf-fill) !important;
+  outline: 1px solid var(--wf-line);
+}
+html.layer-wireframe #hero,
+html.layer-wireframe .portfolio-card {
+  background: var(--wf-x), var(--wf-fill) !important;
+}
+html.layer-wireframe .portfolio-card { border-width: 1px !important; }
+
+/* Controles: rectángulos simples */
+html.layer-wireframe :is(.btn, .nav-lang-pill, .theme-toggle) {
+  background: #fff !important;
+  border: 1px solid var(--wf-ink) !important;
+}
+html.layer-wireframe .theme-toggle::after { background: var(--wf-line) !important; box-shadow: none !important; }
+html.layer-wireframe .nav-lang-opt.active { background: var(--wf-fill) !important; }
+html.layer-wireframe .carousel-indicators [data-bs-target] { background-color: var(--wf-line) !important; }
+html.layer-wireframe .site-footer { background: var(--wf-fill) !important; }
+
+/* Anotaciones: nombre del elemento semántico, como en un wireframe anotado */
+html.layer-wireframe :is(header, main, footer, section) { position: relative; }
+html.layer-wireframe :is(header, footer, section[id])::before {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  z-index: 5;
+  padding: 1px 6px;
+  font: 11px/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  color: #fff;
+  background: #6b6b6b;
+  border-radius: 3px;
+  pointer-events: none;
+}
+html.layer-wireframe header::before          { content: "<header>"; }
+html.layer-wireframe footer::before          { content: "<footer>"; }
+html.layer-wireframe section[id]::before     { content: "<section#" attr(id) ">"; }

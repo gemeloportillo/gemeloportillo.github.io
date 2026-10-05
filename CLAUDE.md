@@ -41,6 +41,7 @@ Injected into every page that has the matching container `<div>`:
 - `assets/lang.js` — bilingual i18n system (EN/ES). Reads/writes `localStorage.userLang`. Detects browser language on first visit. Fetches translations from `/assets/lang.json` on load.
 - `assets/theme.css` — **color design system** (see "Color & theming" below). Must load after Bootstrap and `index_files/styles.css`.
 - `assets/theme.js` — light/dark mode. Loaded in `<head>` without `defer` (prevents flash). Sets `<html data-bs-theme>` from `localStorage.userTheme` or `prefers-color-scheme`, and injects the day/night switch next to `#btn-translate`.
+- `assets/layers.js` + `assets/layers.css` — "design layers" switcher (Content → Wireframe → Final design), home only. Content layer disables every stylesheet except those whose `<link>`/`<style>` has `data-layer-keep`; wireframe adds `html.layer-wireframe`. Not persisted on purpose. Keep page HTML readable without CSS (single `h1`, visible link text, `visually-hidden` text in icon-only controls).
 - `assets/lang.json` — all UI strings in `en` and `es` keyed by slug (e.g. `"menu_home"`, `"cnt_lbl_email"`).
 
 ### `index_files/` — legacy shared assets (older sub-pages)
