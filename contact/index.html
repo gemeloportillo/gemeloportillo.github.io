@@ -262,9 +262,9 @@
   // GitHub Pages no puede enviar correos: FormSubmit (https://formsubmit.co)
   // recibe el POST y lo reenvía al correo configurado. El PRIMER envío dispara
   // un correo de activación que hay que confirmar una sola vez.
-  // Tras activar, se puede reemplazar el correo por el alias aleatorio que da
-  // FormSubmit para no exponer la dirección en el código.
-  const FORM_ENDPOINT = 'https://formsubmit.co/ajax/miguelportilloux@gmail.com';
+  // El endpoint usa el alias aleatorio que entrega FormSubmit al activar
+  // (equivale a miguelportilloux@gmail.com sin exponer la dirección al spam).
+  const FORM_ENDPOINT = 'https://formsubmit.co/ajax/27472d33019924a7660c61e5e194387b';
 
   document.getElementById('form_contact').addEventListener('submit', async function (e) {
     e.preventDefault();
