@@ -175,6 +175,13 @@ style.firebugResetStyles {
   header * { color: inherit; }
   header .container { padding-left: .75rem !important; padding-right: .75rem !important; }
   h1.fw-light { font-size: 50px !important; font-weight: 300 !important; }
+  /* Tarjetas doodle: component.css fija #000 y hover cian; se usan tokens del tema */
+  .grid figure .detalle h1,
+  .grid figure .detalle p                 { color: var(--color-heading); }
+  .grid figure:hover .head                { background: var(--color-primary); }
+  .grid figure:hover                      { border-color: var(--color-primary); }
+  .grid figure:hover .detalle h1,
+  .grid figure:hover .detalle p           { color: var(--color-on-primary); }
   /* Mobile: responsive grid3d */
   @media (max-width: 640px) {
     .grid-wrap { overflow: hidden; }
