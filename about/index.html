@@ -14,8 +14,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../index_files/styles.css">
+  <!-- Sistema de color (tokens claro/oscuro) — debe ir después de Bootstrap y styles.css -->
+  <link rel="stylesheet" href="../assets/theme.css">
+  <script src="../assets/theme.js"></script>
   <style>
-    :root { --mp-green: #6abf69; --mp-blue: #44c5db; }
     body  { font-family: 'Open Sans', Tahoma, Geneva, sans-serif; }
     /* styles.css has header{position:fixed} which takes the header out of flow
        and hides content behind it. Override so sticky-top on the nav works. */
@@ -23,10 +25,6 @@
     header *          { color: inherit; }
     header .container { padding-left: .75rem !important; padding-right: .75rem !important; }
     main              { padding-top: 1.5rem; }
-    .navbar-brand img        { height: 38px; }
-    .navbar .nav-link        { font-size: .9rem; letter-spacing: .02em; }
-    .navbar .nav-link:hover,
-    .navbar .nav-link.active { color: var(--mp-green) !important; }
     /* ── Responsive adjustments ── */
     @media (max-width: 767.98px) {
       #about, #projects {padding-top: 0px;}
@@ -41,7 +39,7 @@
 <body>
 
 <header>
-  <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm"
+  <nav class="navbar navbar-expand-lg site-navbar sticky-top"
        aria-label="Navegación principal">
     <div class="container">
       <a class="navbar-brand" href="/"><img src="../imgs/arteyciencia.png" alt="Arte y Ciencia — Miguel Portillo"></a>
@@ -58,11 +56,10 @@
           <li class="nav-item"><a class="nav-link" href="../cv/">CV</a></li>
           <li class="nav-item"><a class="nav-link" href="../portfolio/" data-i18n="menu_portfolio">Portfolio</a></li>
           <li class="nav-item"><a class="nav-link" href="../certifications/" data-i18n="menu_certfications">Certs</a></li>
-          <li class="nav-item ms-lg-3"><a class="btn btn-outline-dark btn-sm px-4 rounded-pill" href="../contact/" data-i18n="menu_contact">Contact</a></li>
+          <li class="nav-item ms-lg-3"><a class="btn btn-outline-brand btn-sm px-4 rounded-pill" href="../contact/" data-i18n="menu_contact">Contact</a></li>
           <li class="nav-item ms-lg-2">
             <button id="btn-translate"
                     class="btn btn-sm fw-bold px-2"
-                    style="color:#00ff7f; background:none; border:none; letter-spacing:.05em;"
                     aria-label="Switch language / Cambiar idioma">ESP</button>
           </li>
         </ul>
@@ -83,10 +80,10 @@
         <img alt="Miguel Angel Portillo Bobadilla"
              src="about_files/mike.png"
              class="rounded-circle mb-4 shadow-sm"
-             style="width:180px; height:180px; object-fit:cover; border:4px solid #f0f0f0;">
+             style="width:180px; height:180px; object-fit:cover; border:4px solid var(--color-border);">
 
         <h4 class="fw-semibold mb-1" data-i18n="mike_name">Miguel Angel Portillo Bobadilla</h4>
-        <p class="mb-0 fw-light" style="color:var(--mp-blue);" data-i18n="mike_role">UI/UX Web Designer</p>
+        <p class="mb-0 fw-light" style="color:var(--color-primary);" data-i18n="mike_role">UI/UX Web Designer</p>
         <p class="text-muted fw-light mb-4" data-i18n="mike_nickname">"Mike"</p>
 
         <p class="lh-lg mb-4" style="text-align:justify;" data-i18n="mike_bio">Observant and analytical, exacting in his work and what he does, intelligent, hardworking, sensitive, who loves life, nature, photography, landscapes, joking when possible, dreamy, romantic, sportsman who loves basketball, passionated goalkeeper, competitive, and looking to be the best at everything in everywhere, delivered, methodical, creative, who loves technology &amp; progressive rock. Homely, independent, freedom-loving ideas, action, grateful for being born in this world.</p>

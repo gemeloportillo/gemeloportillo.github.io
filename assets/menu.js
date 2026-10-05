@@ -3,40 +3,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!navContainer) return;
 
     // 1. Inyectamos la estructura base de tu menú
-    const langStyle = document.createElement('style');
-    langStyle.textContent = `
-        .nav-lang-pill {
-            display: inline-flex;
-            align-items: center;
-            background: #44c5db;
-            border-radius: 50px;
-            padding: 3px;
-            vertical-align: middle;
-        }
-        .nav-lang-opt {
-            border: none;
-            background: transparent;
-            color: rgba(255,255,255,.7);
-            padding: .28rem 1rem;
-            border-radius: 50px;
-            font-family: 'Open Sans', sans-serif;
-            font-size: .78rem;
-            font-weight: 700;
-            letter-spacing: .08em;
-            cursor: pointer;
-            line-height: 1;
-            transition: background .2s ease, color .2s ease, box-shadow .2s ease;
-        }
-        .nav-lang-opt.active {
-            background: #fff;
-            color: #44c5db;
-            box-shadow: 0 1px 6px rgba(0,0,0,.2);
-        }
-    `;
-    document.head.appendChild(langStyle);
+    // (Estilos del pill de idioma y colores: /assets/theme.css)
 
     navContainer.innerHTML = `
-        <header role="banner">
+        <header role="banner" class="site-navbar">
             <div class="container" role="navigation">
                 <ul class="menu clear-fix collapsed">
                     <li class="logo-left">

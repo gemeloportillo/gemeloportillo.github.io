@@ -12,7 +12,7 @@
         content="UX/UI Designer, Diseñador UX, Experto en Navegación Web, Accesibilidad WCAG 2.1, Arquitectura de Información, Information Architecture, Interaction Design, Design Systems, Frontend Developer, User Research, Wireframing, Prototipado, Figma, Adobe XD, HTML5, CSS3, Bootstrap 5, ARIA, México, Miguel Angel Portillo Bobadilla">
   <meta name="author"  content="Miguel Angel Portillo Bobadilla">
   <meta name="robots"  content="index, follow">
-  <meta name="theme-color" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">  <!-- theme.js lo actualiza según el tema -->
 
   <!-- ═══ OPEN GRAPH — Facebook / LinkedIn ═════════════════════════════ -->
   <meta property="og:type"         content="website">
@@ -52,19 +52,11 @@
   <!-- Estilos transitionales (fondos de íconos del portfolio) — se refactorizarán en próxima iteración -->
   <link rel="stylesheet" href="index_files/styles.css">
 
+  <!-- Sistema de color (tokens claro/oscuro) — debe ir después de Bootstrap y styles.css -->
+  <link rel="stylesheet" href="assets/theme.css">
+  <script src="assets/theme.js"></script>
   <style>
-    :root {
-      --mp-green: #6abf69;
-      --mp-blue:  #44c5db;
-    }
-
     body { font-family: 'Open Sans', Tahoma, Geneva, sans-serif; }
-
-    /* ── Navbar ── */
-    .navbar-brand img           { height: 38px; }
-    .navbar .nav-link           { font-size: .9rem; letter-spacing: .02em; }
-    .navbar .nav-link:hover,
-    .navbar .nav-link.active    { color: var(--mp-green) !important; }
 
     /* ── Hero ── */
     #hero {
@@ -73,17 +65,18 @@
     }
     #hero .overlay {
       min-height: 100vh;
-      background: rgba(0, 0, 0, 0.58);
+      background: var(--color-hero-overlay);
       display: flex;
       align-items: center;
     }
 
-    /* styles.css tiene "html * { color: #303030 }" — override selectivo:
-       blanco solo en elementos de texto; los botones siguen la lógica de Bootstrap */
+    /* El hero siempre es oscuro (foto + overlay) en ambos temas */
     #hero .overlay h1,
     #hero .overlay h2,
     #hero .overlay p,
-    #hero .overlay span { color: #fff; }
+    #hero .overlay span { color: var(--color-hero-text); }
+    #hero .overlay .hero-accent   { color: var(--color-hero-accent); }
+    #hero .overlay .hero-accent-2 { color: var(--color-hero-accent-2); }
 
     /* Botones: color en reposo = variable Bootstrap del btn (no forzado a blanco);
        hover actúa sobre el <a> completo y propaga a sus hijos */
@@ -94,12 +87,12 @@
 
     /* ── Portfolio icon grid (preserva selectores de styles.css) ── */
     #portfolio .col { cursor: pointer; }
-    #portfolio h6   { font-size: .8rem; color: #555; }
+    #portfolio h6   { font-size: .8rem; color: var(--color-text-muted); }
 
     /* ── Testimonials carousel ── */
     #testimonials-carousel .carousel-item { padding: 0 .5rem; }
     #testimonials-carousel .carousel-indicators [data-bs-target] {
-      background-color: var(--mp-green);
+      background-color: var(--color-primary);
       width: 8px;
       height: 8px;
       border-radius: 50%;
@@ -122,7 +115,7 @@
      HEADER — Barra de navegación
      ═══════════════════════════════════════════════════════════════════ -->
 <header>
-  <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm"
+  <nav class="navbar navbar-expand-lg site-navbar sticky-top"
        aria-label="Navegación principal">
     <div class="container">
 
@@ -160,12 +153,11 @@
             <a class="nav-link" href="certifications/" data-i18n="menu_certfications">Certs</a>
           </li>
           <li class="nav-item ms-lg-3">
-            <a class="btn btn-outline-dark btn-sm px-4 rounded-pill" href="contact/" data-i18n="menu_contact">Contact</a>
+            <a class="btn btn-outline-brand btn-sm px-4 rounded-pill" href="contact/" data-i18n="menu_contact">Contact</a>
           </li>
           <li class="nav-item ms-lg-2">
             <button id="btn-translate"
                     class="btn btn-sm fw-bold px-2"
-                    style="color:#00ff7f; background:none; border:none; letter-spacing:.05em;"
                     aria-label="Switch language / Cambiar idioma">
               ESP
             </button>
@@ -197,7 +189,7 @@
             <h1 class="display-4 fw-light lh-base">
               <span data-i18n="hero_title1">CREATIVITY +</span>
               <span data-i18n="hero_title2"> LEARNING +</span><br>
-              <span style="color:var(--mp-green);" data-i18n="hero_subtitle1">INTERACTING +</span>
+              <span class="hero-accent" data-i18n="hero_subtitle1">INTERACTING +</span>
               <span data-i18n="hero_subtitle2"> SHARING + CODE</span>
             </h1>
             <p class="small text-uppercase opacity-75 mt-3" style="letter-spacing:.3em;">
@@ -212,10 +204,10 @@
           <!-- Slogan 2 — Pasión / Passion -->
           <div class="hero-slogan" id="slogan-2">
             <h1 class="display-4 fw-light lh-base">
-              <span style="color:var(--mp-green);" data-i18n="slogan2_part1">PASSION +</span>
+              <span class="hero-accent" data-i18n="slogan2_part1">PASSION +</span>
               <span data-i18n="slogan2_part2"> writing</span>
               <span data-i18n="slogan2_part3"> with</span>
-              <span style="color:var(--mp-blue);" data-i18n="slogan2_part4"> images</span>
+              <span class="hero-accent-2" data-i18n="slogan2_part4"> images</span>
             </h1>
             <p class="lead fw-light fst-italic mt-2">
               <span data-i18n="slogan2_part5">is to know narrative</span>
@@ -231,7 +223,7 @@
             <p class="lead fw-light fst-italic mt-2">
               <span data-i18n="slogan3_part2">How we think (we live)</span>
               <span data-i18n="slogan3_part3"> is </span>
-              <span style="color:var(--mp-green);" data-i18n="slogan3_part4">how we should live</span>
+              <span class="hero-accent" data-i18n="slogan3_part4">how we should live</span>
             </p>
           </div>
 
@@ -253,26 +245,25 @@
   </section>
 
   <!-- ── PROPUESTA DE VALOR ───────────────────────────────────────────── -->
-  <section id="about-banner" aria-label="Propuesta de valor" class="py-5 bg-white">
+  <section id="about-banner" aria-label="Propuesta de valor" class="py-5 bg-surface">
     <div class="container py-4 text-center">
       <h2 class="display-6 fw-light mb-3">
         <span data-i18n="banner_about_title1">UX/UI Design</span>
-        <span style="color: var(--mp-blue);" data-i18n="banner_about_title2">excellence</span>
+        <span class="text-primary-brand" data-i18n="banner_about_title2">excellence</span>
       </h2>
       <p class="fs-5 text-muted fw-light mb-4" data-i18n="banner_about_subtitle">
         the smart way to build great digital experiences
       </p>
-      <a href="about/" class="btn btn-outline-secondary px-5 rounded-pill" data-i18n="banner_about_btn">Learn about me</a>
+      <a href="about/" class="btn btn-outline-brand px-5 rounded-pill" data-i18n="banner_about_btn">Learn about me</a>
     </div>
   </section>
 
   <!-- ── PORTFOLIO / SERVICIOS ────────────────────────────────────────── -->
-  <section id="portfolio" aria-labelledby="portfolio-heading" class="py-5 bg-light">
+  <section id="portfolio" aria-labelledby="portfolio-heading" class="py-5 bg-surface-alt">
     <div class="container py-4">
 
       <h2 id="portfolio-heading"
-          class="text-center fw-light mb-5"
-          style="color: var(--mp-green);"
+          class="text-center fw-light mb-5 text-primary-brand"
           data-i18n="what_i_do">
         What I do
       </h2>
@@ -324,7 +315,7 @@
       </div>
 
       <div class="text-center mt-5">
-        <a href="portfolio/" class="btn btn-outline-secondary px-5 rounded-pill" data-i18n="btn_portfolio_take_look">
+        <a href="portfolio/" class="btn btn-outline-brand px-5 rounded-pill" data-i18n="btn_portfolio_take_look">
           Take a look at my portfolio
         </a>
       </div>
@@ -333,7 +324,7 @@
   </section>
 
   <!-- ── TESTIMONIALS ─────────────────────────────────────────────────── -->
-  <section id="testimonials" aria-labelledby="testimonials-heading" class="py-5 bg-white">
+  <section id="testimonials" aria-labelledby="testimonials-heading" class="py-5 bg-surface">
     <div class="container py-4">
       <div class="row justify-content-center">
         <div class="col-lg-7">

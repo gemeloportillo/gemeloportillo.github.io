@@ -14,17 +14,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../index_files/styles.css">
+  <!-- Sistema de color (tokens claro/oscuro) — debe ir después de Bootstrap y styles.css -->
+  <link rel="stylesheet" href="../assets/theme.css">
+  <script src="../assets/theme.js"></script>
   <style>
-    :root { --mp-green: #6abf69; --mp-blue: #44c5db; }
     body  { font-family: 'Open Sans', Tahoma, Geneva, sans-serif; }
     header            { position: relative; background: transparent; z-index: auto; width: auto; }
     header *          { color: inherit; }
     header .container { padding-left: .75rem !important; padding-right: .75rem !important; }
     main              { padding-top: 1.5rem; }
-    .navbar-brand img        { height: 38px; }
-    .navbar .nav-link        { font-size: .9rem; letter-spacing: .02em; }
-    .navbar .nav-link:hover,
-    .navbar .nav-link.active { color: var(--mp-green) !important; }
     #projects .container { padding-top: 2rem; padding-bottom: 3rem; }
     #projects h1, #projects h2, #projects h3 { margin-top: 1.5rem; }
     .contenido p, .contenido li { text-align: justify; }
@@ -32,7 +30,7 @@
       #projects h2 { font-size: 26px; }
       #projects h3 { font-size: 18px; }
       .contenido {
-        border-left: 8px solid #cd7f37;
+        border-left: 8px solid var(--color-accent-deco);
         padding-left: 16px;
       }
 
@@ -43,14 +41,15 @@
     .lang-switch-pill {
       display: inline-flex;
       align-items: center;
-      background: var(--mp-blue);
+      background: var(--color-bg-subtle);
+      border: 1px solid var(--color-border);
       border-radius: 50px;
       padding: 4px;
     }
     .lang-opt {
       border: none;
       background: transparent;
-      color: rgba(255,255,255,.75);
+      color: var(--color-text-muted);
       padding: .38rem 1.5rem;
       border-radius: 50px;
       font-family: 'Open Sans', sans-serif;
@@ -61,9 +60,9 @@
       transition: background .2s ease, color .2s ease, box-shadow .2s ease;
     }
     .lang-opt.active {
-      background: #fff;
-      color: var(--mp-blue);
-      box-shadow: 0 2px 8px rgba(0,0,0,.15);
+      background: var(--color-primary);
+      color: var(--color-on-primary);
+      box-shadow: var(--shadow-sm);
     }
   </style>
 </head>
@@ -71,7 +70,7 @@
 <body>
 
 <header>
-  <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm"
+  <nav class="navbar navbar-expand-lg site-navbar sticky-top"
        aria-label="Navegación principal">
     <div class="container">
       <a class="navbar-brand" href="/"><img src="../imgs/arteyciencia.png" alt="Arte y Ciencia — Miguel Portillo"></a>
@@ -88,11 +87,10 @@
           <li class="nav-item"><a class="nav-link active" aria-current="page" href="../cv/">CV</a></li>
           <li class="nav-item"><a class="nav-link" href="../portfolio/" data-i18n="menu_portfolio">Portfolio</a></li>
           <li class="nav-item"><a class="nav-link" href="../certifications/" data-i18n="menu_certfications">Certs</a></li>
-          <li class="nav-item ms-lg-3"><a class="btn btn-outline-dark btn-sm px-4 rounded-pill" href="../contact/" data-i18n="menu_contact">Contact</a></li>
+          <li class="nav-item ms-lg-3"><a class="btn btn-outline-brand btn-sm px-4 rounded-pill" href="../contact/" data-i18n="menu_contact">Contact</a></li>
           <li class="nav-item ms-lg-2">
             <button id="btn-translate"
                     class="btn btn-sm fw-bold px-2"
-                    style="color:#00ff7f; background:none; border:none; letter-spacing:.05em;"
                     aria-label="Switch language / Cambiar idioma">ESP</button>
           </li>
         </ul>

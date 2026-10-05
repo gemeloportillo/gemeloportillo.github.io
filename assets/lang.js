@@ -56,6 +56,15 @@ function applyTranslations(lang) {
             el.value = translations[lang][key];
         }
     });
+
+    // D. Traducir aria-label (y title) de controles solo-ícono
+    document.querySelectorAll('[data-i18n-aria-label]').forEach(el => {
+        const key = el.getAttribute('data-i18n-aria-label');
+        if (translations[lang][key]) {
+            el.setAttribute('aria-label', translations[lang][key]);
+            el.setAttribute('title', translations[lang][key]);
+        }
+    });
 }
 
 // 3. Actualizar el aspecto visual del botón según el idioma actual
@@ -75,10 +84,8 @@ function updateButtonVisuals(lang) {
     // Modo botón legacy (texto "ESP" / "ENG")
     if (lang === 'es') {
         btn.textContent = 'ENG';
-        btn.style.color = '#00bfff';
     } else {
         btn.textContent = 'ESP';
-        btn.style.color = '#00ff7f';
     }
 }
 
@@ -95,37 +102,7 @@ function toggleLanguage() {
 
 // Event Listeners integrando la delegación de eventos
 document.addEventListener('DOMContentLoaded', () => {
-    // Inyectar CSS del pill switch una sola vez
-    const pillStyle = document.createElement('style');
-    pillStyle.textContent = `
-        .nav-lang-pill {
-            display: inline-flex;
-            align-items: center;
-            background: #44c5db;
-            border-radius: 50px;
-            padding: 3px;
-            vertical-align: middle;
-        }
-        .nav-lang-opt {
-            border: none;
-            background: transparent;
-            color: rgba(255,255,255,.7);
-            padding: .28rem 1rem;
-            border-radius: 50px;
-            font-size: .78rem;
-            font-weight: 700;
-            letter-spacing: .08em;
-            cursor: pointer;
-            line-height: 1;
-            transition: background .2s ease, color .2s ease, box-shadow .2s ease;
-        }
-        .nav-lang-opt.active {
-            background: #fff;
-            color: #44c5db;
-            box-shadow: 0 1px 6px rgba(0,0,0,.2);
-        }
-    `;
-    document.head.appendChild(pillStyle);
+    // Estilos del pill switch: viven en /assets/theme.css (tokens de color)
 
     // Convertir btn-translate legacy (button/a) en pill switch
     const existingBtn = document.getElementById('btn-translate');

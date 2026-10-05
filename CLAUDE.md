@@ -39,6 +39,8 @@ Injected into every page that has the matching container `<div>`:
 - `assets/menu.js` — injects the global nav into `<div id="global-nav-container">`. Sets the active link based on `window.location.pathname`.
 - `assets/footer.js` — injects the global footer into `<div id="global-footer-container">`.
 - `assets/lang.js` — bilingual i18n system (EN/ES). Reads/writes `localStorage.userLang`. Detects browser language on first visit. Fetches translations from `/assets/lang.json` on load.
+- `assets/theme.css` — **color design system** (see "Color & theming" below). Must load after Bootstrap and `index_files/styles.css`.
+- `assets/theme.js` — light/dark mode. Loaded in `<head>` without `defer` (prevents flash). Sets `<html data-bs-theme>` from `localStorage.userTheme` or `prefers-color-scheme`, and injects the day/night switch next to `#btn-translate`.
 - `assets/lang.json` — all UI strings in `en` and `es` keyed by slug (e.g. `"menu_home"`, `"cnt_lbl_email"`).
 
 ### `index_files/` — legacy shared assets (older sub-pages)
@@ -56,6 +58,15 @@ All translatable text uses HTML attributes — **never hardcode display strings 
 | `data-i18n-value="key"` | Sets `value` attribute on button/input elements |
 
 The language toggle button must have `id="btn-translate"`. `lang.js` binds it automatically via event delegation.
+
+## Color & theming
+
+Colors live **only** in `assets/theme.css`, in three layers:
+1. **Primitives** (`--blue-600`, `--slate-100`, `--cat-web`…) — raw palette, used only inside theme.css.
+2. **Semantic tokens** (`--color-bg`, `--color-bg-subtle`, `--color-surface`, `--color-text`, `--color-text-muted`, `--color-primary`, `--color-on-primary`, `--color-accent`, `--color-border`…) — the only colors pages may use. Dark mode just redefines these under `:root[data-bs-theme="dark"]`.
+3. **Bootstrap bridge** — maps semantic tokens to `--bs-*` so cards, forms, `.text-muted`, borders follow the theme.
+
+Rules: never hardcode hex colors in pages; use `var(--color-*)` or the utilities `bg-surface`, `bg-surface-alt`, `text-primary-brand`, `text-accent`, `badge-tag`, `btn-brand`, `btn-outline-brand`. Don't use `bg-white`, `bg-light`, `text-dark`, `btn-dark` or `btn-outline-dark` (not theme-aware). Shared navbar (`.site-navbar`), portfolio subnav and footer (`.site-footer`) are styled in theme.css. Palette: brand blue (from the logo) + complementary amber accent + slate neutrals, all WCAG AA.
 
 ## CSS and dependencies
 

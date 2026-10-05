@@ -5,6 +5,7 @@
     "menu_portfolio": "portfolio",
     "menu_certfications": "certs",
     "menu_contact": "contact",
+    "theme_toggle_label": "Dark mode",
     
     "hero_title1": "CREATIVITY +",
     "hero_title2": "LEARNING +",
@@ -194,6 +195,7 @@
     "menu_portfolio": "portafolio",
     "menu_certfications": "certificaciones",
     "menu_contact": "contacto",
+    "theme_toggle_label": "Modo oscuro",
     
     "hero_title1": "CREATIVIDAD +",
     "hero_title2": "APRENDIZAJE +",

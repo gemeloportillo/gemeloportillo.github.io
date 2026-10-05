@@ -14,18 +14,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../index_files/styles.css">
+  <!-- Sistema de color (tokens claro/oscuro) — debe ir después de Bootstrap y styles.css -->
+  <link rel="stylesheet" href="../../assets/theme.css">
+  <script src="../../assets/theme.js"></script>
   <style>
-    :root { --mp-green: #6abf69; --mp-blue: #44c5db; }
     body  { font-family: 'Open Sans', Tahoma, Geneva, sans-serif; }
     header            { position: relative; background: transparent; z-index: auto; width: auto; }
     header *          { color: inherit; }
     header .container { padding-left: .75rem !important; padding-right: .75rem !important; }
     main              { padding-top: 1.5rem; }
-    .navbar-brand img        { height: 38px; }
-    .navbar .nav-link        { font-size: .9rem; letter-spacing: .02em; }
-    .navbar .nav-link:hover,
-    .navbar .nav-link.active { color: var(--mp-green) !important; }
-    .text-blue { color: var(--mp-blue); }
     .exhibit-card { border-top: 3px solid transparent !important; }
     .exhibit-card .exhibit-icon { font-size: 1.8rem; }
 
@@ -54,8 +51,8 @@
       height: 28px;
       border-radius: 50%;
       border: none;
-      background: #44c5db;
-      color: #fff;
+      background: var(--color-primary);
+      color: var(--color-on-primary);
       font-size: .65rem;
       display: flex;
       align-items: center;
@@ -64,18 +61,7 @@
       transition: background .2s;
       z-index: 2;
     }
-    .vid-btn:hover { background: #e5fafd; }
-    /* Portfolio sub-nav */
-    .portfolio-subnav { background: #fff; border-bottom: 1px solid #e9ecef; position: sticky; top: 0; z-index: 99; }
-    .portfolio-subnav__scroll { display: flex; align-items: center; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding: .4rem 1rem; gap: .3rem; max-width: 1140px; margin: 0 auto; }
-    .portfolio-subnav__scroll { scroll-behavior: smooth; }
-  .portfolio-subnav__scroll::-webkit-scrollbar { display: none; }
-    .portfolio-subnav__back { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; color: #888; text-decoration: none; flex-shrink: 0; transition: background .15s, color .15s; }
-    .portfolio-subnav__back:hover { background: #f0f0f0; color: #333; }
-    .portfolio-subnav__sep { width: 1px; height: 16px; background: #dee2e6; flex-shrink: 0; margin: 0 .4rem; }
-    .portfolio-subnav__link { display: inline-flex; align-items: center; white-space: nowrap; padding: .28rem .85rem; border-radius: 2rem; font-size: .77rem; text-decoration: none; color: #555; font-family: 'Open Sans', sans-serif; letter-spacing: .02em; transition: background .15s, color .15s; flex-shrink: 0; }
-    .portfolio-subnav__link:hover { background: #e8f9fc; color: #44c5db; }
-    .portfolio-subnav__link.active { background: #44c5db; color: #fff; font-weight: 600; }
+    .vid-btn:hover { background: var(--color-primary-hover); }
 
     /* styles.css fuerza color oscuro en html * (incluyendo <span> e <i> dentro de botones).
        Scoped a #interactivedesign: corrige color en reposo Y en hover de hijos. */
@@ -89,7 +75,7 @@
 <body id="interactivedesign">
 
 <header>
-  <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm"
+  <nav class="navbar navbar-expand-lg site-navbar sticky-top"
        aria-label="Navegación principal">
     <div class="container">
       <a class="navbar-brand" href="/"><img src="../../imgs/arteyciencia.png" alt="Arte y Ciencia — Miguel Portillo"></a>
@@ -106,11 +92,10 @@
           <li class="nav-item"><a class="nav-link" href="../../cv/">CV</a></li>
           <li class="nav-item"><a class="nav-link active" aria-current="page" href="../../portfolio/" data-i18n="menu_portfolio">Portfolio</a></li>
           <li class="nav-item"><a class="nav-link" href="../../certifications/" data-i18n="menu_certfications">Certs</a></li>
-          <li class="nav-item ms-lg-3"><a class="btn btn-outline-dark btn-sm px-4 rounded-pill" href="../../contact/" data-i18n="menu_contact">Contact</a></li>
+          <li class="nav-item ms-lg-3"><a class="btn btn-outline-brand btn-sm px-4 rounded-pill" href="../../contact/" data-i18n="menu_contact">Contact</a></li>
           <li class="nav-item ms-lg-2">
             <button id="btn-translate"
                     class="btn btn-sm fw-bold px-2"
-                    style="color:#00ff7f; background:none; border:none; letter-spacing:.05em;"
                     aria-label="Switch language / Cambiar idioma">ESP</button>
           </li>
         </ul>
@@ -140,7 +125,7 @@
     <!-- UNIVERSUM section label -->
     <div class="text-center mb-5">
       <span class="badge rounded-pill px-4 py-2 fw-normal"
-            style="background:var(--mp-blue); font-size:.85rem; letter-spacing:.03em;">
+            style="background:var(--color-primary); font-size:.85rem; letter-spacing:.03em;">
         <i class="fa-solid fa-flask me-2"></i>Museo UNIVERSUM — UNAM
       </span>
     </div>
@@ -150,7 +135,7 @@
 
       <div class="col-12 col-md-4">
         <div class="card exhibit-card h-100 border-0 shadow-sm p-4 d-flex flex-column"
-             style="border-top-color: var(--mp-blue) !important;">
+             style="border-top-color: var(--color-primary) !important;">
           <div class="card-video-wrap">
             <video id="vid-mundo" src="/assets/videos/un-mundo-dentro-de-ti.mp4"
                    muted loop playsinline autoplay></video>
@@ -165,12 +150,12 @@
           <div class="d-flex flex-wrap gap-2 mt-auto pt-3">
             <a href="https://www.universum.unam.mx/exposiciones/t/un-mundo-dentro-de-ti"
                target="_blank" rel="noopener noreferrer"
-               class="btn btn-sm btn-outline-dark">
+               class="btn btn-sm btn-outline-brand">
               <span data-i18n="btn_see_project">Ver proyecto</span> →
             </a>
             <a href="https://aristeguinoticias.com/2408/kiosko/en-universum-un-mundo-dentro-de-ti-exposicion-de-microbios-mas-grande-del-mundo-video/"
                target="_blank" rel="noopener noreferrer"
-               class="btn btn-sm btn-outline-secondary"
+               class="btn btn-sm btn-outline-brand"
                aria-label="Nota Aristegui Noticias">
               <i class="fa-solid fa-newspaper me-1"></i>Prensa
             </a>
@@ -180,7 +165,7 @@
 
       <div class="col-12 col-md-4">
         <div class="card exhibit-card h-100 border-0 shadow-sm p-4 d-flex flex-column"
-             style="border-top-color: #44c5db !important;">
+             style="border-top-color: var(--color-primary) !important;">
           <div class="card-video-wrap">
             <video id="vid-vaquita" src="/assets/videos/vaquita-marina.mp4"
                    muted loop playsinline autoplay></video>
@@ -195,7 +180,7 @@
           <div class="mt-auto pt-3">
             <a href="https://www.universum.unam.mx/exposiciones/t/vaquita-marina-entre-redes"
                target="_blank" rel="noopener noreferrer"
-               class="btn btn-sm btn-outline-dark">
+               class="btn btn-sm btn-outline-brand">
               <span data-i18n="btn_see_project">Ver proyecto</span> →
             </a>
           </div>
@@ -220,7 +205,7 @@
           <div class="mt-auto pt-3">
             <a href="https://www.universum.unam.mx/educacion/materiales/imaginario"
                target="_blank" rel="noopener noreferrer"
-               class="btn btn-sm btn-outline-dark">
+               class="btn btn-sm btn-outline-brand">
               <span data-i18n="btn_see_project">Ver proyecto</span> →
             </a>
           </div>
@@ -232,19 +217,19 @@
     <!-- Press / Reconocimientos -->
     <div class="row justify-content-center">
       <div class="col-12 col-md-10">
-        <div class="card border-0 bg-light p-4">
+        <div class="card border-0 bg-surface-alt p-4">
           <h3 class="h6 fw-semibold text-uppercase text-secondary small mb-3 letter-spacing-1">
             <i class="fa-solid fa-newspaper me-2"></i>Prensa y cobertura
           </h3>
           <div class="d-flex flex-wrap gap-3">
             <a href="https://aristeguinoticias.com/2408/kiosko/en-universum-un-mundo-dentro-de-ti-exposicion-de-microbios-mas-grande-del-mundo-video/"
                target="_blank" rel="noopener noreferrer"
-               class="text-decoration-none small" style="color:var(--mp-blue);">
+               class="text-decoration-none small" style="color:var(--color-primary);">
               <i class="fa-solid fa-arrow-up-right-from-square me-1"></i>Aristegui Noticias — Un mundo dentro de ti
             </a>
             <a href="https://www.dgcs.unam.mx/boletin/bdboletin/2017_331.html"
                target="_blank" rel="noopener noreferrer"
-               class="text-decoration-none small" style="color:var(--mp-blue);">
+               class="text-decoration-none small" style="color:var(--color-primary);">
               <i class="fa-solid fa-arrow-up-right-from-square me-1"></i>Boletín UNAM 2017
             </a>
           </div>

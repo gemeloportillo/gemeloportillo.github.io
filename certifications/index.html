@@ -14,33 +14,24 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../index_files/styles.css">
+  <!-- Sistema de color (tokens claro/oscuro) — debe ir después de Bootstrap y styles.css -->
+  <link rel="stylesheet" href="../assets/theme.css">
+  <script src="../assets/theme.js"></script>
   <style>
-    :root { --mp-green: #6abf69; --mp-blue: #44c5db; }
     body  { font-family: 'Open Sans', Tahoma, Geneva, sans-serif; }
     header            { position: relative; background: transparent; z-index: auto; width: auto; }
     header *          { color: inherit; }
     header .container { padding-left: .75rem !important; padding-right: .75rem !important; }
     main              { padding-top: 1.5rem; }
-    .navbar-brand img        { height: 38px; }
-    .navbar .nav-link        { font-size: .9rem; letter-spacing: .02em; }
-    .navbar .nav-link:hover,
-    .navbar .nav-link.active { color: var(--mp-green) !important; }
-    .cert-card { border-top: 3px solid transparent !important; }
-    .cert-card .cert-icon { color: var(--mp-blue); opacity: 1; font-size: 1.6rem; }
-    .cert-card h2 { color: #303030; }
-    .cert-card-1 { border-top-color: #99bd2a !important; } /* coral rojo  — Pósters     */
-    .cert-card-2 { border-top-color: #99bd2a !important; } /* naranja     — Desarrollo  */
-    .cert-card-3 { border-top-color: #99bd2a !important; } /* cyan        — Marketing   */
-    .cert-card-4 { border-top-color: #99bd2a !important; } /* púrpura     — Doodles     */
-    .cert-card-5 { border-top-color: #99bd2a !important; } /* salmón      — Diseño Web  */
-    .cert-card-6 { border-top-color: #99bd2a !important; } /* azul claro  — Interactivo */
+    .cert-card { border-top: 3px solid var(--color-primary) !important; }
+    .cert-card .cert-icon { color: var(--color-primary); opacity: 1; font-size: 1.6rem; }
   </style>
 </head>
 
 <body>
 
 <header>
-  <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm"
+  <nav class="navbar navbar-expand-lg site-navbar sticky-top"
        aria-label="Navegación principal">
     <div class="container">
       <a class="navbar-brand" href="/"><img src="../imgs/arteyciencia.png" alt="Arte y Ciencia — Miguel Portillo"></a>
@@ -57,11 +48,10 @@
           <li class="nav-item"><a class="nav-link" href="../cv/">CV</a></li>
           <li class="nav-item"><a class="nav-link" href="../portfolio/" data-i18n="menu_portfolio">Portfolio</a></li>
           <li class="nav-item"><a class="nav-link active" aria-current="page" href="../certifications/" data-i18n="menu_certfications">Certs</a></li>
-          <li class="nav-item ms-lg-3"><a class="btn btn-outline-dark btn-sm px-4 rounded-pill" href="../contact/" data-i18n="menu_contact">Contact</a></li>
+          <li class="nav-item ms-lg-3"><a class="btn btn-outline-brand btn-sm px-4 rounded-pill" href="../contact/" data-i18n="menu_contact">Contact</a></li>
           <li class="nav-item ms-lg-2">
             <button id="btn-translate"
                     class="btn btn-sm fw-bold px-2"
-                    style="color:#00ff7f; background:none; border:none; letter-spacing:.05em;"
                     aria-label="Switch language / Cambiar idioma">ESP</button>
           </li>
         </ul>

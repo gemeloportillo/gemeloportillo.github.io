@@ -14,19 +14,16 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../index_files/styles.css">
+  <!-- Sistema de color (tokens claro/oscuro) — debe ir después de Bootstrap y styles.css -->
+  <link rel="stylesheet" href="../../assets/theme.css">
+  <script src="../../assets/theme.js"></script>
   <style>
-    :root { --mp-green: #6abf69; --mp-blue: #44c5db; }
     body  { font-family: 'Open Sans', Tahoma, Geneva, sans-serif; }
     header            { position: relative; background: transparent; z-index: auto; width: auto; }
     header *          { color: inherit; }
     header .container { padding-left: .75rem !important; padding-right: .75rem !important; }
     main              { padding-top: 1.5rem; }
-    .navbar-brand img        { height: 38px; }
-    .navbar .nav-link        { font-size: .9rem; letter-spacing: .02em; }
-    .navbar .nav-link:hover,
-    .navbar .nav-link.active { color: var(--mp-green) !important; }
-    .text-blue { color: var(--mp-blue); }
-    .pdn-card  { border-top: 4px solid var(--mp-blue) !important; }
+    .pdn-card  { border-top: 4px solid var(--color-primary) !important; }
     .dataton-card { border-top: 3px solid transparent !important; }
     .dataton-card .btn { margin-top: auto; }
     /* styles.css fuerza color oscuro en html * (incluyendo <span> e <i> dentro de botones).
@@ -35,24 +32,13 @@
     #webdesign a.btn * { color: var(--bs-btn-color); }
     #webdesign a.btn:hover,
     #webdesign a.btn:hover * { color: var(--bs-btn-hover-color) !important; }
-    /* Portfolio sub-nav */
-    .portfolio-subnav { background: #fff; border-bottom: 1px solid #e9ecef; position: sticky; top: 0; z-index: 99; }
-    .portfolio-subnav__scroll { display: flex; align-items: center; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding: .4rem 1rem; gap: .3rem; max-width: 1140px; margin: 0 auto; }
-    .portfolio-subnav__scroll { scroll-behavior: smooth; }
-  .portfolio-subnav__scroll::-webkit-scrollbar { display: none; }
-    .portfolio-subnav__back { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; color: #888; text-decoration: none; flex-shrink: 0; transition: background .15s, color .15s; }
-    .portfolio-subnav__back:hover { background: #f0f0f0; color: #333; }
-    .portfolio-subnav__sep { width: 1px; height: 16px; background: #dee2e6; flex-shrink: 0; margin: 0 .4rem; }
-    .portfolio-subnav__link { display: inline-flex; align-items: center; white-space: nowrap; padding: .28rem .85rem; border-radius: 2rem; font-size: .77rem; text-decoration: none; color: #555; font-family: 'Open Sans', sans-serif; letter-spacing: .02em; transition: background .15s, color .15s; flex-shrink: 0; }
-    .portfolio-subnav__link:hover { background: #e8f9fc; color: #44c5db; }
-    .portfolio-subnav__link.active { background: #44c5db; color: #fff; font-weight: 600; }
   </style>
 </head>
 
 <body id="webdesign">
 
 <header>
-  <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm"
+  <nav class="navbar navbar-expand-lg site-navbar sticky-top"
        aria-label="Navegación principal">
     <div class="container">
       <a class="navbar-brand" href="/"><img src="../../imgs/arteyciencia.png" alt="Arte y Ciencia — Miguel Portillo"></a>
@@ -69,11 +55,10 @@
           <li class="nav-item"><a class="nav-link" href="../../cv/">CV</a></li>
           <li class="nav-item"><a class="nav-link active" aria-current="page" href="../../portfolio/" data-i18n="menu_portfolio">Portfolio</a></li>
           <li class="nav-item"><a class="nav-link" href="../../certifications/" data-i18n="menu_certfications">Certs</a></li>
-          <li class="nav-item ms-lg-3"><a class="btn btn-outline-dark btn-sm px-4 rounded-pill" href="../../contact/" data-i18n="menu_contact">Contact</a></li>
+          <li class="nav-item ms-lg-3"><a class="btn btn-outline-brand btn-sm px-4 rounded-pill" href="../../contact/" data-i18n="menu_contact">Contact</a></li>
           <li class="nav-item ms-lg-2">
             <button id="btn-translate"
                     class="btn btn-sm fw-bold px-2"
-                    style="color:#00ff7f; background:none; border:none; letter-spacing:.05em;"
                     aria-label="Switch language / Cambiar idioma">ESP</button>
           </li>
         </ul>
@@ -109,21 +94,21 @@
             <div class="row align-items-center">
               <div class="col-md-8">
                 <span class="badge rounded-pill px-3 py-2 mb-3 fw-normal"
-                      style="background:var(--mp-blue); font-size:.8rem; letter-spacing:.03em;">
+                      style="background:var(--color-primary); font-size:.8rem; letter-spacing:.03em;">
                   Proyecto Destacado
                 </span>
                 <h2 class="h3 fw-semibold mb-3">Plataforma Digital Nacional (PDN)</h2>
                 <p class="text-muted lh-lg mb-4" data-i18n="webdesign_pdn_desc">Mexico's national anti-corruption transparency portal. Led UI/UX design and frontend architecture using React JS, Material UI (MUI), Tailwind CSS, and Nivo data visualizations connected to open government APIs and MongoDB.</p>
                 <div class="d-flex flex-wrap gap-2 mb-4">
-                  <span class="badge bg-light text-dark border fw-normal">React JS</span>
-                  <span class="badge bg-light text-dark border fw-normal">MUI</span>
-                  <span class="badge bg-light text-dark border fw-normal">Tailwind CSS</span>
-                  <span class="badge bg-light text-dark border fw-normal">Nivo</span>
-                  <span class="badge bg-light text-dark border fw-normal">MongoDB</span>
-                  <span class="badge bg-light text-dark border fw-normal">Figma</span>
+                  <span class="badge badge-tag">React JS</span>
+                  <span class="badge badge-tag">MUI</span>
+                  <span class="badge badge-tag">Tailwind CSS</span>
+                  <span class="badge badge-tag">Nivo</span>
+                  <span class="badge badge-tag">MongoDB</span>
+                  <span class="badge badge-tag">Figma</span>
                 </div>
                 <a href="https://www.plataformadigitalnacional.org/" target="_blank" rel="noopener noreferrer"
-                   class="btn btn-dark btn-sm px-4">
+                   class="btn btn-brand btn-sm px-4">
                   <i class="fa-solid fa-arrow-up-right-from-square me-2"></i>
                   <span data-i18n="btn_see_project">Ver proyecto</span>
                 </a>
@@ -152,13 +137,13 @@
 
       <div class="col-12 col-md-4">
         <div class="card dataton-card h-100 border-0 shadow-sm d-flex flex-column"
-             style="border-top-color: var(--mp-blue) !important;">
+             style="border-top-color: var(--color-primary) !important;">
           <img src="../../assets/imagenes/dataton2025.png" class="card-img-top" alt="Datatón Anticorrupción 2025" style="border-radius:.375rem .375rem 0 0; object-fit:cover; max-height:180px;">
           <div class="card-body p-4 d-flex flex-column">
             <h3 class="h5 fw-semibold mb-1">Datatón 2025</h3>
             <p class="text-muted small mb-3 flex-grow-1">Diseño de identidad visual y plataforma digital completa.</p>
             <a href="https://dataton2025.plataformadigitalnacional.org/" target="_blank" rel="noopener noreferrer"
-               class="btn btn-sm btn-outline-dark align-self-start">
+               class="btn btn-sm btn-outline-brand align-self-start">
               <span data-i18n="btn_see_project">Ver proyecto</span> →
             </a>
           </div>
@@ -173,7 +158,7 @@
             <h3 class="h5 fw-semibold mb-1">Datatón 2024</h3>
             <p class="text-muted small mb-3 flex-grow-1">Diseño de identidad visual y plataforma digital completa.</p>
             <a href="https://dataton2024.plataformadigitalnacional.org/" target="_blank" rel="noopener noreferrer"
-               class="btn btn-sm btn-outline-dark align-self-start">
+               class="btn btn-sm btn-outline-brand align-self-start">
               <span data-i18n="btn_see_project">Ver proyecto</span> →
             </a>
           </div>
@@ -188,7 +173,7 @@
             <h3 class="h5 fw-semibold mb-1">Datatón 2023</h3>
             <p class="text-muted small mb-3 flex-grow-1">Diseño de identidad visual y plataforma digital completa.</p>
             <a href="https://dataton2023.plataformadigitalnacional.org/" target="_blank" rel="noopener noreferrer"
-               class="btn btn-sm btn-outline-dark align-self-start">
+               class="btn btn-sm btn-outline-brand align-self-start">
               <span data-i18n="btn_see_project">Ver proyecto</span> →
             </a>
           </div>
@@ -203,7 +188,7 @@
             <h3 class="h5 fw-semibold mb-1">Datatón 2022</h3>
             <p class="text-muted small mb-3 flex-grow-1">Diseño de identidad visual y plataforma digital.</p>
             <a href="https://sg.com.mx/buzz/dataton-2022-mercado-digital-anticorrupcion" target="_blank" rel="noopener noreferrer"
-               class="btn btn-sm btn-outline-dark align-self-start">
+               class="btn btn-sm btn-outline-brand align-self-start">
               <span data-i18n="btn_see_coverage">Ver cobertura</span> →
             </a>
           </div>
@@ -218,7 +203,7 @@
             <h3 class="h5 fw-semibold mb-1">Datatón 2021</h3>
             <p class="text-muted small mb-3 flex-grow-1">Diseño de identidad visual y plataforma digital completa.</p>
             <a href="https://dataton2021.plataformadigitalnacional.org/" target="_blank" rel="noopener noreferrer"
-               class="btn btn-sm btn-outline-dark align-self-start">
+               class="btn btn-sm btn-outline-brand align-self-start">
               <span data-i18n="btn_see_project">Ver proyecto</span> →
             </a>
           </div>
@@ -233,7 +218,7 @@
             <h3 class="h5 fw-semibold mb-1">Datatón 2019</h3>
             <p class="text-muted small mb-3 flex-grow-1">Primera edición del Datatón Anticorrupción.</p>
             <a href="https://sg.com.mx/buzz/conoce-los-ganadores-del-dataton-anticorrupcion-2019" target="_blank" rel="noopener noreferrer"
-               class="btn btn-sm btn-outline-dark align-self-start">
+               class="btn btn-sm btn-outline-brand align-self-start">
               <span data-i18n="btn_see_coverage">Ver cobertura</span> →
             </a>
           </div>
