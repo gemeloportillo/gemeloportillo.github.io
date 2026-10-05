@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CV — Miguel Angel Portillo | Lead UX/UI Designer</title>
-  <meta name="description" content="Currículum Vitae de Miguel Angel Portillo Bobadilla — Lead Front-End, UI/UX Designer. +20 años de experiencia en diseño web, aplicaciones móviles y sistemas de navegación.">
+  <title>CV — Miguel Angel Portillo | Senior UX/UI Designer &amp; Front-End Developer</title>
+  <meta name="description" content="CV de Miguel Angel Portillo Bobadilla — Diseñador UX/UI Senior y Desarrollador Front-End. +20 años diseñando plataformas gubernamentales y de datos abiertos en México.">
   <meta name="author" content="Miguel Angel Portillo Bobadilla">
   <meta name="robots" content="index, follow">
   <link rel="icon" type="image/x-icon" href="../imgs/favicon.ico">
@@ -18,51 +18,93 @@
   <!-- Sistema de color (tokens claro/oscuro) — debe ir después de Bootstrap y styles.css -->
   <link rel="stylesheet" href="../assets/theme.css">
   <script src="../assets/theme.js"></script>
+  <script>
+    // Idioma antes del primer pintado (misma lógica que lang.js): muestra el CV
+    // correcto sin parpadeo. lang.js lo mantiene actualizado al cambiar idioma.
+    try {
+      document.documentElement.lang = localStorage.getItem('userLang') ||
+        (navigator.language.slice(0, 2) === 'es' ? 'es' : 'en');
+    } catch (e) { document.documentElement.lang = 'en'; }
+  </script>
   <style>
     body  { font-family: 'Open Sans', Tahoma, Geneva, sans-serif; }
     header            { position: relative; background: transparent; z-index: auto; width: auto; }
     header *          { color: inherit; }
     header .container { padding-left: .75rem !important; padding-right: .75rem !important; }
-    main              { padding-top: 1.5rem; }
-    #projects .container { padding-top: 2rem; padding-bottom: 3rem; }
-    #projects h1, #projects h2, #projects h3 { margin-top: 1.5rem; }
-    @media (max-width: 767.98px) {
-      #projects h2 { font-size: 26px; }
-      #projects h3 { font-size: 18px; }
-      .contenido {
-        border-left: 8px solid var(--color-accent-deco);
-        padding-left: 16px;
-      }
+    main              { padding-block: 1.5rem 3rem; }
 
-      #about, #projects {padding-top: 0px;}
-      #about h1, #projects h1 {margin-top: 0px;}
-    }
-    /* Mobile language switch pill */
-    .lang-switch-pill {
-      display: inline-flex;
-      align-items: center;
-      background: var(--color-bg-subtle);
+    /* ── CV: un documento completo por idioma; se muestra el de <html lang> ── */
+    html:not([lang="es"]) .cv-doc[lang="es"],
+    html[lang="es"] .cv-doc[lang="en"] { display: none; }
+
+    .cv-wrap    { max-width: 860px; }
+    .cv-actions { display: flex; justify-content: flex-end; align-items: center; gap: .75rem; flex-wrap: wrap; margin-bottom: 1rem; }
+
+    /* styles.css (legado) da position a todo <header>: en los encabezados del CV eso
+       altera el orden del texto en el PDF y los ATS separan cargos de sus logros */
+    .cv-doc header { position: static; width: auto; z-index: auto; background: none !important; } /* styles.css: header #303030 !important en móvil */
+    /* styles.css (legado) pone borde, márgenes y negritas a todo <article> y 13px a <p> */
+    .cv-doc, .cv-doc article { font-weight: 400; }
+    .cv-doc :is(p, li, dt, dd) { font-size: inherit; }
+
+    .cv-doc {
+      margin: 0;
+      padding: clamp(1.25rem, 4vw, 3rem);
+      background: var(--color-surface);
       border: 1px solid var(--color-border);
-      border-radius: 50px;
-      padding: 4px;
+      border-radius: .5rem;
+      color: var(--color-text);
+      font-size: .95rem;
+      line-height: 1.55;
     }
-    .lang-opt {
-      border: none;
-      background: transparent;
-      color: var(--color-text-muted);
-      padding: .38rem 1.5rem;
-      border-radius: 50px;
-      font-family: 'Open Sans', sans-serif;
-      font-size: .82rem;
-      font-weight: 600;
-      letter-spacing: .07em;
-      cursor: pointer;
-      transition: background .2s ease, color .2s ease, box-shadow .2s ease;
+    .cv-header h1 { font-size: 2rem; font-weight: 600; line-height: 1.2; margin: 0 0 .25rem; }
+    .cv-headline  { font-size: 1.05rem; color: var(--color-primary); margin: 0 0 .75rem; }
+    .cv-contact   { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: .25rem 1.25rem; font-size: .85rem; color: var(--color-text-muted); }
+    .cv-doc h2 {
+      margin: 1.75rem 0 .9rem;
+      padding-bottom: .35rem;
+      border-bottom: 1px solid var(--color-border);
+      color: var(--color-primary);
+      font-size: .8rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
     }
-    .lang-opt.active {
-      background: var(--color-primary);
-      color: var(--color-on-primary);
-      box-shadow: var(--shadow-sm);
+    .cv-job          { margin: 0 0 1.1rem; padding: 0; border: 0; }
+    .cv-job h3       { font-size: 1rem; font-weight: 600; line-height: 1.35; margin: 0; }
+    .cv-meta         { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0 1rem; margin: .1rem 0 .4rem; font-size: .875rem; color: var(--color-text-muted); }
+    .cv-meta span:last-child { white-space: nowrap; font-variant-numeric: tabular-nums; }
+    .cv-job ul       { margin: 0; padding-left: 1.1rem; }
+    .cv-job li       { margin-bottom: .25rem; }
+    .cv-earlier      { font-size: .875rem; color: var(--color-text-muted); }
+    .cv-skills       { display: grid; grid-template-columns: 9.5rem 1fr; gap: .35rem 1rem; margin: 0; }
+    .cv-skills dt    { font-weight: 600; }
+    .cv-skills dd    { margin: 0; }
+    .cv-plain        { list-style: none; padding: 0; margin: 0; }
+    .cv-plain li     { margin-bottom: .25rem; }
+    .cv-cols         { display: grid; grid-template-columns: 1fr 1fr; gap: 0 2rem; }
+    @media (max-width: 575.98px) {
+      .cv-skills, .cv-cols { grid-template-columns: 1fr; }
+      .cv-skills dd { margin-bottom: .5rem; }
+      .cv-header h1 { font-size: 1.6rem; }
+    }
+
+    /* Selector de idioma (móvil) */
+    .lang-switch-pill { display: inline-flex; align-items: center; background: var(--color-bg-subtle); border: 1px solid var(--color-border); border-radius: 50px; padding: 4px; }
+    .lang-opt { border: none; background: transparent; color: var(--color-text-muted); padding: .3rem 1.1rem; border-radius: 50px; font-size: .8rem; font-weight: 600; letter-spacing: .07em; cursor: pointer; transition: background .2s ease, color .2s ease; }
+    .lang-opt.active { background: var(--color-primary); color: var(--color-on-primary); }
+
+    /* ── Impresión / "Guardar como PDF": solo el CV, en blanco y negro con acento azul ── */
+    @media print {
+      @page { margin: 14mm; }
+      body > header, #global-footer-container, .cv-actions { display: none !important; }
+      html, body, main { background: #fff !important; color: #111 !important; }
+      main { padding: 0; }
+      .cv-wrap { max-width: none; padding: 0; }
+      .cv-doc { border: 0; padding: 0; border-radius: 0; background: #fff; color: #111; font-size: 10pt; line-height: 1.4; }
+      .cv-header h1 { font-size: 20pt; }
+      .cv-headline, .cv-doc h2 { color: #0d5784; }
+      .cv-doc h2 { border-color: #ccc; margin: 12pt 0 6pt; font-size: 8.5pt; break-after: avoid; }
+      .cv-contact, .cv-meta, .cv-earlier { color: #444; }
+      .cv-doc a { color: inherit; text-decoration: none; }
+      .cv-job { break-inside: avoid; }
     }
   </style>
 </head>
@@ -100,68 +142,289 @@
 </header>
 
 <main>
-  <!-- Mobile-only language toggle (hidden on desktop via d-lg-none) -->
-  <div class="d-flex justify-content-center pt-3 pb-1 d-lg-none" aria-label="Cambiar idioma / Switch language">
-    <div class="lang-switch-pill" role="group" aria-label="Language switch">
-      <button class="lang-opt" id="lang-btn-en" aria-label="Switch to English">EN</button>
-      <button class="lang-opt" id="lang-btn-es" aria-label="Cambiar a Español">ES</button>
-    </div>
-  </div>
+  <div class="cv-wrap container">
 
-  <div id="projects">
-    <div class="container">
-      <h1 class="text-center" data-i18n="cv_main_title">curriculum <span class="text-blue">vitae</span></h1>
-
-      <div class="contenido">
-        <h1 data-i18n="cv_name">Miguel Angel Portillo Bobadilla</h1>
-        <h2 data-i18n="cv_role">Lead Front-End, UI/UX, and Web Designer/Developer</h2>
-        <h3>miguelportilloux@gmail.com</h3>
-
-        <article>
-          <p class="article" data-i18n="cv_profile_desc_1">Impressive work, for impressive life. Passionated to change creativity and technology into a world more handable. Understanding of client needs. Specialized in solving UI/UX/Front End technologies challenges. Loving to design, research and develop unique TI solutions with the best hi-quality market standards. Searching to be part of the best team and people, ready to start outstanding projects.</p>
-        </article>
-        <p data-i18n="cv_skills_soft">Proactive, leader, creative, work under pressure, committed, organized, teamwork, results oriented.</p>
-        <p data-i18n="cv_profile_desc_2">Graduate with a Master in Visual Arts (UNAM), I began my career focused on art, advertising, photography and multimedia design. In the last 20 years I have collaborated with public and private organizations alongside development teams. Core work: UI/UX design, information architecture, wireframing, prototyping, and frontend development for web and mobile platforms — including high-profile national government portals. Stack: React JS, MUI, Tailwind CSS, Angular, Bootstrap, JavaScript ES6+, HTML5, CSS3, Figma, Adobe XD, Nivo, JSON, REST APIs, MongoDB, PHP, MySQL, ActionScript AS3, FLEX, PhoneGap. CMS: Drupal, Joomla, SharePoint. Science communication and educational design.</p>
-
-        <h1 data-i18n="cv_title_studies">Studies</h1>
-        <p data-i18n="cv_studies_list">International Master Certification. Adobe Certified Expert (ACE) DW. 2015. Master in Visual Arts, 2013, UNAM. Average: 9.27/10.</p>
-
-        <h1 data-i18n="cv_title_experience">Professional Experiences</h1>
-        <ul>
-          <li><strong data-i18n="cv_exp_sesna_title">Subdirector, UI/UX Design &amp; Digital Platforms.</strong> <span data-i18n="cv_exp_sesna_desc">SESNA, 2018–present.</span></li>
-          <li><strong data-i18n="cv_exp_sfp_title">Systems Engineer / UI Interface Specialist.</strong> <span data-i18n="cv_exp_sfp_desc">SFP – INFOTEC, 2015–2018.</span></li>
-          <li><strong data-i18n="cv_exp_universum_title">Interactive Multimedia Developer &amp; UI/UX Designer.</strong> <span data-i18n="cv_exp_universum_desc">Museo UNIVERSUM – UNAM.</span></li>
-          <li><strong data-i18n="cv_exp_job1_title">Lead Front-End, UI/UX Designer.</strong> <span data-i18n="cv_exp_job1_desc">Supreme Court of Justice of the Nation (SCJN), UAEM 2012–2015.</span></li>
-          <li><strong data-i18n="cv_exp_job2_title">Senior UX Designer.</strong> <span data-i18n="cv_exp_job2_desc">IBM-IUSACELL, Acapulco Project 2011-2012.</span></li>
-          <li><strong data-i18n="cv_exp_job3_title">Senior Web &amp; Mobile Designer.</strong> <span data-i18n="cv_exp_job3_desc">IUSACELL 2009-2011.</span></li>
-          <li><strong data-i18n="cv_exp_job4_title">Web / Multimedia Designer.</strong> <span data-i18n="cv_exp_job4_desc">Federal Electoral Tribunal 2005-2009.</span></li>
-          <li><strong data-i18n="cv_exp_job5_title">Art Director.</strong> <span data-i18n="cv_exp_job5_desc">"Forum" Magazine. 2003-2005.</span></li>
-          <li><strong data-i18n="cv_exp_job6_title">Multimedia / Graphic Designer.</strong> <span data-i18n="cv_exp_job6_desc">Multimedia Department DGSCA-UNAM, 2001-2003.</span></li>
-        </ul>
-
-        <p><strong data-i18n="cv_title_languages">Language Proficiency</strong><br>
-          <span data-i18n="cv_languages_desc">English: Fluent written and spoken. French: proficient. Spanish: native language.</span></p>
-
-        <p><strong data-i18n="cv_title_tech">Technologies and software:</strong><br>
-          <strong data-i18n="cv_sub_modern">UI/UX &amp; FRONTEND (MODERN):</strong> React JS, MUI (Material UI), Tailwind CSS, Angular, Bootstrap, JavaScript ES6+, HTML5, CSS3, Figma, Adobe XD<br>
-          <strong data-i18n="cv_sub_data">DATA &amp; APIs:</strong> Nivo, JSON, REST APIs, MongoDB, PHP, MySQL, AJAX<br>
-          <strong data-i18n="cv_sub_tech">TECHNOLOGIES (LEGACY):</strong> jQuery, ActionScript AS3, FLEX, PhoneGap, XML (e4x)<br>
-          <strong data-i18n="cv_sub_web">WEB DESIGN:</strong> Dreamweaver, Fireworks, Flash, FLEX<br>
-          <strong data-i18n="cv_sub_multi">MULTIMEDIA:</strong> Director, Flash, Authorware<br>
-          <strong data-i18n="cv_sub_anim">ANIMATION AND VIDEO:</strong> Premiere, After Effects, 3D StudioMax<br>
-          <strong data-i18n="cv_sub_pub">PUBLISHING:</strong> InDesign, QuarkXpress<br>
-          <strong data-i18n="cv_sub_img">DIGITAL IMAGE:</strong> Photoshop, Illustrator, CorelDraw, Adobe XD</p>
-
-        <p><strong data-i18n="cv_title_awards">Awards and Recognition:</strong><br>
-          <span data-i18n="cv_awards_desc">National Science and Technology Award 2003. Interactive CD-Rom: Macromolecular interactions.</span></p>
-
-        <p><strong data-i18n="cv_title_exhibitions">Exhibitions:</strong><br>
-          <span data-i18n="cv_exhibitions_desc">National Youth Science and Technology Competition 2003 Villahermosa, Tabasco. Mexico.</span></p>
-
-        <p><strong data-i18n="cv_title_academic">Academic Experience</strong><br>
-          <span data-i18n="cv_academic_desc">Certification in Multimedia with Director, 2002, San Carlos ENAP, UNAM</span></p>
+    <!-- Barra de acciones (no se imprime) -->
+    <div class="cv-actions" role="group" aria-label="CV">
+      <div class="lang-switch-pill d-lg-none" role="group" aria-label="Cambiar idioma / Switch language">
+        <button class="lang-opt" id="lang-btn-en" aria-label="Switch to English">EN</button>
+        <button class="lang-opt" id="lang-btn-es" aria-label="Cambiar a Español">ES</button>
       </div>
+      <button type="button" class="btn btn-brand btn-sm rounded-pill px-4" id="cv-print">
+        <i class="fa fa-file-pdf me-2" aria-hidden="true"></i><span data-i18n="cv_btn_pdf">Save as PDF</span>
+      </button>
     </div>
+
+    <!-- ═══════════════════════════ ENGLISH ═══════════════════════════ -->
+    <article class="cv-doc" lang="en">
+      <header class="cv-header">
+        <h1>Miguel Angel Portillo Bobadilla</h1>
+        <p class="cv-headline">Senior UX/UI Designer &amp; Front-End Developer — Government &amp; Open-Data Platforms</p>
+        <ul class="cv-contact">
+          <li>Mexico City · Open to remote</li>
+          <li><a href="mailto:miguelportilloux@gmail.com">miguelportilloux@gmail.com</a></li>
+          <li>+52 55 2328 8158</li>
+          <li><a href="https://arteyciencia.mx">arteyciencia.mx</a></li>
+          <li><a href="https://mx.linkedin.com/in/miguelportilloux">linkedin.com/in/miguelportilloux</a></li>
+          <li><a href="https://github.com/gemeloportillo">github.com/gemeloportillo</a></li>
+        </ul>
+      </header>
+
+      <section>
+        <h2>Summary</h2>
+        <p>Senior UX/UI designer and front-end developer with 20+ years designing government and open-data platforms in Mexico. Takes products from research and information architecture to accessible, production-ready interfaces in React, Material UI and Tailwind CSS, working hand in hand with engineering, legal and communications teams. Most recently Deputy Director of UX/UI Design at Mexico's Anti-Corruption System, leading the design of the National Digital Platform (PDN).</p>
+      </section>
+
+      <section>
+        <h2>Experience</h2>
+
+        <article class="cv-job">
+          <header>
+            <h3>Deputy Director, UX/UI Design &amp; Web Applications</h3>
+            <p class="cv-meta"><span>Executive Secretariat of the National Anti-Corruption System (SESNA)</span><span>2018 – 2026</span></p>
+          </header>
+          <ul>
+            <li>Led UX/UI and front-end design of the <a href="https://www.plataformadigitalnacional.org/">National Digital Platform (PDN)</a>, which connects 3,611+ public institutions across Mexico's 32 states through 6 core systems holding 11M+ asset declarations and 1M+ public procurement procedures.</li>
+            <li>Defined information architecture, user flows, wireframes and prototypes, and built component-based interfaces in React, Material UI and Tailwind CSS together with the development team.</li>
+            <li>Designed interactive open-data visualizations with Nivo, consuming REST APIs, JSON and MongoDB.</li>
+            <li>Led the <a href="https://dataton2025.plataformadigitalnacional.org/">2025 Anti-Corruption Datathon</a>: 91 participants in 23 teams from 20 Mexican states (41% women; 69% public sector).</li>
+            <li>Created the visual identity, logos and online/in-person promotional materials for the 2019–2024 editions; the 2024 edition drew 189 registrants in 29 teams from 7 countries.</li>
+            <li>Acted as liaison between technical, legal and communications areas to translate requirements into product decisions; also designed the institutional intranet (SharePoint 365).</li>
+          </ul>
+        </article>
+
+        <article class="cv-job">
+          <header>
+            <h3>Systems Engineer, UI &amp; Development Support</h3>
+            <p class="cv-meta"><span>Ministry of Public Administration (SFP) – INFOTEC</span><span>2015 – 2018</span></p>
+          </header>
+          <ul>
+            <li>UI design, responsive layout and usability for DeclaraNet, the asset-declaration system used by ~1.5 million federal public servants.</li>
+            <li>Designed the visual proposal and prototypes for the Conflictómetro app and the Human Resources Policy Unit (USP) website.</li>
+            <li>Front-end integration with AngularJS, Java PrimeFaces, Bootstrap and Drupal.</li>
+          </ul>
+        </article>
+
+        <article class="cv-job">
+          <header>
+            <h3>Software Engineer</h3>
+            <p class="cv-meta"><span>Supreme Court of Justice of Mexico (SCJN) – UAEM projects</span><span>2012 – 2015</span></p>
+          </header>
+          <ul>
+            <li>Shipped 10+ institutional websites and microsites and the Court's official mobile portal, including online courses and the Latin American Legal Knowledge Portal.</li>
+            <li>Front-end development (HTML5, CSS3, jQuery, AJAX/JSON) on Drupal, SharePoint and .NET.</li>
+          </ul>
+        </article>
+
+        <article class="cv-job">
+          <header>
+            <h3>UX/UI Designer &amp; Multimedia Developer</h3>
+            <p class="cv-meta"><span>UNIVERSUM Science Museum (UNAM) and cultural institutions</span><span>Independent projects</span></p>
+          </header>
+          <ul>
+            <li>Designed educational microsites and interactive navigation for science exhibitions, including <em>Un mundo dentro de ti</em> (with the American Museum of Natural History), <em>Imaginario Matemático</em>, <em>Vaquita Marina entre redes</em> and <em>Exploradores alemanes en México</em> (Embassy of Germany).</li>
+          </ul>
+        </article>
+
+        <article class="cv-job">
+          <header>
+            <h3>Systems Engineer (Full)</h3>
+            <p class="cv-meta"><span>IBM / Iusacell</span><span>2009 – 2012</span></p>
+          </header>
+          <ul>
+            <li>Designed interfaces for mobile web/WAP apps and portals (sports, music, TV, geolocation and prepaid services) and the PubliWAP mobile-advertising management system.</li>
+          </ul>
+        </article>
+
+        <article class="cv-job">
+          <header>
+            <h3>Head of Department, Web Portal &amp; Interactive Platforms</h3>
+            <p class="cv-meta"><span>Federal Electoral Tribunal (TEPJF)</span><span>2005 – 2009</span></p>
+          </header>
+          <ul>
+            <li>Designed and built the Tribunal's institutional portal, intranet and public sites, from visual design to information architecture.</li>
+            <li>Ran the live streaming of plenary sessions during the 2006 presidential election ruling, tuning bitrate and video quality in real time to keep the broadcast available under nationwide demand.</li>
+          </ul>
+        </article>
+
+        <p class="cv-earlier"><strong>Earlier:</strong> Art Director, <em>Forum</em> magazine (2003–2005) · Multimedia Designer, DGSCA-UNAM (2001–2003).</p>
+      </section>
+
+      <section>
+        <h2>Skills</h2>
+        <dl class="cv-skills">
+          <dt>UX &amp; design</dt><dd>User-centered design, information architecture, user flows, wireframing, prototyping, design systems, accessibility (WCAG 2.1), visual identity</dd>
+          <dt>Tools</dt><dd>Figma, Adobe XD, Illustrator, Photoshop, InDesign</dd>
+          <dt>Front-end</dt><dd>React, Material UI, Tailwind CSS, Angular, Bootstrap, JavaScript (ES6+), HTML5, CSS3/Sass</dd>
+          <dt>Data</dt><dd>Data visualization (Nivo), REST APIs, JSON, MongoDB, open data</dd>
+          <dt>Workflow</dt><dd>Git/GitHub, Agile (Scrum), SDLC, Drupal, SharePoint 365, WordPress</dd>
+        </dl>
+      </section>
+
+      <section>
+        <h2>Education</h2>
+        <ul class="cv-plain">
+          <li><strong>Master in Visual Arts</strong> (Design &amp; Visual Communication), Academia de San Carlos, UNAM — 2013</li>
+          <li><strong>BA in Graphic Design</strong>, UNAM — 1999</li>
+          <li><strong>BSc in Computer Science</strong>, Universidad Londres — in progress</li>
+          <li>Adobe Certified Expert (ACE), Web Communication — 2014</li>
+        </ul>
+      </section>
+
+      <section class="cv-cols">
+        <div>
+          <h2>Awards</h2>
+          <ul class="cv-plain">
+            <li>National Science and Technology Award, Mexico — 2003</li>
+            <li>1st place, Latin American Congress of University Multimedia (CLAMU) — 2004</li>
+          </ul>
+        </div>
+        <div>
+          <h2>Languages</h2>
+          <ul class="cv-plain">
+            <li>Spanish — native</li>
+            <li>English — advanced</li>
+            <li>French — technical reading</li>
+          </ul>
+        </div>
+      </section>
+    </article>
+
+    <!-- ═══════════════════════════ ESPAÑOL ═══════════════════════════ -->
+    <article class="cv-doc" lang="es">
+      <header class="cv-header">
+        <h1>Miguel Ángel Portillo Bobadilla</h1>
+        <p class="cv-headline">Diseñador UX/UI Senior y Desarrollador Front-End — Plataformas gubernamentales y de datos abiertos</p>
+        <ul class="cv-contact">
+          <li>Ciudad de México · Disponible para trabajo remoto</li>
+          <li><a href="mailto:miguelportilloux@gmail.com">miguelportilloux@gmail.com</a></li>
+          <li>+52 55 2328 8158</li>
+          <li><a href="https://arteyciencia.mx">arteyciencia.mx</a></li>
+          <li><a href="https://mx.linkedin.com/in/miguelportilloux">linkedin.com/in/miguelportilloux</a></li>
+          <li><a href="https://github.com/gemeloportillo">github.com/gemeloportillo</a></li>
+        </ul>
+      </header>
+
+      <section>
+        <h2>Perfil</h2>
+        <p>Diseñador UX/UI senior y desarrollador front-end con más de 20 años diseñando plataformas gubernamentales y de datos abiertos en México. Lleva los productos de la investigación y la arquitectura de información a interfaces accesibles y listas para producción con React, Material UI y Tailwind CSS, de la mano de equipos de desarrollo, jurídicos y de comunicación. Hasta 2026, Subdirector de Diseño UX/UI en el Sistema Nacional Anticorrupción, donde lideró el diseño de la Plataforma Digital Nacional (PDN).</p>
+      </section>
+
+      <section>
+        <h2>Experiencia</h2>
+
+        <article class="cv-job">
+          <header>
+            <h3>Subdirector de Diseño de Imagen y Experiencia de Usuario (UX/UI) / Aplicaciones Web</h3>
+            <p class="cv-meta"><span>Secretaría Ejecutiva del Sistema Nacional Anticorrupción (SESNA)</span><span>2018 – 2026</span></p>
+          </header>
+          <ul>
+            <li>Lideré el diseño UX/UI y front-end de la <a href="https://www.plataformadigitalnacional.org/">Plataforma Digital Nacional (PDN)</a>, que conecta a más de 3,611 instituciones públicas de las 32 entidades federativas mediante 6 sistemas principales con más de 11 millones de declaraciones patrimoniales y más de un millón de procedimientos de contratación pública.</li>
+            <li>Definí arquitectura de información, flujos de usuario, wireframes y prototipos, y construí interfaces basadas en componentes con React, Material UI y Tailwind CSS junto con el equipo de desarrollo.</li>
+            <li>Diseñé visualizaciones interactivas de datos abiertos con Nivo, alimentadas por APIs REST, JSON y MongoDB.</li>
+            <li>Lideré el <a href="https://dataton2025.plataformadigitalnacional.org/">Datatón Anticorrupción 2025</a>: 91 participantes en 23 equipos de 20 entidades federativas (41% mujeres; 69% del sector público).</li>
+            <li>Creé la identidad visual, los logos y el material de promoción virtual y presencial de las ediciones 2019–2024; la edición 2024 reunió 189 registros en 29 equipos de 7 países.</li>
+            <li>Fungí como enlace entre áreas técnicas, jurídicas y de comunicación para traducir requerimientos en decisiones de producto; también diseñé la intranet institucional (SharePoint 365).</li>
+          </ul>
+        </article>
+
+        <article class="cv-job">
+          <header>
+            <h3>Ingeniero de Sistemas / Especialista en Soporte a Desarrollo e Interfaz</h3>
+            <p class="cv-meta"><span>Secretaría de la Función Pública (SFP) – INFOTEC</span><span>2015 – 2018</span></p>
+          </header>
+          <ul>
+            <li>Diseño de interfaz, maquetación responsiva y usabilidad de DeclaraNet, el sistema de declaraciones patrimoniales que usan cerca de 1.5 millones de servidores públicos federales.</li>
+            <li>Propuesta visual y prototipos de la app Conflictómetro y del sitio de la Unidad de Política de Recursos Humanos (USP).</li>
+            <li>Integración front-end con AngularJS, Java PrimeFaces, Bootstrap y Drupal.</li>
+          </ul>
+        </article>
+
+        <article class="cv-job">
+          <header>
+            <h3>Ingeniero de Software A</h3>
+            <p class="cv-meta"><span>Suprema Corte de Justicia de la Nación (SCJN) – proyectos UAEM</span><span>2012 – 2015</span></p>
+          </header>
+          <ul>
+            <li>Liberé más de 10 sitios y micrositios institucionales y el portal móvil oficial de la Corte, incluidos cursos en línea y el Portal Latinoamericano de Conocimiento Jurídico.</li>
+            <li>Desarrollo front-end (HTML5, CSS3, jQuery, AJAX/JSON) sobre Drupal, SharePoint y .NET.</li>
+          </ul>
+        </article>
+
+        <article class="cv-job">
+          <header>
+            <h3>Diseñador UX/UI y Desarrollador Multimedia</h3>
+            <p class="cv-meta"><span>Museo UNIVERSUM (UNAM) e instituciones culturales</span><span>Proyectos independientes</span></p>
+          </header>
+          <ul>
+            <li>Diseñé micrositios educativos y recorridos de navegación interactivos para exposiciones de divulgación científica, entre ellas <em>Un mundo dentro de ti</em> (con el American Museum of Natural History), <em>Imaginario Matemático</em>, <em>Vaquita Marina entre redes</em> y <em>Exploradores alemanes en México</em> (Embajada de Alemania).</li>
+          </ul>
+        </article>
+
+        <article class="cv-job">
+          <header>
+            <h3>Ingeniero de Sistemas Full</h3>
+            <p class="cv-meta"><span>IBM / Iusacell</span><span>2009 – 2012</span></p>
+          </header>
+          <ul>
+            <li>Diseñé interfaces de apps y portales móviles web/WAP (deportes, música, TV, geolocalización y servicios de prepago) y del sistema de gestión de publicidad móvil PubliWAP.</li>
+          </ul>
+        </article>
+
+        <article class="cv-job">
+          <header>
+            <h3>Jefe de Departamento / Encargado de Portal y Plataformas Interactivas</h3>
+            <p class="cv-meta"><span>Tribunal Electoral del Poder Judicial de la Federación (TEPJF)</span><span>2005 – 2009</span></p>
+          </header>
+          <ul>
+            <li>Diseñé y desarrollé el portal institucional, la intranet y los sitios públicos del Tribunal, de la propuesta gráfica a la arquitectura de información.</li>
+            <li>Operé la transmisión en vivo de las sesiones del pleno durante la calificación de la elección presidencial de 2006, ajustando en tiempo real el bitrate y la calidad del video para mantenerla disponible ante la demanda nacional.</li>
+          </ul>
+        </article>
+
+        <p class="cv-earlier"><strong>Experiencia previa:</strong> Director de Arte, revista <em>Forum</em> (2003–2005) · Diseñador Multimedia, DGSCA-UNAM (2001–2003).</p>
+      </section>
+
+      <section>
+        <h2>Competencias</h2>
+        <dl class="cv-skills">
+          <dt>UX y diseño</dt><dd>Diseño centrado en las personas, arquitectura de información, flujos de usuario, wireframing, prototipado, sistemas de diseño, accesibilidad (WCAG 2.1), identidad visual</dd>
+          <dt>Herramientas</dt><dd>Figma, Adobe XD, Illustrator, Photoshop, InDesign</dd>
+          <dt>Front-end</dt><dd>React, Material UI, Tailwind CSS, Angular, Bootstrap, JavaScript (ES6+), HTML5, CSS3/Sass</dd>
+          <dt>Datos</dt><dd>Visualización de datos (Nivo), APIs REST, JSON, MongoDB, datos abiertos</dd>
+          <dt>Flujo de trabajo</dt><dd>Git/GitHub, Agile (Scrum), ciclo de vida del software (SDLC), Drupal, SharePoint 365, WordPress</dd>
+        </dl>
+      </section>
+
+      <section>
+        <h2>Formación</h2>
+        <ul class="cv-plain">
+          <li><strong>Maestría en Artes Visuales</strong> (Diseño y Comunicación Visual), Academia de San Carlos, UNAM — 2013</li>
+          <li><strong>Licenciatura en Diseño Gráfico</strong>, UNAM — 1999</li>
+          <li><strong>Licenciatura en Informática</strong>, Universidad Londres — en curso</li>
+          <li>Adobe Certified Expert (ACE), Web Communication — 2014</li>
+        </ul>
+      </section>
+
+      <section class="cv-cols">
+        <div>
+          <h2>Reconocimientos</h2>
+          <ul class="cv-plain">
+            <li>Premio Nacional de Ciencia y Tecnología — 2003</li>
+            <li>1er lugar, Congreso Latinoamericano de Multimedieros Universitarios (CLAMU) — 2004</li>
+          </ul>
+        </div>
+        <div>
+          <h2>Idiomas</h2>
+          <ul class="cv-plain">
+            <li>Español — nativo</li>
+            <li>Inglés — avanzado</li>
+            <li>Francés — comprensión técnica</li>
+          </ul>
+        </div>
+      </section>
+    </article>
+
   </div>
 </main>
 
@@ -171,31 +434,25 @@
 <script src="../assets/footer.js"></script>
 <script src="../assets/lang.js"></script>
 <script>
-(function () {
-  function setActive(lang) {
-    var en = document.getElementById('lang-btn-en');
-    var es = document.getElementById('lang-btn-es');
-    if (!en || !es) return;
-    en.classList.toggle('active', lang === 'en');
-    es.classList.toggle('active', lang === 'es');
-  }
+  (() => {
+    const root = document.documentElement;
 
-  // Reflect current language (lang.js stores it in localStorage)
-  var initLang = localStorage.getItem('userLang') ||
-                 (navigator.language.toLowerCase().startsWith('es') ? 'es' : 'en');
-  setActive(initLang);
+    // Selector de idioma móvil: usa el mismo control que la navbar (lang.js)
+    const sync = () => ['en', 'es'].forEach(l =>
+      document.getElementById('lang-btn-' + l)?.classList.toggle('active', root.lang === l));
+    ['en', 'es'].forEach(l => document.getElementById('lang-btn-' + l)?.addEventListener('click', () =>
+      document.querySelector('#btn-translate [data-lang="' + l + '"]')?.click()));
+    new MutationObserver(sync).observe(root, { attributes: true, attributeFilter: ['lang'] });
+    sync();
 
-  function handleSwitch(targetLang) {
-    var current = localStorage.getItem('userLang') || initLang;
-    if (current !== targetLang) {
-      document.getElementById('btn-translate').click();
-    }
-    setActive(targetLang);
-  }
-
-  document.getElementById('lang-btn-en').addEventListener('click', function () { handleSwitch('en'); });
-  document.getElementById('lang-btn-es').addEventListener('click', function () { handleSwitch('es'); });
-})();
+    // "Guardar como PDF": el título del documento es el nombre de archivo que sugiere el navegador
+    const pageTitle = document.title;
+    addEventListener('beforeprint', () => {
+      document.title = 'Miguel-Angel-Portillo_CV_' + (root.lang === 'es' ? 'ES' : 'EN');
+    });
+    addEventListener('afterprint', () => { document.title = pageTitle; });
+    document.getElementById('cv-print').addEventListener('click', () => print());
+  })();
 </script>
 
 </body>

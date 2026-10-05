@@ -30,6 +30,9 @@ async function loadTranslations() {
 function applyTranslations(lang) {
     if (!translations[lang]) return;
 
+    // Idioma del documento: lectores de pantalla y contenido por idioma (p. ej. el CV)
+    document.documentElement.lang = lang;
+
     // A. Traducir contenido de texto estándar (usando innerHTML para los <br>)
     const textElements = document.querySelectorAll('[data-i18n]');
     textElements.forEach(el => {
